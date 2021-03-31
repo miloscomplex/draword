@@ -1,0 +1,42 @@
+An application to play a game where user one draws to communicate the word not revealed to user two (or more).  User two can see what user one is drawing live and submits guesses via a text form. If user two can guess it in the allotted time, they win. If not, they lose.
+
+### MVP
+
+
+[ ] The application contains a canvas that can draw on with mousing down while in the canvas's constraints.
+
+[ ] A list of 3 words appears to the drawing user to choose one to draw, the three words are selected from a preexisting list
+
+[ ] A timer starts once the word is selected.
+
+[ ] The word array is filtered not to repeat words per session.
+
+[ ] Guessing user observes Drawing user draw and guesses the word via a text input box.
+
+[ ] The guesses are logged to a chatbox, so other users and the drawing user can see them.
+
+[ ] The game is won when the word is guessed.
+
+[ ] The game is lost if time expires.
+
+[ ] They can try another word if they win or lose.
+
+[ ] Have a congratulations box and allow the score to be submitted (Word and elapsed time).
+
+[ ] Utilize web-sockets to show the drawings live.
+
+[ ] There are users and authentication.
+
+### Stretch Goals
+
+[ ] The list of phrases should have a difficulty rating, easy, medium, and hard.
+
+[ ] The drawing tools include various brush sizes and colors and a clear function.
+
+[ ] The drawing tools include an eraser.
+
+[ ] The drawing user can fill in the background.
+
+[ ] Your account keeps track of words you have encountered.
+
+[ ] Your account will display your past performance.
