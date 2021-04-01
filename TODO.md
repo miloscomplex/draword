@@ -1,12 +1,14 @@
-An application to play a game where user one draws to communicate the word not revealed to user two (or more).  User two can see what user one is drawing live and submits guesses via a text form. If user two can guess it in the allotted time, they win. If not, they lose.
+An application to play a game where user one draws to communicate the word not revealed to guessing user one (or more). User two can see what user one is drawing live and submits guesses via a text form. If user two can guess it in the allotted time, they win. If not, they lose.
 
 ### MVP
 
-- [ ] The application contains a canvas that can draw on with mousing down while in the canvas's constraints.
+- [ ] The application contains a canvas that you can draw on with mousing down while in the canvas's constraints.
 
 - [ ] A list of 3 words appears to the drawing user to choose one to draw, the three words are selected from a preexisting list
 
 - [ ] A timer starts once the word is selected.
+
+- [ ] For the drawee, the chat box is disabled, but you can see everyone's messages.
 
 - [ ] The word array is filtered not to repeat words per session.
 
@@ -24,9 +26,20 @@ An application to play a game where user one draws to communicate the word not r
 
 - [ ] Utilize web-sockets to show the drawings live.
 
-- [ ] There are users and authentication.
+- [ ] Scores can be submitted with name and initials.
 
 ### Stretch Goals
+
+- [ ] There are users accounts and authentication.
+
+- [ ] The score is accumulated with additional rounds
+With every guess points are deducted
+
+- [ ] Elapsed time decrements points
+
+- [ ] There are users and authentication
+
+- [ ] The score is accumulated for the session
 
 - [ ] The list of phrases should have a difficulty rating, easy, medium, and hard.
 
