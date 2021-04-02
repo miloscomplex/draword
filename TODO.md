@@ -2,6 +2,12 @@ An application to play a game where user one draws to communicate the word not r
 
 ### MVP
 
+- [ ] Build out the Rails backend
+
+- [ ] Add validation and limit unused routes
+
+- [ ] Use the correct design patterns to build frontend 
+
 - [ ] The application contains a canvas that you can draw on with mousing down while in the canvas's constraints.
 
 - [ ] A list of 3 words appears to the drawing user to choose one to draw, the three words are selected from a preexisting list
