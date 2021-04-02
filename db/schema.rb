@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_235641) do
+ActiveRecord::Schema.define(version: 2021_04_02_000240) do
 
   create_table "scores", force: :cascade do |t|
-    t.integer "score"
-    t.integer "time"
+    t.integer "points"
+    t.integer "time_in_seconds"
     t.integer "guesses"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

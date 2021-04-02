@@ -1,8 +1,8 @@
 class CreateScores < ActiveRecord::Migration[6.0]
   def change
     create_table :scores do |t|
-      t.integer :score
-      t.integer :time
+      t.integer :points
+      t.integer :time_in_seconds
       t.integer :guesses
       t.references :user, null: false, foreign_key: true
 
