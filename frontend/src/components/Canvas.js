@@ -10,11 +10,17 @@ class Canvas extends Component {
   componentDidMount() {
     const canvas = this.canvasRef.current
     const context = canvas.getContext('2d')
+    context.fillRect(0, 0, canvas.width, canvas.height)
   }
 
   mouseDown = (event) => {
     console.log('mouseDown')
-    console.log(this.canvas);
+    console.log(event, this.context);
+    // this.context.beginPath()
+    // this.context.arc(event.clientX, event.clientY, 10, 0, Math.PI*2)
+    // this.context.fillStyle = '#0095DD'
+    // this.context.fill()
+    // this.context.closePath()
   }
 
 
