@@ -1,9 +1,9 @@
 import './App.css';
-import Canvas from './containers/Canvas.js'
+import Canvas from './components/Canvas.js'
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <Canvas />
     </div>
   );
