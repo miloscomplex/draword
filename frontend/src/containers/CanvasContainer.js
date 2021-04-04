@@ -12,7 +12,6 @@ class CanvasContainer extends React.Component {
       lineWidth: 7
     }
   }
-  //[isDrawing, setIsDrawing] = useState(false)
 
   componentDidMount() {
     const canvas = this.canvasRef.current
