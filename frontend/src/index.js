@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import manageDraword from './reducers/manageDraword';
+import manageDraword from './reducers/rootReducer';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 

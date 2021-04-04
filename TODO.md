@@ -6,7 +6,7 @@ An application to play a game where user one draws to communicate the word not r
 
 - [ ] Add validation and limit unused routes
 
-- [ ] Use the correct design patterns to build frontend 
+- [ ] Use the correct design patterns to build frontend
 
 - [ ] The application contains a canvas that you can draw on with mousing down while in the canvas's constraints.
 
@@ -58,3 +58,5 @@ With every guess points are deducted
 - [ ] Your account keeps track of words you have encountered.
 
 - [ ] Your account will display your past performance.
+
+https://dev.to/satansdeer/lets-build-a-drawing-application-using-react-and-canvas-api-2alj

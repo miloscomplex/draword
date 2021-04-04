@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import ToolBox from '../components/ToolBox'
+import Timer from '../components/Timer'
+import Score from '../components/Score'
+
 
 class CanvasContainer extends React.Component {
 
@@ -64,6 +67,8 @@ class CanvasContainer extends React.Component {
           onMouseLeave={event => this.stopDrawing(event)}
           ref={this.canvasRef}
         />
+      <Timer />
+      <Score />
       <ToolBox />
       </div>
     )

@@ -17,8 +17,6 @@ class Canvas extends React.Component {
     this.setState({
       pos: [event.clientX, event.clientY]
     })
-    //ctx.fillStyle = '#eeee'
-    // this.ctx.fillRect(event.clientX, event.clientY, 20, 20)
   }
 
   render() {
