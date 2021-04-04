@@ -1,20 +1,34 @@
+import React, { Component } from 'react'
+import Canvas from '../components/Canvas'
+
 class Animation extends React.Component {
-  constructor() {
+  constructor(props) {
     super(props)
     this.canvasRef = React.createRef()
+    this.state = { angle: 0 }
+    this.updateAnimationState = this.updateAnimationState.bind(this)
   }
 
   componentDidMount() {
-    const canvas = this.canvasRef.current
-    const context = canvas.getContext('2d')
-    context.fillRect(0, 0, canvas.width, canvas.height)
+    this.rAF = requestAnimationFrame(this.updateAnimationState)
+  }
+
+  updateAnimationState() {
+    this.setState(prevState => ({ angle: prevState.angle + 1 }))
+    this.rAF = requestAnimationFrame(this.updateAnimationState)
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this.rAF)
   }
 
   render() {
     return (
       <div>
-        <h2>Hello World</h2>
+        <Canvas angle={this.state.angle} />
       </div>
-    )
+      )
   }
 }
+
+export default Animation

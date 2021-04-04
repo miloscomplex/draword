@@ -1,50 +1,37 @@
 import React, { Component } from 'react'
+import PureCanvas from './PureCanvas'
 
-class Canvas extends Component {
-
+class Canvas extends React.Component {
   constructor(props) {
-    super(props)
-    this.canvasRef = React.createRef()
+    super(props);
+    this.saveContext = this.saveContext.bind(this);
   }
 
-  componentDidMount() {
-
-    const canvas = this.canvasRef.current
-    const context = canvas.getContext('2d')
-    let frameCount = 0
-    let animationFrameId
-
-    context.fillStyle = '#EEEEEE'
-    context.fillRect(30, 30, context.canvas.width / 2, context.canvas.height / 2)
+  saveContext(ctx) {
+    this.ctx = ctx;
+    this.width = this.ctx.canvas.width;
+    this.height = this.ctx.canvas.height;
   }
 
-  const draw = (ctx, frameCount) => {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-    ctx.fillStyle = '#000000'
-    ctx.beginPath()
-    ctx.arc(50, 100, 20*Math.sin(frameCount*0.05)**2, 0, 2*Math.PI)
-    ctx.fill()
+  componentDidUpdate() {
+    const { angle } = this.props;
+    this.ctx.save();
+    this.ctx.beginPath();
+    this.ctx.clearRect(0, 0, this.width, this.height);
+    this.ctx.translate(this.width / 2, this.height / 2);
+    this.ctx.rotate((angle * Math.PI) / 180);
+    this.ctx.fillStyle = '#4397AC';
+    this.ctx.fillRect(
+      -this.width / 4,
+      -this.height / 4,
+      this.width / 2,
+      this.height / 2
+    );
+    this.ctx.restore();
   }
-
-  mouseDown = (event) => {
-    console.log('mouseDown')
-    console.log(event, this.context);
-    // this.context.beginPath()
-    // this.context.arc(event.clientX, event.clientY, 10, 0, Math.PI*2)
-    // this.context.fillStyle = '#0095DD'
-    // this.context.fill()
-    // this.context.closePath()
-  }
-
 
   render() {
-    return (
-      <div>
-        <h1>Hello World</h1>
-        <canvas onMouseDown={event => this.mouseDown(event)} id='canvas' ref={this.canvasRef} width='500' height='500'></canvas>
-
-      </div>
-    )
+    return <PureCanvas contextRef={this.saveContext} />;
   }
 }
 

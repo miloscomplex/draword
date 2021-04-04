@@ -1,10 +1,10 @@
 import './App.css';
-import Canvas from './components/Canvas.js'
+import Animation from './containers/Animation'
 
 function App() {
   return (
     <div className='App'>
-      <Canvas />
+      <Animation />
     </div>
   );
 }
