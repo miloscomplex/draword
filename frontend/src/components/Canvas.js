@@ -4,10 +4,9 @@ import PureCanvas from './PureCanvas'
 class Canvas extends React.Component {
   constructor(props) {
     super(props);
-    this.saveContext = this.saveContext.bind(this);
   }
 
-  saveContext(ctx) {
+  saveContext = ctx => {
     this.ctx = ctx;
     this.width = this.ctx.canvas.width;
     this.height = this.ctx.canvas.height;
