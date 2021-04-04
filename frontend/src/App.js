@@ -1,10 +1,10 @@
 import './App.css';
-import Animation from './containers/Animation'
+import CanvasContainer from './containers/CanvasContainer'
 
 function App() {
   return (
     <div className='App'>
-      <Animation />
+      <CanvasContainer />
     </div>
   );
 }
