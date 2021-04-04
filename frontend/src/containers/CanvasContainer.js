@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ToolBox from '../components/ToolBox'
 
 class CanvasContainer extends React.Component {
 
@@ -55,13 +56,16 @@ class CanvasContainer extends React.Component {
 
   render() {
     return (
-      <canvas
-        onMouseDown={event => this.startDrawing(event)}
-        onMouseUp={event => this.stopDrawing(event)}
-        onMouseMove={event => this.drawing(event)}
-        onMouseLeave={event => this.stopDrawing(event)}
-        ref={this.canvasRef}
-      />
+      <div id='canvas'>
+        <canvas
+          onMouseDown={event => this.startDrawing(event)}
+          onMouseUp={event => this.stopDrawing(event)}
+          onMouseMove={event => this.drawing(event)}
+          onMouseLeave={event => this.stopDrawing(event)}
+          ref={this.canvasRef}
+        />
+      <ToolBox />
+      </div>
     )
   }
 }

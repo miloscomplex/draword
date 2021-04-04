@@ -1,21 +1,19 @@
 import './App.css';
+import Header from './containers/Header.js'
 import CanvasContainer from './containers/CanvasContainer'
 import ChatWindow from './containers/ChatWindow'
-import Navigation from './containers/Navigation'
-import ToolBox from './containers/ToolBox'
 import Footer from './components/Footer'
 
 
 function App() {
   return (
     <div className='App'>
-      <Navigation />
+      <Header />
       <CanvasContainer />
-      <ToolBox />
       <ChatWindow />
       <Footer />
     </div>
   );
 }
 
-export default App;
+export default App
