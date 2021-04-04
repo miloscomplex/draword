@@ -2,7 +2,8 @@ import './App.css';
 import CanvasContainer from './containers/CanvasContainer'
 import ChatWindow from './containers/ChatWindow'
 import Navigation from './containers/Navigation'
-import Options from './containers/Options'
+import ToolBox from './containers/ToolBox'
+import Footer from './components/Footer'
 
 
 function App() {
@@ -10,8 +11,9 @@ function App() {
     <div className='App'>
       <Navigation />
       <CanvasContainer />
-      <Options />
+      <ToolBox />
       <ChatWindow />
+      <Footer />
     </div>
   );
 }
