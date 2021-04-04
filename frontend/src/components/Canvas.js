@@ -8,9 +8,22 @@ class Canvas extends Component {
   }
 
   componentDidMount() {
+
     const canvas = this.canvasRef.current
     const context = canvas.getContext('2d')
-    context.fillRect(0, 0, canvas.width, canvas.height)
+    let frameCount = 0
+    let animationFrameId
+
+    context.fillStyle = '#EEEEEE'
+    context.fillRect(30, 30, context.canvas.width / 2, context.canvas.height / 2)
+  }
+
+  const draw = (ctx, frameCount) => {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+    ctx.fillStyle = '#000000'
+    ctx.beginPath()
+    ctx.arc(50, 100, 20*Math.sin(frameCount*0.05)**2, 0, 2*Math.PI)
+    ctx.fill()
   }
 
   mouseDown = (event) => {
