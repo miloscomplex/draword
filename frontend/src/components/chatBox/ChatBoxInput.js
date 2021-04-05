@@ -3,20 +3,20 @@ import React, { Component } from 'react'
 class ChatBoxInput extends React.Component {
 
   state = {
-    text: ''
+    message: ''
   }
 
   handleOnChange(event) {
     this.setState({
-      text: event.target.value
+      message: event.target.value
     })
   }
 
   handleOnSubmit = event => {
     event.preventDefault()
-
+    this.props.addMessage(this.state.message)
     this.setState({
-      text: ''
+      message: ''
     })
   }
 

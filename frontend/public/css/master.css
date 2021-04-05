@@ -1,8 +1,15 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 #chatWindow {
   width: 30%;
   padding: 1em;
   border: solid 1px #ccc;
   margin: auto;
+  background-color: #ddd;
 
 }
 
@@ -19,10 +26,15 @@
 #nav a, #footer a {
   display: inline-block;
   margin: 0 .75em 1em 0;
+  font-weight: 700;
 }
 
 .chat-messages {
   border: solid 1px #ccc;
   padding: .2em;
   margin-bottom: .5em;
+  background-color: #fff;
+  border-radius: .3em;
+  /* overflow-y: scroll; */
+  min-height: 100px;
 }
