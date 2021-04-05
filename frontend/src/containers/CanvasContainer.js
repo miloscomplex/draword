@@ -36,13 +36,14 @@ class CanvasContainer extends React.Component {
     this.contextRef.current = context
   }
 
-  recordDrawing = (x, y) => {
+  recordDrawing = (path, x, y) => {
     const newDrawing = {
+      path: path,
       x: x,
       y: y
     }
 
-    //let joined = this.state.drawings[this.state.drawings.length - 1].concat(newDrawing)
+    let joined = this.state.drawings.concat(newDrawing)
     this.setState({ drawings: joined })
   }
 
@@ -52,15 +53,17 @@ class CanvasContainer extends React.Component {
     this.contextRef.current.beginPath()
     this.contextRef.current.moveTo(offsetX, offsetY)
     this.setState({ isDrawing: true })
-    let start = [{offsetX, offsetY}]
-    this.setState({ drawings: start})
+    this.recordDrawing('beginPath()', offsetX, offsetY)
   }
 
   stopDrawing = (event) => {
+    const {offsetX, offsetY} = event.nativeEvent
     this.contextRef.current.closePath()
     this.setState({ isDrawing: false })
     //let saveVal = this.contextRef.current.save()
-    console.log(this.contextRef.current);
+    console.log(this.contextRef.current)
+    this.recordDrawing('closePath()', offsetX, offsetY)
+
 
   }
 
@@ -72,7 +75,7 @@ class CanvasContainer extends React.Component {
     const {offsetX, offsetY} = event.nativeEvent
     this.contextRef.current.lineTo(offsetX, offsetY)
     this.contextRef.current.stroke()
-    this.recordDrawing(offsetX, offsetY)
+    this.recordDrawing('lineTo', offsetX, offsetY)
   }
 
   render() {

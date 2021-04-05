@@ -1,0 +1,17 @@
+#chatWindow {
+  width: 30%;
+  padding: 1em;
+  border: solid 1px #ccc;
+  margin: auto;
+
+}
+
+#footer {
+  border-top: solid 1px #ccc;
+  margin-top: 1.5em;
+}
+
+#header {
+  border-bottom: solid 1px #ccc;
+  margin: 0 0 1.5em 0;
+}
