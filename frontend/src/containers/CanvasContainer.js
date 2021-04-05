@@ -63,8 +63,6 @@ class CanvasContainer extends React.Component {
     //let saveVal = this.contextRef.current.save()
     console.log(this.contextRef.current)
     this.recordDrawing('closePath()', offsetX, offsetY)
-
-
   }
 
   drawing = (event) => {
