@@ -1,7 +1,7 @@
 import './App.css';
 import Header from './containers/Header.js'
 import CanvasContainer from './containers/CanvasContainer'
-import ChatWindow from './containers/ChatWindow'
+import ChatBox from './containers/ChatBox'
 import Footer from './components/Footer'
 
 
@@ -10,7 +10,7 @@ function App() {
     <div className='App'>
       <Header />
       <CanvasContainer />
-      <ChatWindow />
+      <ChatBox />
       <Footer />
     </div>
   );

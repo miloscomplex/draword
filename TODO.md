@@ -36,6 +36,8 @@ An application to play a game where user one draws to communicate the word not r
 
 ### Stretch Goals
 
+- [ ] There's an UNDO button
+
 - [ ] There are users accounts and authentication.
 
 - [ ] The score is accumulated with additional rounds
