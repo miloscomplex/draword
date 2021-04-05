@@ -15,6 +15,7 @@ class ChatBoxInput extends React.Component {
   handleOnSubmit = event => {
     event.preventDefault()
     this.props.addMessage(this.state.message)
+    // console.log('hellooooo');
     this.setState({
       message: ''
     })
@@ -23,7 +24,7 @@ class ChatBoxInput extends React.Component {
   render() {
     return (
       <form onSubmit={ event => this.handleOnSubmit(event) }>
-        <input type='text' value={this.state.text} onChange={event => this.handleOnChange(event) }/>
+        <input type='text' value={this.state.message} onChange={event => this.handleOnChange(event) }/>
         <button value='submit'>submit</button>
       </form>
     )

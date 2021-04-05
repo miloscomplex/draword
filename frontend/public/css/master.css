@@ -31,10 +31,20 @@ body {
 
 .chat-messages {
   border: solid 1px #ccc;
-  padding: .2em;
+  padding: .5em;
   margin-bottom: .5em;
   background-color: #fff;
   border-radius: .3em;
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
   min-height: 100px;
+  text-align: left;
+  max-height: 300px;
+}
+
+.chat-messages p {
+  background-color: lightblue;
+  padding: .75em;
+  border-radius: 1em;
+  color: 'red';
+  font-weight: 500;
 }

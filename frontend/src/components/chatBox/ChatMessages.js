@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 
 class ChatMessages extends React.Component {
 
-  messages = this.props.messages.map( message => <p>{message}</p>)
-
   render() {
+    const messages = this.props.messages.map( message => <p>{message}</p>)
     console.log(this.messages);
     return (
       <div className='chat-messages'>
-        { this.messages }
+        { messages }
       </div>
     )
   }

@@ -9,10 +9,11 @@ class ChatBox extends React.Component {
   }
 
   addMessage = message => {
-    console.log(message);
-    let merged = this.state.messages.concat(message)
+    //console.log(message);
+    //let messages = [...this.state.messages, this.state.value];
+    let merged = [...this.state.messages, message]
     console.log(merged);
-    return this.setState({ messages: merged })
+    this.setState({ messages: merged })
   }
 
   render() {
