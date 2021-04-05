@@ -20,3 +20,9 @@
   display: inline-block;
   margin: 0 .75em 1em 0;
 }
+
+.chat-messages {
+  border: solid 1px #ccc;
+  padding: .2em;
+  margin-bottom: .5em;
+}
