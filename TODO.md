@@ -36,7 +36,7 @@ An application to play a game where user one draws to communicate the word not r
 
 ### Stretch Goals
 
-- [ ] There's an UNDO button
+- [ ] There's an UNDO button ** look at ctx.save()
 
 - [ ] There are users accounts and authentication.
 

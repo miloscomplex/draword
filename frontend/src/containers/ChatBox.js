@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ChatBoxInput from '../components/ChatBoxInput'
+import ChatBoxInput from '../components/chatBox/ChatBoxInput'
 
 class ChatBox extends React.Component {
 

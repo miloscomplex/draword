@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import ToolBox from '../components/ToolBox'
-import Timer from '../components/Timer'
-import Score from '../components/Score'
+import ToolBox from '../components/canvas/ToolBox'
+import Timer from '../components/ui/Timer'
+import Score from '../components/ui/Score'
 
 
 class CanvasContainer extends React.Component {
@@ -28,8 +28,10 @@ class CanvasContainer extends React.Component {
 
     const context = canvas.getContext('2d')
     context.lineCap = 'round'
+    context.lineJoin = 'round'
     context.strokeStyle = this.state.color
     context.lineWidth = this.state.lineWidth
+    context.miterLimit = 2
     this.contextRef.current = context
   }
 
@@ -45,6 +47,8 @@ class CanvasContainer extends React.Component {
   stopDrawing = (event) => {
     this.contextRef.current.closePath()
     this.setState({ isDrawing: false })
+    let saveVal = this.contextRef.current.save()
+    console.log(this.contextRef.current);
   }
 
   drawing = (event) => {
