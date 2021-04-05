@@ -4,7 +4,9 @@ class Navigation extends React.Component {
   render() {
     return (
       <div id='nav'>
-        <h2> Navigation Goes Here </h2>
+        <a href='#'>How To Play</a>
+        <a href='#'>Leaderboard</a>
+        <a href='#'>New Game</a>
       </div>
     )
   }

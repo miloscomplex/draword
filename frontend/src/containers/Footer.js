@@ -4,7 +4,12 @@ class Footer extends React.Component {
   render() {
     return (
       <div id='footer'>
-        <p>Footer Goes Here</p>
+        <p>
+          <a href='#'>DraWorD</a>
+          <a href='#'>How To Play</a>
+          <a href='#'>Leaderboard</a>
+          <a href='#'>New Game</a>
+        </p>
       </div>
     )
   }
