@@ -1,5 +1,6 @@
 import './App.css';
 import Header from './containers/Header.js'
+import { BrowserRouter as Router } from 'react-router-dom'
 import CanvasContainer from './containers/CanvasContainer'
 import ChatBox from './containers/ChatBox'
 import Footer from './containers/Footer'
