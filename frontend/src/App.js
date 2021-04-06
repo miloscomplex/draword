@@ -9,8 +9,10 @@ function App() {
   return (
     <div className='App'>
       <Header />
-      <CanvasContainer />
-      <ChatBox />
+      <div id='wrapper'>
+        <CanvasContainer />
+        <ChatBox />
+      </div>
       <Footer />
     </div>
   );
