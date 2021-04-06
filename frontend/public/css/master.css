@@ -10,7 +10,6 @@ body {
   border: solid 1px #ccc;
   margin: auto;
   background-color: #ddd;
-
 }
 
 #footer {
@@ -29,6 +28,33 @@ body {
   font-weight: 700;
 }
 
+#canvas {
+  position: relative;
+  width: 500px;
+  margin: 2.5em auto;
+}
+
+#canvas .score, .timer {
+  color: #666;
+  font-weight: 700;
+  font-size: .8em;
+  text-transform: uppercase;
+}
+
+.score {
+  display: inline-block;
+  position: absolute;
+  top: -1.5em;
+  left: 1em;
+}
+
+.timer {
+  display: inline-block;
+  position: absolute;
+  top: -1.5em;
+  right: 1em;
+}
+
 .chat-messages {
   border: solid 1px #ccc;
   padding: .5em;
@@ -44,7 +70,7 @@ body {
 .chat-messages p {
   background-color: lightblue;
   padding: .75em;
-  border-radius: 1em;
+  border-radius: .6em;
   color: 'red';
   font-weight: 500;
 }
