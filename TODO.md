@@ -36,6 +36,8 @@ An application to play a game where user one draws to communicate the word not r
 
 ### Stretch Goals
 
+- [ ] Add color shift to text when time changes or points are reduced
+
 - [ ] Gallery of guessed phrases
 
 - [ ] There's an UNDO button ** look at ctx.save()
