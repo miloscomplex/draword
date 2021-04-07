@@ -1,34 +1,88 @@
 import React, { Component } from 'react'
-//import PureCanvas from './PureCanvas'
 
 class Canvas extends React.Component {
 
-  state = {
-    pos: ''
+  constructor(props) {
+    super(props)
+    this.canvasRef = React.createRef()
+    this.contextRef = React.createRef()
+    this.state = {
+      isDrawing: false,
+      color: 'yellow',
+      lineWidth: 7,
+      drawings: [[]],
+      canvasWidth: 500,
+      canvasHeight: 500
+    }
   }
 
   componentDidMount() {
-    const canvas = this.refs.canvas
-    const ctx = canvas.getContext('2d')
+    const canvas = this.canvasRef.current
+    // double pixel depth for higher res
+    // need .scale
+    canvas.width = this.state.canvasWidth
+    canvas.height = this.state.canvasHeight
+    canvas.style.width = `${this.state.canvasWidth}px`
+    canvas.style.height = `${this.state.canvasHeight}px`
+
+    const context = canvas.getContext('2d')
+    context.lineCap = 'round'
+    context.lineJoin = 'round'
+    context.strokeStyle = this.state.color
+    context.lineWidth = this.state.lineWidth
+    context.miterLimit = 2
+    this.contextRef.current = context
   }
 
-  handleMouseDown = ( event ) => {
+  recordDrawing = (path, x, y) => {
+    const newDrawing = {
+      path: path,
+      x: x,
+      y: y
+    }
+
+    let joined = this.state.drawings.concat(newDrawing)
+    this.setState({ drawings: joined })
+  }
+
+  startDrawing = (event) => {
     console.log(event)
-    this.setState({
-      pos: [event.clientX, event.clientY]
-    })
+    const {offsetX, offsetY} = event.nativeEvent
+    this.contextRef.current.beginPath()
+    this.contextRef.current.moveTo(offsetX, offsetY)
+    this.setState({ isDrawing: true })
+    this.recordDrawing('beginPath()', offsetX, offsetY)
+  }
+
+  stopDrawing = (event) => {
+    const {offsetX, offsetY} = event.nativeEvent
+    this.contextRef.current.closePath()
+    this.setState({ isDrawing: false })
+    //let saveVal = this.contextRef.current.save()
+    console.log(this.contextRef.current)
+    this.recordDrawing('closePath()', offsetX, offsetY)
+  }
+
+  drawing = (event) => {
+    if (!this.state.isDrawing) {
+      return
+    }
+    //console.log('im drawing');
+    const {offsetX, offsetY} = event.nativeEvent
+    this.contextRef.current.lineTo(offsetX, offsetY)
+    this.contextRef.current.stroke()
+    this.recordDrawing('lineTo', offsetX, offsetY)
   }
 
   render() {
-    return(
-      <div>
+    return (
         <canvas
-          ref='canvas'
-          width={500}
-          height={500}
-          onMouseDown={ event => this.handleMouseDown(event)}
+          onMouseDown={event => this.startDrawing(event)}
+          onMouseUp={event => this.stopDrawing(event)}
+          onMouseMove={event => this.drawing(event)}
+          onMouseLeave={event => this.stopDrawing(event)}
+          ref={this.canvasRef}
         />
-      </div>
     )
   }
 }

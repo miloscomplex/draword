@@ -110,6 +110,6 @@ body {
   background-color: lightblue;
   padding: .75em;
   border-radius: .6em;
-  color: 'red';
   font-weight: 500;
+  overflow-wrap: break-word;
 }
