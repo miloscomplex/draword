@@ -4,20 +4,23 @@ import Header from './containers/Header.js'
 import GameContainer from './containers/GameContainer'
 import PhraseSelector from './containers/PhraseSelector'
 import Leaderboard from './containers/Leaderboard'
+import HowToPlay from './components/howToPlay/HowToPlay'
 import Footer from './containers/Footer'
 
 
 function App() {
   return (
     <div className='App'>
-      <Header />
-        <Router>
-          <Route exact path='/' component={GameContainer} />
-          <Route exact path='/new' component={PhraseSelector} />
-          <Route exact path='/leaderboard' component={Leaderboard} />
-        </Router>
+      <Router>
+        <Header />
 
-      <Footer />
+        <Route exact path='/' component={GameContainer} />
+        <Route exact path='/new' component={PhraseSelector} />
+        <Route exact path='/leaderboard' component={Leaderboard} />
+        <Route exact path='/how-to-play' component={HowToPlay} />
+
+        <Footer />
+      </Router>
     </div>
   );
 }

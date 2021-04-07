@@ -120,3 +120,8 @@ h1 {
   font-weight: 500;
   overflow-wrap: break-word;
 }
+
+.how-to-play {
+  width: 80%;
+  margin: auto;
+}
