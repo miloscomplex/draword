@@ -18,6 +18,9 @@
 }
 
 /*-----/ Added CSS /-----*/
+
+
+/* font-weights: 300, 400, 600, 700, 900 */
 canvas {
   background-color: #000;
   border-radius: .5em;
@@ -27,6 +30,10 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
+}
+
+h1 {
+  font-weight: 900;
 }
 
 #footer {

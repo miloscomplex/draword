@@ -8,6 +8,16 @@ An application to play a game where user one draws to communicate the word not r
 
 - [ ] Use the correct design patterns to build frontend
 
+- [ ] Build Canvas component
+
+- [ ] Build Chat component
+
+- [ ] Build PhraseSelector component
+
+- [ ] Build Leaderboard component
+
+- [ ] Utilize Router to switch out content 
+
 - [x] The application contains a canvas that you can draw on with mousing down while in the canvas's constraints.
 
 - [ ] A list of 3 words appears to the drawing user to choose one to draw, the three words are selected from a preexisting list

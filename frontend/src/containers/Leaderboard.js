@@ -7,7 +7,7 @@ class Leaderboard extends React.Component {
     return (
       <div className='wrapper'>
         <div className='leaderboard'>
-          <h1>leaderboard UI goes here</h1>
+          <h1>Leaderboard</h1>
           <LeaderboardComponent />
         </div>
       </div>
