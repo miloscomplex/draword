@@ -4,8 +4,10 @@ class PhraseSelector extends React.Component {
 
   render() {
     return (
-      <div className='phrase-selector'>
-        Phrase UI goes here
+      <div className='wrapper'>
+        <div className='phrase-selector'>
+          Phrase UI goes here
+        </div>
       </div>
     )
   }

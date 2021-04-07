@@ -6,9 +6,9 @@ class Footer extends React.Component {
       <div id='footer'>
         <p>
           <a href='#'>DraWorD</a>
+          <a href='#'>New Game</a>
           <a href='#'>How To Play</a>
           <a href='#'>Leaderboard</a>
-          <a href='#'>New Game</a>
         </p>
       </div>
     )
