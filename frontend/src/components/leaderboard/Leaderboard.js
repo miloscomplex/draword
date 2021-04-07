@@ -2,20 +2,13 @@ import React, { Component } from 'react'
 
 class Leaderboard extends React.Component {
 
-  state = {
-    name: 'John Smith',
-    score: 240,
-    time: 23,
-  }
-  
   render() {
+    const leaders = this.props.leaders.map( (leader, index) => <li key={index}> {leader.name}, score: {leader.score}, time: {leader.time} </li>)
+
     return (
       <div className='leaderboard'>
         <ul>
-          <li>{this.state.name}, score: {this.state.score}, time: {this.state.time} </li>
-          <li>{this.state.name}, score: {this.state.score}, time: {this.state.time} </li>
-          <li>{this.state.name}, score: {this.state.score}, time: {this.state.time} </li>
-          <li>{this.state.name}, score: {this.state.score}, time: {this.state.time} </li>
+          { leaders }
         </ul>
       </div>
     )
