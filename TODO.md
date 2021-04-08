@@ -16,7 +16,7 @@ An application to play a game where user one draws to communicate the word not r
 
 - [ ] Build Leaderboard component
 
-- [ ] Utilize Router to switch out content 
+- [ ] Utilize Router to switch out content
 
 - [x] The application contains a canvas that you can draw on with mousing down while in the canvas's constraints.
 
@@ -45,6 +45,8 @@ An application to play a game where user one draws to communicate the word not r
 - [ ] Scores can be submitted with name and initials.
 
 ### Stretch Goals
+
+- [ ] Make the canvas a flex size instead of static 
 
 - [ ] Add color shift to text when time changes or points are reduced
 
