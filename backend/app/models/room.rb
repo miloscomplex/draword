@@ -1,4 +1,4 @@
 class Room < ApplicationRecord
   has_many :chats
-  has_one :canva
+  has_many :canvas 
 end
