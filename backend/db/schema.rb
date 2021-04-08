@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_02_000240) do
+ActiveRecord::Schema.define(version: 2021_04_08_041716) do
+
+  create_table "conversations", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "text"
+    t.integer "conversation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+  end
 
   create_table "scores", force: :cascade do |t|
     t.integer "points"
@@ -29,5 +43,6 @@ ActiveRecord::Schema.define(version: 2021_04_02_000240) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "messages", "conversations"
   add_foreign_key "scores", "users"
 end
