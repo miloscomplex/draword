@@ -4,7 +4,7 @@ class MessagesChannel < ApplicationCable::Channel
     conversation = Conversation.find(params[:conversation])
     stream_for conversation
     # stream_from expects a string
-    # stream_for expects an object 
+    # stream_for expects an object
   end
 
   def unsubscribed
