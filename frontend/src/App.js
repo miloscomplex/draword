@@ -6,6 +6,7 @@ import PhraseSelector from './containers/PhraseSelector'
 import Leaderboard from './containers/Leaderboard'
 import HowToPlay from './components/howToPlay/HowToPlay'
 import Footer from './containers/Footer'
+// action cable 
 
 
 function App() {
