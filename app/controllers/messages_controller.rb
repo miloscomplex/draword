@@ -3,10 +3,10 @@ class MessagesController < ApplicationController
     message = Message.new(message_params)
     conversation = Conversation.find(message_params[:conversation_id])
     if message.save
-      # need to instantiate manually Serializer 
+      # need to instantiate manually Serializer
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
         MessageSerializer.new(message)
-      ).serializerable_hash
+      ).serializable_hash
       MessagesChannel.broadcast_to conversation, serialized_data
       head :ok
     end
