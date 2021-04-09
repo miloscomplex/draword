@@ -5,10 +5,10 @@ class ChatsController < ApplicationController
     room = Room.find(chat_params[:room_id])
     if chat.save
       # necessary for using Serializer with WebSockets
-      serialized_data= ActiveModelSerializers::Adapter::Json.new(
+      serialized_data = ActiveModelSerializers::Adapter::Json.new(
         ChatSerializer.new(chat)
       ).serializable_hash
-      CanvasChannel.broadcast_to room, serialized_data
+      ChatsChannel.broadcast_to room, serialized_data
       head :ok
     end
   end
