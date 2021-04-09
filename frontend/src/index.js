@@ -6,8 +6,8 @@ import rootReducer from './reducers/rootReducer';
 import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk'
-import { ActionCableProvider } from './context/ActionCable'
 import { API_WS_ROOT } from './constants'
+import { ActionCableProvider } from 'react-actioncable-provider';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 

@@ -1,7 +1,7 @@
-class RoomChannel < ApplicationCable::Channel
+class RoomsChannel < ApplicationCable::Channel
   def subscribed
     # stream_from "some_channel"
-    stream_from 'room_channel'
+    stream_from 'rooms_channel'
     # You can also add methods here instead of a controller
     # or delegate to Active Jobs
   end
