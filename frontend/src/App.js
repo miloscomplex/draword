@@ -8,7 +8,7 @@ import HowToPlay from './components/howToPlay/HowToPlay'
 import Footer from './containers/Footer'
 import ConversationList from './components/ConversationsList'
 // action cable
-import RoomsList from './components/rooms/RoomsList'
+import RoomsList from './components/RoomsList'
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
         <Route exact path='/new' component={PhraseSelector} />
         <Route exact path='/leaderboard' component={Leaderboard} />
         <Route exact path='/how-to-play' component={HowToPlay} />
-        <ConversationList />
+
         <Footer />
       </Router>
     </div>

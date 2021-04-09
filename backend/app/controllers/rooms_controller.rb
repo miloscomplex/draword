@@ -6,14 +6,14 @@ class RoomsController < ApplicationController
   end
 
   def create
-    room = Room.new(room_params)
-    if room.save
-      # necessary for using Serializer with WebSockets
-      serialized_data = ActiveModelSerializers::Adapter::Json.new( RoomSerializer.new(room)).serializable_hash
-      ActionCable.server.broadcast 'rooms_channel', serialized_data
-      head :ok
-      # 'rooms_channel' corresponds to the method specified in the Channel 
-
+    room = Room.create(room_params)
+    if room.valid?
+      id = room.id
+      # broadcast to anyone subscribed to the FeedChannel for this specific id
+      RoomChannel.broadcast_to id, RoomSerializer.new(room)
+      render json: room
+    else
+      render json: { error: 'Could not create the room'}, status: 422
     end
   end
 

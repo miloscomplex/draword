@@ -1,20 +1,6 @@
-import React, { Fragment } from 'react'
-import { ActionCable } from 'react-actioncable-provider'
+import { createConsumer } from "@rails/actioncable";
 
-const Cable = ({ conversations, handleReceivedMessage }) => {
-  return (
-    <Fragment>
-      {conversations.map(conversation => {
-        return (
-          <ActionCable
-            key={conversation.id}
-            channel={{ channel: 'MessagesChannel', conversation: conversation.id }}
-            onReceived={handleReceivedMessage}
-          />
-        )
-      })}
-    </Fragment>
-  )
-}
+// connect to Action Cable on our server
+const Cable = createConsumer("ws://localhost:3000/cable");
 
 export default Cable
