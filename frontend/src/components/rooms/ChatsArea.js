@@ -1,16 +1,14 @@
-
-
 import React from 'react';
 import ChatBoxInput from '../chatBox/ChatBoxInput';
 
 const ChatsArea = ({
-  conversation: { id, title, messages },
+  room: { id, title, chats },
 }) => {
   return (
     <div className="messagesArea">
       <h2>{title}</h2>
-      <ul>{orderedMessages(messages)}</ul>
-      <ChatBoxInput conversation_id={id} />
+      <ul>{orderedChats(chats)}</ul>
+      <ChatBoxInput room_id={id} />
     </div>
   );
 };
@@ -19,11 +17,11 @@ export default ChatsArea;
 
 // helpers
 
-const orderedMessages = messages => {
-  const sortedMessages = messages.sort(
+const orderedChats = chats => {
+  const sortedChats = chats.sort(
     (a, b) => new Date(a.created_at) - new Date(b.created_at)
   );
-  return sortedMessages.map(message => {
-    return <li key={message.id}>{message.text}</li>;
+  return sortedChats.map(chat => {
+    return <li key={chat.id}>{chat.text}</li>;
   });
 };

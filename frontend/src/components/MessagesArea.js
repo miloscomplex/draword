@@ -1,5 +1,3 @@
-// src/components/MessagesArea.js
-
 import React from 'react';
 import NewMessageForm from './NewMessageForm';
 

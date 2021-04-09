@@ -5,7 +5,7 @@ import NewRoomForm from './NewRoomForm'
 import ChatsArea from './ChatsArea'
 import CableRooms from '../CableRooms';
 
-class RoomList extends React.Component {
+class RoomsList extends React.Component {
   state = {
     rooms: [],
     activeRoom: null
@@ -28,12 +28,12 @@ class RoomList extends React.Component {
     });
   };
 
-  handleReceivedMessage = response => {
+  handleReceivedChat = response => {
     const { chat } = response;
     const rooms = [...this.state.rooms];
     const room = rooms.find(
       room => room.id ===
-      room.chats.room_id
+      chat.room_id
     );
     room.chats = [...room.chats, chat];
     this.setState({ rooms });
@@ -50,7 +50,7 @@ class RoomList extends React.Component {
         {this.state.rooms.length ? (
           <CableRooms
             rooms={rooms}
-            handleReceivedMessage={this.handleReceivedMessage}
+            handleReceivedMessage={this.handleReceivedChat}
           />
         ) : null}
         <h2>Rooms</h2>
@@ -69,7 +69,7 @@ class RoomList extends React.Component {
   };
 }
 
-export default RoomList;
+export default RoomsList;
 
 // helpers
 

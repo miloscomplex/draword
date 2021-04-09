@@ -21,7 +21,6 @@ function App() {
         <Route exact path='/leaderboard' component={Leaderboard} />
         <Route exact path='/how-to-play' component={HowToPlay} />
         <ConversationList />
-        <RoomsList />
         <Footer />
       </Router>
     </div>
