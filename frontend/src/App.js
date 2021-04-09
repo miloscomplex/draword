@@ -9,6 +9,7 @@ import Footer from './containers/Footer'
 import ConversationList from './components/ConversationsList'
 // action cable
 import RoomsList from './components/rooms/RoomsList'
+import Subscribe from './components/Subscribe'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <ConversationList />
         <Footer />
       </Router>
+
     </div>
   )
 }
