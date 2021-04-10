@@ -17,14 +17,14 @@ class NewRoomForm extends React.Component {
       headers: HEADERS,
       body: JSON.stringify(this.state)
     });
-    this.setState({ title: '' });
+    this.setState({ title: '' })
   };
 
   render = () => {
     return (
       <div className="newRoomForm">
         <form onSubmit={this.handleSubmit}>
-          <label>New Room:</label>
+          <label>Create A New Room:</label>
           <br />
           <input
             type="text"

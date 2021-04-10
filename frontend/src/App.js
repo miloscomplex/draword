@@ -20,7 +20,6 @@ function App() {
         <Route exact path='/new' component={PhraseSelector} />
         <Route exact path='/leaderboard' component={Leaderboard} />
         <Route exact path='/how-to-play' component={HowToPlay} />
-        <ConversationList />
         <RoomsList />
         <Footer />
       </Router>

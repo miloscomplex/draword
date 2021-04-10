@@ -125,3 +125,10 @@ h1 {
   width: 80%;
   margin: auto;
 }
+
+.roomsList li {
+  background-color: #ddd;
+  padding: 2em;
+  margin: 0 .5em .5em 0;
+  display: inline-block;
+}
