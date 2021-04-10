@@ -1,19 +1,14 @@
 import React from 'react';
-import { ActionCable } from 'react-actioncable-provider';
 import { API_ROOT } from '../../constants';
 import NewRoomForm from './NewRoomForm'
 import ChatsArea from './ChatsArea'
-import CableRooms from '../CableRooms';
 import actioncable from 'actioncable'
 
 class RoomsList extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      rooms: [],
-      activeRoom: null
-    }
-    const CableApp = {}
+
+  state = {
+    rooms: [],
+    activeRoom: null
   }
 
   componentDidMount = () => {
@@ -22,25 +17,27 @@ class RoomsList extends React.Component {
     this.canvasChannel()
   };
 
+  handleFetch = () => {
+    fetch(`${API_ROOT}/rooms`)
+      .then(res => res.json())
+      .then(rooms => this.setState({ rooms }));
+  }
+
   canvasChannel = () => {
     this.cable.subscriptions.create({
     channel: `RoomsChannel`,
     },
       {connected: () => {
-        console.log("connected!")
+        console.log('connected!')
       },
-        disconnected: () => {},
+        disconnected: () => {
+          console.log('disconnected!');
+        },
         received: data => {
           this.handleReceivedRoom(data)
           console.log('data received')
         }
     })
-  }
-
-  handleFetch = () => {
-    fetch(`${API_ROOT}/rooms`)
-      .then(res => res.json())
-      .then(rooms => this.setState({ rooms }));
   }
 
   handleClick = id => {
@@ -59,6 +56,7 @@ class RoomsList extends React.Component {
     return (
       <div className="roomsList">
         <h1>Rooms</h1>
+        <p>Select a room or create a new one</p>
         <ul>{mapRooms(rooms, this.handleClick)}</ul>
         <NewRoomForm />
       </div>
