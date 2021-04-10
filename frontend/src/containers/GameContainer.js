@@ -13,7 +13,7 @@ class GameContainer extends React.Component {
   }
 
   render() {
-
+    console.log(this.props)
     return (
       <div id='wrapper'>
         <div id='canvas'>

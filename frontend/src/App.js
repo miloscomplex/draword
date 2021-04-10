@@ -5,6 +5,7 @@ import GameContainer from './containers/GameContainer'
 import PhraseSelector from './containers/PhraseSelector'
 import Leaderboard from './containers/Leaderboard'
 import HowToPlay from './components/howToPlay/HowToPlay'
+import LandingPage from './components/landingPage/LandingPage'
 import Footer from './containers/Footer'
 // action cable
 import RoomsList from './components/rooms/RoomsList'
@@ -15,11 +16,11 @@ function App() {
       <Router>
         <Header />
 
-        <Route exact path='/' component={GameContainer} />
+        <Route exact path='/' component={LandingPage} />
         <Route exact path='/new' component={PhraseSelector} />
         <Route exact path='/leaderboard' component={Leaderboard} />
         <Route exact path='/how-to-play' component={HowToPlay} />
-        <RoomsList />
+        <Route exact path='/rooms/:id' render={routerProps => <GameContainer {...routerProps} />} />
         <Footer />
       </Router>
     </div>

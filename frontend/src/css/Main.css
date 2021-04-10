@@ -137,3 +137,8 @@ h1 {
 .roomsList li:hover {
   background-color: lightblue;
 }
+
+.landing-page p {
+  width: 80%;
+  margin: 0 auto;
+}
