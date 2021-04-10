@@ -6,10 +6,10 @@ class Footer extends React.Component {
     return (
       <div id='footer'>
         <p>
-          <Link to='/'>DraWorD</Link>
-          <Link to='/new'>New Game</Link>
-          <Link to='/how-to-play'>How To Play</Link>
-          <Link to='/leaderboard'>Leaderboard</Link>
+          <Link to='/'>Draword</Link>
+          <Link className='footer-link' to='/new'>New Game</Link>
+          <Link className='footer-link' to='/how-to-play'> How To Play</Link>
+          <Link className='footer-link' to='/leaderboard'>Leaderboard</Link>
         </p>
       </div>
     )
