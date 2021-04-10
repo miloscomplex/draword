@@ -7,7 +7,7 @@ class RoomsController < ApplicationController
 
   def create
     room = Room.create(room_params)
-    if room.save
+    if room.valid?
       # broadcast to anyone subscribed to the FeedChannel for this specific id
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
         RoomSerializer.new(room)
