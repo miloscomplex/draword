@@ -4,13 +4,15 @@ An application to play a game where user one draws to communicate the word not r
 
 - [x] Build out the Rails backend
 
+- [ ] Create Landing Page component
+
 - [ ] Add validation and limit unused routes
 
 - [ ] Use the correct design patterns to build frontend
 
-- [ ] Build Canvas component
+- [x] Build Canvas component
 
-- [ ] Build Chat component
+- [x] Build Chat component
 
 - [ ] Build PhraseSelector component
 
@@ -46,7 +48,7 @@ An application to play a game where user one draws to communicate the word not r
 
 ### Stretch Goals
 
-- [ ] Make the canvas a flex size instead of static 
+- [ ] Make the canvas a flex size instead of static
 
 - [ ] Add color shift to text when time changes or points are reduced
 

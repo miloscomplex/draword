@@ -15,7 +15,16 @@ class RoomsList extends React.Component {
   componentDidMount = () => {
     this.handleFetch()
     this.roomsChannel()
-  };
+  }
+
+  componentWillUnmount = () => {
+    cable.subscriptions.subscriptions.forEach( subscription =>{
+      subscription.unsubscribe()
+    })
+    cable.disconnect()
+  }
+
+  component
 
   handleFetch = () => {
     fetch(`${API_ROOT}/rooms`)

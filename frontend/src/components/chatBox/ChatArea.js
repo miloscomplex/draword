@@ -14,8 +14,14 @@ class ChatsArea extends React.Component {
 
   componentDidMount = () => {
     this.handleFetch()
-    //this.cable = actioncable.createConsumer(API_WS_ROOT);
     this.chatsChannel()
+  }
+
+  componentWillUnmount = () => {
+    cable.disconnect()
+    cable.subscriptions.subscriptions.forEach( subscription =>{
+      subscription.unsubscribe()
+    })
   }
 
   handleFetch = () => {
@@ -49,6 +55,8 @@ class ChatsArea extends React.Component {
   }
 
   render = () => {
+    console.log(cable);
+    console.log(cable.subscriptions.subscriptions);
     const { chats, roomId } = this.state
     return (
       <div id='chatWindow'>
