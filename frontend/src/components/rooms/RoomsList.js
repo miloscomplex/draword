@@ -1,7 +1,9 @@
 import React from 'react';
 import { API_ROOT, API_WS_ROOT } from '../../constants';
 import NewRoomForm from './NewRoomForm'
-import actioncable from 'actioncable'
+//import actioncable from 'actioncable'
+import Room from './Room'
+import cable from '../../services/Cable'
 
 class RoomsList extends React.Component {
 
@@ -12,7 +14,6 @@ class RoomsList extends React.Component {
 
   componentDidMount = () => {
     this.handleFetch()
-    //this.cable = actioncable.createConsumer(API_WS_ROOT);
     this.roomsChannel()
   };
 
@@ -23,7 +24,7 @@ class RoomsList extends React.Component {
   }
 
   roomsChannel = () => {
-    CableApp.cable.subscriptions.create({
+    cable.subscriptions.create({
     channel: `RoomsChannel`,
     },
       {connected: () => {
@@ -47,12 +48,11 @@ class RoomsList extends React.Component {
   }
 
   render = () => {
-    const { rooms, activeRoom } = this.state;
     return (
       <div className="roomsList">
         <h1>Rooms</h1>
         <p>Select a room or create a new one</p>
-        <ul>{mapRooms(rooms, this.handleClick)}</ul>
+        <ul>{mapRooms(this.state.rooms)}</ul>
 
         <NewRoomForm />
       </div>
@@ -64,18 +64,10 @@ export default RoomsList;
 
 // helpers
 
-const findActiveRoom = (rooms, activeRoom) => {
-  return rooms.find(
-    room => room.id === activeRoom
-  );
-};
-
 const mapRooms = rooms => {
   return rooms.map(room => {
     return (
-      <li key={room.id} >
-        {room.title}
-      </li>
+      <Room key={room.id} title={room.title} />
     )
   })
 }

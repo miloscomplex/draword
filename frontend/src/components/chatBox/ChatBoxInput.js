@@ -16,7 +16,6 @@ class ChatBoxInput extends React.Component {
 
   handleOnSubmit = event => {
     event.preventDefault()
-    event.stopPropagation()
     fetch(`${API_ROOT}/chats`, {
       method: 'POST',
       headers: HEADERS,

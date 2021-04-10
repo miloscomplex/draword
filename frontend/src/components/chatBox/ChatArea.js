@@ -3,6 +3,7 @@ import ChatBoxInput from '../chatBox/ChatBoxInput';
 import { API_ROOT, API_WS_ROOT } from '../../constants';
 import actioncable from 'actioncable'
 import ChatMessage from './ChatMessage';
+import cable from '../../services/Cable'
 
 class ChatsArea extends React.Component {
 
@@ -13,7 +14,7 @@ class ChatsArea extends React.Component {
 
   componentDidMount = () => {
     this.handleFetch()
-    //this.cable = actioncable.createConsumer(API_WS_ROOT);
+    this.cable = actioncable.createConsumer(API_WS_ROOT);
     this.chatsChannel()
   }
 
@@ -24,14 +25,14 @@ class ChatsArea extends React.Component {
   }
 
   chatsChannel = () => {
-    this.cable.subscriptions.create({
+    cable.subscriptions.create({
     channel: `ChatsChannel`,
     },
       {connected: () => {
         console.log('connected!')
       },
         disconnected: () => {
-          console.log('disconnected!');
+          console.log('disconnected!')
         },
         received: data => {
           this.handleReceivedChat(data)
