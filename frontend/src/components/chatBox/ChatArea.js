@@ -14,7 +14,7 @@ class ChatsArea extends React.Component {
 
   componentDidMount = () => {
     this.handleFetch()
-    this.cable = actioncable.createConsumer(API_WS_ROOT);
+    //this.cable = actioncable.createConsumer(API_WS_ROOT);
     this.chatsChannel()
   }
 
@@ -55,7 +55,7 @@ class ChatsArea extends React.Component {
         <h2>Chats Window</h2>
         { /* you can't pass down objects via props */ }
         <div className='chat-messages'>
-          { orderedChats(this.state.chats) }
+          { orderedChats(chats) }
         </div>
 
         <ChatBoxInput roomId={1}/>

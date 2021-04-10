@@ -6,17 +6,17 @@ class ChatsController < ApplicationController
   end
 
   def create
-    chat = Chat.new(chat_params)
+    chat = Chat.create(chat_params)
     room = Room.find(chat_params[:room_id])
-    if chat.save
+    if chat.valid?
       # necessary for using Serializer with WebSockets
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
         ChatSerializer.new(chat)
       ).serializable_hash
-      ActionCable.server.broadcast 'rooms_channel', serialized_data
+      ActionCable.server.broadcast 'chats_channel', serialized_data
       head :ok
     else
-      render json: { error: 'Could not create the room'}, status: 422
+      render json: { error: 'Could not create the chat_message'}, status: 422
     end
   end
 

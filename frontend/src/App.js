@@ -6,7 +6,6 @@ import PhraseSelector from './containers/PhraseSelector'
 import Leaderboard from './containers/Leaderboard'
 import HowToPlay from './components/howToPlay/HowToPlay'
 import Footer from './containers/Footer'
-import ConversationList from './components/ConversationsList'
 // action cable
 import RoomsList from './components/rooms/RoomsList'
 
@@ -20,7 +19,7 @@ function App() {
         <Route exact path='/new' component={PhraseSelector} />
         <Route exact path='/leaderboard' component={Leaderboard} />
         <Route exact path='/how-to-play' component={HowToPlay} />
-        
+
         <Footer />
       </Router>
     </div>
