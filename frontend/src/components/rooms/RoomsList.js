@@ -67,7 +67,7 @@ export default RoomsList;
 const mapRooms = rooms => {
   return rooms.map(room => {
     return (
-      <Room key={room.id} title={room.title} />
+      <Room key={room.id} id={room.id} title={room.title} />
     )
   })
 }
