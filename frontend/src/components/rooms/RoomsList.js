@@ -1,7 +1,6 @@
 import React from 'react';
 import { API_ROOT, API_WS_ROOT } from '../../constants';
 import NewRoomForm from './NewRoomForm'
-//import actioncable from 'actioncable'
 import Room from './Room'
 import cable from '../../services/Cable'
 
@@ -18,13 +17,12 @@ class RoomsList extends React.Component {
   }
 
   componentWillUnmount = () => {
-    cable.subscriptions.subscriptions.forEach( subscription =>{
+    cable.disconnect()
+    cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()
     })
-    cable.disconnect()
-  }
 
-  component
+  }
 
   handleFetch = () => {
     fetch(`${API_ROOT}/rooms`)
@@ -33,18 +31,18 @@ class RoomsList extends React.Component {
   }
 
   roomsChannel = () => {
-    cable.subscriptions.create({
+    const subscribe = cable.subscriptions.create({
     channel: `RoomsChannel`,
     },
       {connected: () => {
-        console.log('connected!')
+        console.log('RoomsChannel connected!')
       },
         disconnected: () => {
-          console.log('disconnected!');
+          console.log('RoomsChannel disconnected!');
         },
         received: data => {
           this.handleReceivedRoom(data)
-          console.log('data received')
+          console.log('RoomsChannel data received')
         }
     })
   }

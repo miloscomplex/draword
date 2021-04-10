@@ -25,7 +25,7 @@ class NewRoomForm extends React.Component {
     return (
       <div className="newRoomForm">
         <form name='newRoomForm' onSubmit={event => this.handleSubmit(event)}>
-          <label>Create A New Room:</label>
+          <label>Create A New Room (3-10) characters-long:</label>
           <br />
           <input
             type="text"

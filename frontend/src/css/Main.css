@@ -147,7 +147,7 @@ a {
 
 .roomsList li {
   background-color: #ddd;
-  padding: 2em;
+  padding: 3em;
   margin: 0 .5em .5em 0;
   border-radius: .3em;
   display: inline-block;
@@ -160,4 +160,21 @@ a {
 .landing-page p {
   width: 80%;
   margin: 0 auto;
+}
+
+.leaderboard li {
+    font-size: 1.1em;
+    margin: 0 auto;
+    border-bottom: 1px solid #adacaa;
+    list-style: none;
+    width: 60%;
+    padding: .5em 0;
+}
+
+.leaderboard li:first-child {
+  border-top: 1px solid #adacaa;
+}
+
+.leaderboard li:nth-child(odd) {
+  background-color: #f2f2f2;
 }

@@ -15,13 +15,24 @@ class ChatsArea extends React.Component {
   componentDidMount = () => {
     this.handleFetch()
     this.chatsChannel()
+    this.scrollToBottom()
   }
 
   componentWillUnmount = () => {
-    cable.disconnect()
-    cable.subscriptions.subscriptions.forEach( subscription =>{
+    cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()
     })
+    cable.disconnect()
+  }
+
+  componentDidUpdate = () => {
+    this.scrollToBottom()
+    // const scroll = this.chatContainer.current.scrollHeight - this.chatContainer.current.clientHeight
+    //   this.chatContainer.current.scrollTo(0, scroll);
+  }
+
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   }
 
   handleFetch = () => {
@@ -35,14 +46,14 @@ class ChatsArea extends React.Component {
     channel: `ChatsChannel`,
     },
       {connected: () => {
-        console.log('connected!')
+        console.log('ChatsChannel connected!')
       },
         disconnected: () => {
-          console.log('disconnected!')
+          console.log('ChatsChannel disconnected!')
         },
         received: data => {
           this.handleReceivedChat(data)
-          console.log('data received')
+          console.log('ChatsChannel data received')
         }
     })
   }
@@ -60,10 +71,13 @@ class ChatsArea extends React.Component {
     const { chats, roomId } = this.state
     return (
       <div id='chatWindow'>
-        <h2>Chats Window</h2>
+        <h2>Chat Window</h2>
         { /* you can't pass down objects via props */ }
-        <div className='chat-messages'>
+        <div ref={this.chatContainer} className='chat-messages'>
           { orderedChats(chats) }
+          <div style={{ float:"left", clear: "both" }}
+          ref={(el) => { this.messagesEnd = el; }}>
+          </div>
         </div>
 
         <ChatBoxInput roomId={1}/>
