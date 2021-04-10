@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react'
 import { API_ROOT, HEADERS } from '../../constants';
 
 class NewRoomForm extends React.Component {
   state = {
     title: ''
-  };
+  }
 
   handleChange = e => {
     this.setState({ title: e.target.value });
   };
 
-  handleSubmit = e => {
-    e.preventDefault()
+  handleSubmit = event => {
+    event.preventDefault()
+    event.stopPropagation()
     fetch(`${API_ROOT}/rooms`, {
       method: 'POST',
       headers: HEADERS,
@@ -23,7 +24,7 @@ class NewRoomForm extends React.Component {
   render = () => {
     return (
       <div className="newRoomForm">
-        <form onSubmit={this.handleSubmit}>
+        <form name='newRoomForm' onSubmit={event => this.handleSubmit(event)}>
           <label>Create A New Room:</label>
           <br />
           <input
@@ -31,7 +32,7 @@ class NewRoomForm extends React.Component {
             value={this.state.title}
             onChange={this.handleChange}
           />
-          <input type="submit" />
+          <button value='submit'>submit</button>
         </form>
       </div>
     );

@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
-import { API_ROOT, HEADERS } from '../../constants';
+import { API_ROOT, HEADERS } from '../../constants'
 
 class ChatBoxInput extends React.Component {
 
   state = {
     text: '',
-    room_id: this.props.room_id
+    room_id: this.props.roomId
   }
-
-  componentWillReceiveProps = nextProps => {
-    this.setState({ room_id: nextProps.room_id });
-  };
 
   handleOnChange = event => {
     this.setState({
@@ -20,23 +16,18 @@ class ChatBoxInput extends React.Component {
 
   handleOnSubmit = event => {
     event.preventDefault()
-
+    event.stopPropagation()
     fetch(`${API_ROOT}/chats`, {
       method: 'POST',
       headers: HEADERS,
       body: JSON.stringify(this.state)
     });
-
-    //this.props.addMessage(this.state.message)
-    // console.log('hellooooo');
-    this.setState({
-      text: ''
-    })
+    this.setState({ text: '' })
   }
 
   render() {
     return (
-      <form onSubmit={this.handleOnSubmit} >
+      <form name='chatBoxForm' onSubmit={event => this.handleOnSubmit(event)} >
         <input type='text' value={this.state.text} onChange={this.handleOnChange}/>
         <button value='submit'>submit</button>
       </form>

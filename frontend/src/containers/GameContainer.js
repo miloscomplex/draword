@@ -3,7 +3,7 @@ import ToolBox from '../components/canvas/ToolBox'
 import Timer from '../components/ui/Timer'
 import Score from '../components/ui/Score'
 import Canvas from '../components/canvas/Canvas'
-import ChatBox from './ChatBox'
+import ChatArea from '../components/chatBox/ChatArea'
 
 
 class GameContainer extends React.Component {
@@ -22,7 +22,7 @@ class GameContainer extends React.Component {
           <Score />
           <ToolBox />
         </div>
-        <ChatBox />
+        <ChatArea />
       </div>
     )
   }

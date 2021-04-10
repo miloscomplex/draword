@@ -6,7 +6,7 @@ class Header extends React.Component {
   render() {
     return (
       <div id='header'>
-        <h1><Link to='/'>DraWorD</Link></h1>
+        <h1><Link to='/'>draword</Link></h1>
         <Navigation />
       </div>
     )

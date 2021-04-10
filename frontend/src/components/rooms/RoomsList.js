@@ -1,7 +1,6 @@
 import React from 'react';
-import { API_ROOT } from '../../constants';
+import { API_ROOT, API_WS_ROOT } from '../../constants';
 import NewRoomForm from './NewRoomForm'
-import ChatsArea from './ChatsArea'
 import actioncable from 'actioncable'
 
 class RoomsList extends React.Component {
@@ -13,8 +12,8 @@ class RoomsList extends React.Component {
 
   componentDidMount = () => {
     this.handleFetch()
-    this.cable = actioncable.createConsumer('ws://localhost:3000/cable');
-    this.canvasChannel()
+    //this.cable = actioncable.createConsumer(API_WS_ROOT);
+    this.roomsChannel()
   };
 
   handleFetch = () => {
@@ -23,8 +22,8 @@ class RoomsList extends React.Component {
       .then(rooms => this.setState({ rooms }));
   }
 
-  canvasChannel = () => {
-    this.cable.subscriptions.create({
+  roomsChannel = () => {
+    CableApp.cable.subscriptions.create({
     channel: `RoomsChannel`,
     },
       {connected: () => {
@@ -40,16 +39,12 @@ class RoomsList extends React.Component {
     })
   }
 
-  handleClick = id => {
-    this.setState({ activeRoom: id });
-  }
-
   handleReceivedRoom = response => {
     const { room } = response;
     this.setState({
       rooms: [...this.state.rooms, room]
-    });
-  };
+    })
+  }
 
   render = () => {
     const { rooms, activeRoom } = this.state;
@@ -58,6 +53,7 @@ class RoomsList extends React.Component {
         <h1>Rooms</h1>
         <p>Select a room or create a new one</p>
         <ul>{mapRooms(rooms, this.handleClick)}</ul>
+
         <NewRoomForm />
       </div>
     );
@@ -74,12 +70,12 @@ const findActiveRoom = (rooms, activeRoom) => {
   );
 };
 
-const mapRooms = (rooms, handleClick) => {
+const mapRooms = rooms => {
   return rooms.map(room => {
     return (
-      <li key={room.id} onClick={() => handleClick(room.id)}>
+      <li key={room.id} >
         {room.title}
       </li>
-    );
-  });
-};
+    )
+  })
+}

@@ -4,3 +4,5 @@ export const HEADERS = {
   'Content-Type': 'application/json',
   Accept: 'application/json',
 }
+
+export const CableApp.cable = actionCable.createConsumer(API_WS_ROOT)
