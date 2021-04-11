@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { API_ROOT, API_WS_ROOT, HEADERS } from '../../constants';
 import cable from '../../services/Cable'
 
 class Canvas extends React.Component {
@@ -13,11 +14,109 @@ class Canvas extends React.Component {
       lineWidth: 7,
       drawings: [],
       canvasWidth: 500,
-      canvasHeight: 500
+      canvasHeight: 500,
+      roomId: this.props.params.id,
     }
   }
 
   componentDidMount() {
+    this.configCanvas()
+    this.handleGetFetch()
+    this.canvasChannel()
+  }
+
+  handleGetFetch = () => {
+    fetch(`${API_ROOT}/canvas/${this.state.roomId}`)
+      .then(res => res.json())
+      .then(drawings => this.setState({ drawings }))
+  }
+
+  handlePostFetch = drawingObj => {
+    fetch(`${API_ROOT}/canvas`, {
+      method: 'POST',
+      headers: HEADERS,
+      body: JSON.stringify(drawingObj)
+    });
+  }
+
+  handleReceivedCanvasObj = response => {
+    const { drawing } = response
+    this.setState({
+      drawings: [...this.state.drawings, drawing]
+    })
+  }
+
+  canvasChannel = () => cable.subscriptions.create({
+    channel: `CanvasChannel`,
+    id: this.state.roomId
+    },
+      {connected: () => {
+        console.log('CanvasChannel connected!')
+      },
+        disconnected: () => {
+          console.log('CanvasChannel disconnected!')
+        },
+        received: data => {
+          console.log('CanvasChannel data received', data)
+        },
+        send: data => {
+          console.log('CanvasChannel sent data', data)
+        }
+    })
+
+  startDrawing = (event) => {
+    //console.log(event)
+    if (this.state.isDrawing) {
+      return
+    }
+    const {offsetX, offsetY} = event.nativeEvent
+    this.contextRef.current.beginPath()
+    this.contextRef.current.moveTo(offsetX, offsetY)
+    this.setState({ isDrawing: true })
+    this.handlePostFetch(
+    {   action: 'beginPath()',
+        offsetX: offsetX,
+        offsetY: offsetY,
+        room_id: this.state.roomId
+    })
+  }
+
+  stopDrawing = (event) => {
+    if (!this.state.isDrawing) {
+      return
+    }
+    const {offsetX, offsetY} = event.nativeEvent
+    this.contextRef.current.closePath()
+    this.setState({ isDrawing: false })
+    let saveVal = this.contextRef.current.save()
+    console.log(this.contextRef.current)
+    this.handlePostFetch('closePath()', offsetX, offsetY)
+    this.handlePostFetch(
+    {   action: 'closePath()',
+        offsetX: offsetX,
+        offsetY: offsetY,
+        room_id: this.state.roomId
+    })
+  }
+
+  drawing = (event) => {
+    if (!this.state.isDrawing) {
+      return
+    }
+    //console.log('im drawing');
+    const {offsetX, offsetY} = event.nativeEvent
+    this.contextRef.current.lineTo(offsetX, offsetY)
+    this.contextRef.current.stroke()
+    this.handlePostFetch('lineTo', offsetX, offsetY)
+    this.handlePostFetch(
+    {   action: 'lineTo()',
+        offsetX: offsetX,
+        offsetY: offsetY,
+        room_id: this.state.roomId
+    })
+  }
+
+  configCanvas = () => {
     const canvas = this.canvasRef.current
     // double pixel depth for higher res
     // need .scale
@@ -33,74 +132,11 @@ class Canvas extends React.Component {
     context.lineWidth = this.state.lineWidth
     context.miterLimit = 2
     this.contextRef.current = context
-    this.canvasChannel()
-  }
-
-  canvasChannel = () => {
-    cable.subscriptions.create({
-    channel: `CanvasChannel`,
-    },
-      {connected: () => {
-        console.log('CanvasChannel connected!')
-      },
-        disconnected: () => {
-          console.log('CanvasChannel disconnected!')
-        },
-        received: data => {
-          this.handleReceivedChat(data)
-          console.log('CanvasChannel data received')
-        }
-    })
-  }
-
-  handleReceivedCanvasObj = response => {
-    const { drawing } = response
-    this.setState({
-      drawings: [...this.state.drawings, drawing]
-    })
-  }
-
-  recordDrawing = (path, x, y) => {
-    const newDrawing = {
-      path: path,
-      x: x,
-      y: y
-    }
-
-    let joined = this.state.drawings.concat(newDrawing)
-    this.setState({ drawings: joined })
-  }
-
-  startDrawing = (event) => {
-    console.log(event)
-    const {offsetX, offsetY} = event.nativeEvent
-    this.contextRef.current.beginPath()
-    this.contextRef.current.moveTo(offsetX, offsetY)
-    this.setState({ isDrawing: true })
-    this.recordDrawing('beginPath()', offsetX, offsetY)
-  }
-
-  stopDrawing = (event) => {
-    const {offsetX, offsetY} = event.nativeEvent
-    this.contextRef.current.closePath()
-    this.setState({ isDrawing: false })
-    //let saveVal = this.contextRef.current.save()
-    console.log(this.contextRef.current)
-    this.recordDrawing('closePath()', offsetX, offsetY)
-  }
-
-  drawing = (event) => {
-    if (!this.state.isDrawing) {
-      return
-    }
-    //console.log('im drawing');
-    const {offsetX, offsetY} = event.nativeEvent
-    this.contextRef.current.lineTo(offsetX, offsetY)
-    this.contextRef.current.stroke()
-    this.recordDrawing('lineTo', offsetX, offsetY)
   }
 
   render() {
+    //console.log('cable= ', cable)
+    //console.log('this.canvasChannel', this.canvasChannel());
     return (
         <canvas
           onMouseDown={event => this.startDrawing(event)}

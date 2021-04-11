@@ -17,7 +17,7 @@ class GameContainer extends React.Component {
     return (
       <div id='wrapper'>
         <div id='canvas'>
-          <Canvas />
+          <Canvas  params={this.props.match.params} />
           <Timer />
           <Score />
           <ToolBox />
