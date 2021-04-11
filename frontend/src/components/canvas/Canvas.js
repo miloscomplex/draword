@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import cable from '../../services/Cable'
 
 class Canvas extends React.Component {
 
@@ -10,7 +11,7 @@ class Canvas extends React.Component {
       isDrawing: false,
       color: 'yellow',
       lineWidth: 7,
-      drawings: [[]],
+      drawings: [],
       canvasWidth: 500,
       canvasHeight: 500
     }
@@ -32,6 +33,31 @@ class Canvas extends React.Component {
     context.lineWidth = this.state.lineWidth
     context.miterLimit = 2
     this.contextRef.current = context
+    this.canvasChannel()
+  }
+
+  canvasChannel = () => {
+    cable.subscriptions.create({
+    channel: `CanvasChannel`,
+    },
+      {connected: () => {
+        console.log('CanvasChannel connected!')
+      },
+        disconnected: () => {
+          console.log('CanvasChannel disconnected!')
+        },
+        received: data => {
+          this.handleReceivedChat(data)
+          console.log('CanvasChannel data received')
+        }
+    })
+  }
+
+  handleReceivedCanvasObj = response => {
+    const { drawing } = response
+    this.setState({
+      drawings: [...this.state.drawings, drawing]
+    })
   }
 
   recordDrawing = (path, x, y) => {

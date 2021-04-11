@@ -127,9 +127,8 @@ a {
   background-color: #fff;
   border-radius: .3em;
   overflow-y: scroll;
-  min-height: 100px;
   text-align: left;
-  max-height: 350px;
+  height: 350px;
 }
 
 .chat-messages p {
