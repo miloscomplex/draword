@@ -4,12 +4,20 @@ import Timer from '../components/ui/Timer'
 import Score from '../components/ui/Score'
 import Canvas from '../components/canvas/Canvas'
 import ChatArea from '../components/chatBox/ChatArea'
+import cable from '../services/Cable'
 
 
 class GameContainer extends React.Component {
 
   constructor(props) {
     super(props)
+  }
+
+  componentWillUnmount = () => {
+    cable.subscriptions.subscriptions.forEach( subscription => {
+      subscription.unsubscribe()
+    })
+    cable.disconnect()
   }
 
   render() {

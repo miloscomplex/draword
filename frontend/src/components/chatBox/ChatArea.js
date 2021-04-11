@@ -17,13 +17,6 @@ class ChatsArea extends React.Component {
     this.scrollToBottom()
   }
 
-  componentWillUnmount = () => {
-    cable.subscriptions.subscriptions.forEach( subscription => {
-      subscription.unsubscribe()
-    })
-    cable.disconnect()
-  }
-
   componentDidUpdate = () => {
     this.scrollToBottom()
   }

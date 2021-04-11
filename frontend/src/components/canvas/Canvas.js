@@ -17,6 +17,7 @@ class Canvas extends React.Component {
       canvasHeight: 500,
       roomId: this.props.params.id,
     }
+    this.dataCache = null
   }
 
   componentDidMount() {
@@ -31,21 +32,6 @@ class Canvas extends React.Component {
       .then(drawings => this.setState({ drawings }))
   }
 
-  handlePostFetch = drawingObj => {
-    fetch(`${API_ROOT}/canvas`, {
-      method: 'POST',
-      headers: HEADERS,
-      body: JSON.stringify(drawingObj)
-    });
-  }
-
-  handleReceivedCanvasObj = response => {
-    const { drawing } = response
-    this.setState({
-      drawings: [...this.state.drawings, drawing]
-    })
-  }
-
   canvasChannel = () => cable.subscriptions.create({
     channel: `CanvasChannel`,
     id: this.state.roomId
@@ -57,12 +43,33 @@ class Canvas extends React.Component {
           console.log('CanvasChannel disconnected!')
         },
         received: data => {
+          this.dataCache = data
           console.log('CanvasChannel data received', data)
         },
         send: data => {
           console.log('CanvasChannel sent data', data)
+          //this.handlePostFetch(data)
         }
     })
+
+  handlePostFetch = drawingObj => {
+    if ( this.dataCache === drawingObj ) { return }
+    // kill it if it's a duplicate
+    fetch(`${API_ROOT}/canvas`, {
+      method: 'POST',
+      headers: HEADERS,
+      body: JSON.stringify(drawingObj)
+    });
+  }
+
+  handleReceivedCanvasObj = response => {
+    const { drawing } = response
+    if (drawing !== this.state.drawings ) {
+      this.setState({
+        drawings: [...this.state.drawings, drawing]
+      })
+    }
+  }
 
   startDrawing = (event) => {
     //console.log(event)
@@ -74,7 +81,7 @@ class Canvas extends React.Component {
     this.contextRef.current.moveTo(offsetX, offsetY)
     this.setState({ isDrawing: true })
     this.handlePostFetch(
-    {   action: 'beginPath()',
+    {   action: 'beginPath',
         offsetX: offsetX,
         offsetY: offsetY,
         room_id: this.state.roomId
@@ -90,9 +97,8 @@ class Canvas extends React.Component {
     this.setState({ isDrawing: false })
     let saveVal = this.contextRef.current.save()
     console.log(this.contextRef.current)
-    this.handlePostFetch('closePath()', offsetX, offsetY)
     this.handlePostFetch(
-    {   action: 'closePath()',
+    {   action: 'closePath',
         offsetX: offsetX,
         offsetY: offsetY,
         room_id: this.state.roomId
@@ -107,9 +113,8 @@ class Canvas extends React.Component {
     const {offsetX, offsetY} = event.nativeEvent
     this.contextRef.current.lineTo(offsetX, offsetY)
     this.contextRef.current.stroke()
-    this.handlePostFetch('lineTo', offsetX, offsetY)
     this.handlePostFetch(
-    {   action: 'lineTo()',
+    {   action: 'lineTo',
         offsetX: offsetX,
         offsetY: offsetY,
         room_id: this.state.roomId
@@ -132,6 +137,25 @@ class Canvas extends React.Component {
     context.lineWidth = this.state.lineWidth
     context.miterLimit = 2
     this.contextRef.current = context
+  }
+
+  drawOnCanvas = (drawingObj) => {
+    const {offsetX, offsetY} = drawingObj
+    switch (drawingObj.action) {
+      case 'beginPath':
+        this.contextRef.current.beginPath()
+        this.contextRef.current.moveTo(offsetX, offsetY)
+        this.setState({ isDrawing: true })
+      case 'lineTo':
+        this.contextRef.current.lineTo(offsetX, offsetY)
+        this.contextRef.current.stroke()
+      case 'closePath':
+        this.contextRef.current.closePath()
+        this.setState({ isDrawing: false })
+        let saveVal = this.contextRef.current.save()
+      default:
+        return
+    }
   }
 
   render() {

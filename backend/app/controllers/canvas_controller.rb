@@ -11,9 +11,8 @@ class CanvasController < ApplicationController
   end
 
   def create
-    canva = Canva.create(canva_params)
-    room = Room.find(canva_params[:room_id])
-    if canva.valid?
+    canva = Canva.new(canva_params)
+    # if canva.save
       # necessary for using Serializer with WebSockets
       serialized_data= ActiveModelSerializers::Adapter::Json.new(
         CanvaSerializer.new(canva)
@@ -21,9 +20,9 @@ class CanvasController < ApplicationController
       ActionCable.server.broadcast "canvas_channel_#{canva_params[:room_id]}", serialized_data
       # stream_for and broadcast_to to be useful for transmitting data along non-universal channels, such as for members of a particular conversation or specific users
       head :ok
-    else
-      render json: { error: 'Could not create the canvas_drawing'}, status: 422
-    end
+    # else
+      # render json: { error: 'Could not create the canvas_drawing'}, status: 422
+    # end
   end
 
   private
