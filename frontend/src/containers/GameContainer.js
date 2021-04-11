@@ -22,7 +22,7 @@ class GameContainer extends React.Component {
           <Score />
           <ToolBox />
         </div>
-        <ChatArea />
+        <ChatArea params={this.props.match.params} />
       </div>
     )
   }

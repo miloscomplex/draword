@@ -129,7 +129,7 @@ a {
   overflow-y: scroll;
   min-height: 100px;
   text-align: left;
-  max-height: 300px;
+  max-height: 350px;
 }
 
 .chat-messages p {
@@ -177,4 +177,9 @@ a {
 
 .leaderboard li:nth-child(odd) {
   background-color: #f2f2f2;
+}
+
+.scroll-fix {
+  float:left;
+  clear:both;
 }

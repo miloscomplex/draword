@@ -9,7 +9,7 @@ class ChatsArea extends React.Component {
 
   state = {
     chats: [],
-    roomId: 1
+    roomId: this.props.params.id
   }
 
   componentDidMount = () => {
@@ -27,8 +27,6 @@ class ChatsArea extends React.Component {
 
   componentDidUpdate = () => {
     this.scrollToBottom()
-    // const scroll = this.chatContainer.current.scrollHeight - this.chatContainer.current.clientHeight
-    //   this.chatContainer.current.scrollTo(0, scroll);
   }
 
   scrollToBottom = () => {
@@ -36,7 +34,7 @@ class ChatsArea extends React.Component {
   }
 
   handleFetch = () => {
-    fetch(`${API_ROOT}/chats`)
+    fetch(`${API_ROOT}/chats/${this.state.roomId}`)
       .then(res => res.json())
       .then(chats => this.setState({ chats }))
   }
@@ -67,20 +65,19 @@ class ChatsArea extends React.Component {
 
   render = () => {
     console.log(cable);
-    console.log(cable.subscriptions.subscriptions);
     const { chats, roomId } = this.state
     return (
       <div id='chatWindow'>
         <h2>Chat Window</h2>
         { /* you can't pass down objects via props */ }
         <div ref={this.chatContainer} className='chat-messages'>
-          { orderedChats(chats) }
-          <div style={{ float:"left", clear: "both" }}
-          ref={(el) => { this.messagesEnd = el; }}>
+          { orderedChats(chats).length ? orderedChats(chats) : suchEmpty }
+          <div className='scroll-fix'
+            ref={(el) => { this.messagesEnd = el }}>
           </div>
         </div>
 
-        <ChatBoxInput roomId={1}/>
+        <ChatBoxInput roomId={this.state.roomId}/>
       </div>
     )
   }
@@ -93,8 +90,10 @@ export default ChatsArea;
 const orderedChats = chats => {
   const sortedChats = chats.sort(
     (a, b) => new Date(a.created_at) - new Date(b.created_at)
-  );
+  )
   return sortedChats.map(chat => {
     return <ChatMessage key={chat.id} text={chat.text} />
-  });
-};
+  })
+}
+
+const suchEmpty = 'Wow Such Empty'
