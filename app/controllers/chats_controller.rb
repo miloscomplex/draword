@@ -5,6 +5,12 @@ class ChatsController < ApplicationController
     render json: chat
   end
 
+  def show
+    # display by room_id 
+    room = Room.find_by(id: params[:id])
+    render json: room.chats
+  end
+
   def create
     chat = Chat.create(chat_params)
     room = Room.find(chat_params[:room_id])
