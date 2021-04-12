@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_08_162516) do
+ActiveRecord::Schema.define(version: 2021_04_12_025624) do
 
   create_table "canvas", force: :cascade do |t|
     t.string "action"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 2021_04_08_162516) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+  end
+
+  create_table "phrases", force: :cascade do |t|
+    t.string "phrase"
+    t.string "difficulty"
+    t.boolean "selected"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "rooms", force: :cascade do |t|
