@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
-import PhraseComponent from '../components/phraseSelector/PhraseSelector'
+import PhraseComponent from '../components/phraseSelector/PhraseComponent'
 
 class PhraseSelector extends React.Component {
-
-  state = {
-    phrases: [ 'Ball of Confusion', 'House of the Rising Sun', 'These Boots are Made for Walking', 'In Da Club' ]
-  }
 
   render() {
     return (
@@ -13,7 +9,7 @@ class PhraseSelector extends React.Component {
         <div className='phrase-selector'>
           <h2>Phrase Selector</h2>
           <p className='description'>Select One of the phrases/words below to draw.</p>
-          <PhraseComponent phrases={this.state.phrases} />
+          <PhraseComponent selectedPhrase={this.props.selectedPhrase}/>
         </div>
       </div>
     )

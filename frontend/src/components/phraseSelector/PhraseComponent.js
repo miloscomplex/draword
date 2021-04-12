@@ -18,12 +18,18 @@ class PhraseSelector extends React.Component {
       .then(phrases => this.setState({ phrases }))
   }
 
+  handleClick = event => {
+    alert("i was clicked")
+    console.log(event.target.innerText);
+    this.props.selectedPhrase(event.target.innerText)
+  }
+
   render() {
-    const phraseList = this.state.phrases.map( (p, index) => <li key={index}> { p.phrase } </li> )
+    const phraseList = this.state.phrases.map( (p, index) => <li key={index} onClick={e => this.handleClick(e)}> { p.phrase } </li> )
 
     return (
       <div>
-        <ul className='phrases'>
+        <ul className='phrases' >
           { phraseList }
         </ul>
       </div>
