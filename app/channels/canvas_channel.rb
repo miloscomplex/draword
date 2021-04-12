@@ -8,11 +8,6 @@ class CanvasChannel < ApplicationCable::Channel
     # stream_for canvas
   end
 
-  def receive(data)
-    ActionCable.server.broadcast("canvas_channel_#{params[:id]}", data)
-    render json: {message: 'success'}, status: 200
-  end
-
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end
