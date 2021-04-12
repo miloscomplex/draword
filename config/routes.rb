@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :phrases
+  resources :phrases, only: [:index, :show]
   resources :scores
   resources :users
   # Action Cable
@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   resources :messages, only: [:create]
   # /cable is only a convention; init websockets vs HTTP
   resources :rooms, only: [:index, :create]
-  resources :chats, only: [:index, :show, :create]
+  resources :chats, only: [:show, :create]
   resources :canvas, only: [:index, :show, :create]
+
+  get '/random-phrases', to: 'phrases#show_random', as: 'random-phrases'
   mount ActionCable.server => '/cable'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

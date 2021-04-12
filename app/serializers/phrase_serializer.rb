@@ -1,3 +1,3 @@
 class PhraseSerializer < ActiveModel::Serializer
-  attributes :id, :phrase
+  attributes :id, :phrase, :difficulty
 end
