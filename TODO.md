@@ -6,9 +6,9 @@ An application to play a game where user one draws to communicate the word not r
 
 - [ ] Create Landing Page component
 
-- [ ] Add validation and limit unused routes
+- [~] (need to verify) Add validation and limit unused routes
 
-- [ ] Use the correct design patterns to build frontend
+- [x] Use the correct design patterns to build frontend
 
 - [x] Build Canvas component
 
@@ -18,7 +18,7 @@ An application to play a game where user one draws to communicate the word not r
 
 - [ ] Build Leaderboard component
 
-- [ ] Utilize Router to switch out content
+- [s] Utilize Router to switch out content
 
 - [x] ChatArea auto scrolls to bottom
 

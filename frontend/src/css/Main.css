@@ -34,6 +34,13 @@ body {
 
 h1 {
   font-weight: 900;
+  margin: .5em 0;
+}
+
+h2 {
+  margin: 1em 0 .25em 0;
+  font-size: 1.8em;
+  font-weight: 900;
 }
 
 a {
@@ -161,24 +168,36 @@ a {
   margin: 0 auto;
 }
 
-.leaderboard li {
+.leaderboard li, .phrases li {
     font-size: 1.1em;
     margin: 0 auto;
     border-bottom: 1px solid #adacaa;
+    border-right: 1px solid #adacaa;
+    border-left: 1px solid #adacaa;
     list-style: none;
     width: 60%;
     padding: .5em 0;
 }
 
-.leaderboard li:first-child {
+.leaderboard li:first-child , .phrases li:first-child {
   border-top: 1px solid #adacaa;
 }
 
-.leaderboard li:nth-child(odd) {
+.leaderboard li:nth-child(odd), .phrases li:nth-child(odd) {
   background-color: #f2f2f2;
+}
+
+.phrases li:hover {
+  background-color: #cdeff7;
 }
 
 .scroll-fix {
   float:left;
   clear:both;
+}
+
+.description {
+  font-weight: 600;
+  font-size: 1em;
+  margin-top: .5em;
 }

@@ -21,6 +21,7 @@ function App() {
         <Route exact path='/leaderboard' component={Leaderboard} />
         <Route exact path='/how-to-play' component={HowToPlay} />
         <Route exact path='/rooms/:id' render={routerProps => <GameContainer {...routerProps} />} />
+        <PhraseSelector />
         <Footer />
       </Router>
     </div>

@@ -11,7 +11,8 @@ class Leaderboard extends React.Component {
     return (
       <div className='wrapper'>
         <div className='leaderboard'>
-          <h1>Leaderboard</h1>
+          <h2>Leaderboard</h2>
+          <p className='description'>Here's the top team submissions</p>
           <LeaderboardComponent leaders={this.state.leaders} />
         </div>
       </div>

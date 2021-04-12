@@ -11,7 +11,8 @@ class PhraseSelector extends React.Component {
     return (
       <div className='wrapper'>
         <div className='phrase-selector'>
-          <h1>Phrase Selector</h1>
+          <h2>Phrase Selector</h2>
+          <p className='description'>Select One of the phrases/words below to draw.</p>
           <PhraseComponent phrases={this.state.phrases} />
         </div>
       </div>
