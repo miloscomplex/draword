@@ -9,13 +9,14 @@ class GameContainer extends React.Component {
   }
 
   updatePhrase = (phrase) => {
-    this.setState({ phrases: phrase })
+    console.log('i was called');
+    this.setState({ selectedPhrase: phrase })
   }
 
   render() {
     console.log(this.props)
     return (
-      this.state.selectedPhrase == null ? <PhraseSelector selectedPhrase={this.updatePhrase}/> : <GamePlay />
+      this.state.selectedPhrase == null ? <PhraseSelector update={(phrase) => this.updatePhrase(phrase)} /> : <GamePlay />
     )
   }
 }
