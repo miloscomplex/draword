@@ -11,7 +11,7 @@ class PhrasesController < ApplicationController
   end
 
   def show_random
-    random = Phrase.order(Arel.sql('RANDOM()')).first(3)
+    random = Phrase.limit(3).order("RANDOM()")
     render json: random
   end
 end
