@@ -6,6 +6,13 @@ class RoomsController < ApplicationController
     # puts "current_user= #{current_user}"
   end
 
+  def show
+    # display by room_id
+    room = Room.find_by(id: params[:id])
+    render json: room
+  end
+
+
   def create
     room = Room.create(room_params)
     if room.valid?

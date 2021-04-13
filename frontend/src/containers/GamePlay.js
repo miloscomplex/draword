@@ -41,11 +41,5 @@ class GamePlay extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    resetSelectedPhrase: phrase => dispatch({ type: 'RESET_PHRASE', payload: phrase})
-  }
-}
 
-
-export default connect(null, mapDispatchToProps)(GamePlay)
+export default GamePlay

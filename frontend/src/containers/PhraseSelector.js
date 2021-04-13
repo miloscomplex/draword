@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 class PhraseSelector extends React.Component {
 
   componentWillUnmount = () => {
+    // change this to a rails call to set to active?: true and allow drawer rights to the room. 
     const phrase = ''
     this.props.resetSelectedPhrase(phrase)
     console.log('PhraseSelector umounted!');
