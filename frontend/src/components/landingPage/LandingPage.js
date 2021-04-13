@@ -4,6 +4,7 @@ import RoomsList from '../rooms/RoomsList'
 class HowToPlay extends React.Component {
 
   render() {
+    console.log(this.props)
     return (
       <div className='wrapper'>
         <div className='landing-page'>

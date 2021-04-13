@@ -21,6 +21,7 @@ class GameContainer extends React.Component {
 
   render() {
     console.log(this.props)
+    /* this.props.match.params ==> what's the url for the room */
     return (
       <div id='wrapper'>
         <div id='canvas'>

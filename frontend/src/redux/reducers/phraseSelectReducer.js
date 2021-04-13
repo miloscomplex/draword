@@ -7,6 +7,8 @@ function phraseSelectReducer(state = defaultStore, action) {
   switch (action.type) {
     case 'ADD_SELECTED':
       return {...state, selectedPhrase: action.payload }
+    case 'RESET_PHRASE':
+      return {...state, selectPhrase: action.payload }
     default:
       return state
   }
