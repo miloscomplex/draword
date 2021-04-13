@@ -2,17 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
 import App from './App';
-import rootReducer from './reducers/rootReducer';
+import rootReducer from './redux/reducers/rootReducer';
 import { Provider } from 'react-redux';
-import { createStore, compose, applyMiddleware } from 'redux';
+import { compose, applyMiddleware,createStore } from 'redux';
 import thunk from 'redux-thunk'
 import actioncable from 'actioncable'
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(
-  rootReducer,
-  composeEnhancer(applyMiddleware(thunk)),
+const store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk))
 )
 
 ReactDOM.render(

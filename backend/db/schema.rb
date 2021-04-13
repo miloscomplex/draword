@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 2021_04_12_025624) do
   create_table "phrases", force: :cascade do |t|
     t.string "phrase"
     t.string "difficulty"
-    t.boolean "selected"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

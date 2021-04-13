@@ -48,7 +48,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    selectedPhrase: state.selectedPhrase
+    selectedPhrase: state.selectedPhrase,
+
   }
 }
 

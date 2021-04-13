@@ -13,7 +13,7 @@ Phrase.create(phrase: 'Genie In A Bottle’', difficulty: 'medium')
 Phrase.create(phrase: 'Hello', difficulty: 'easy')
 Phrase.create(phrase: 'Shake It Off', difficulty: 'medium')
 Phrase.create(phrase: 'Let It Go', difficulty: 'medium')
-Phrase.create(phrase: 'California Dreamin', difficulty: 'easy')
+Phrase.create(phrase: 'California Dreamin', difficulty: 'medium')
 Phrase.create(phrase: 'Snowman', difficulty: 'easy')
 Phrase.create(phrase: 'These Boots are Made for Walking', difficulty: 'medium')
 puts 'Created Phrases'
