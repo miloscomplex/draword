@@ -170,13 +170,14 @@ a {
 
 .leaderboard li, .phrases li {
     font-size: 1.1em;
+    line-height: 1.1em;
     margin: 0 auto;
     border-bottom: 1px solid #adacaa;
     border-right: 1px solid #adacaa;
     border-left: 1px solid #adacaa;
     list-style: none;
     width: 60%;
-    padding: .5em 0;
+    padding: .75em 0;
 }
 
 .leaderboard li:first-child , .phrases li:first-child {

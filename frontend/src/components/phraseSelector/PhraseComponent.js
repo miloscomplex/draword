@@ -5,10 +5,6 @@ import { connect } from 'react-redux'
 
 class PhraseSelector extends React.Component {
 
-  state = {
-    phrases: [],
-  }
-
   componentDidMount = () => {
     this.handleFetch()
   }
@@ -16,7 +12,7 @@ class PhraseSelector extends React.Component {
   handleFetch = () => {
     fetch(`${API_ROOT}/random-phrases`)
       .then(res => res.json())
-      .then(phrases => this.setState({ phrases }))
+      .then(phrases => this.props.addPhrases(phrases))
   }
 
   handleClick = event => {
@@ -27,7 +23,8 @@ class PhraseSelector extends React.Component {
 
   render() {
 
-    const phraseList = this.state.phrases.map( (p, index) => <li key={index} onClick={e => this.props.addPhrase(e.target.innerText)}> { p.phrase } </li> )
+    console.log(this.props.phrases);
+    const phraseList = this.props.phrases.map( (p, index) => <li key={index} onClick={e => this.props.addSelected(e.target.innerText)}> { p.phrase } </li> )
 
     return (
       <div>
@@ -42,14 +39,15 @@ class PhraseSelector extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addPhrase: phrase => dispatch({ type: 'ADD_PHRASE', payload: phrase })
+    addSelected: phrase => dispatch({ type: 'ADD_SELECTED', payload: phrase }),
+    addPhrases: phrases => dispatch({ type: 'ADD_PHRASES', payload: phrases })
   }
 }
 
 const mapStateToProps = state => {
   return {
     selectedPhrase: state.selectedPhrase,
-
+    phrases: state.phrases.phrasesList,
   }
 }
 
