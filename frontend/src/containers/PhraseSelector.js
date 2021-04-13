@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 import PhraseComponent from '../components/phraseSelector/PhraseComponent'
 import { connect } from 'react-redux'
 
-
 class PhraseSelector extends React.Component {
 
   componentWillUnmount = () => {
-    console.log('PhraseSelector unmounted');
     const phrase = ''
     this.props.resetSelectedPhrase(phrase)
+    console.log('PhraseSelector umounted!');
   }
 
   render() {

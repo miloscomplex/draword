@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import GamePlay from './GamePlay'
 import PhraseSelector from './PhraseSelector'
 import { API_ROOT } from '../constants'
+import { handleFetch } from '../services/API'
 import { connect } from 'react-redux'
 
 class GameContainer extends React.Component {
@@ -17,14 +18,9 @@ class GameContainer extends React.Component {
     this.props.addSelected(phrase)
   }
 
-  componentWillUnmount = () => {
-    console.log('GameContainer unmounted');
-    const phrase = ''
-    this.props.resetSelectedPhrase(phrase)
-  }
-
   componentDidMount = () => {
     this.handleFetch()
+    //handleFetch('random-phrases', this.props.addPhrases)
   }
 
   handleFetch = () => {
@@ -41,7 +37,7 @@ class GameContainer extends React.Component {
   render() {
     //console.log(this.props.selectedPhrase)
     return (
-      this.props.selectedPhrase == '' ? <PhraseSelector phrases={this.props.phrases} addSelected={this.phraseSelected} /> : <GamePlay match={this.props.match} />
+      this.props.selectedPhrase === '' ? <PhraseSelector phrases={this.props.phrases} addSelected={this.phraseSelected} /> : <GamePlay match={this.props.match} />
     )
   }
 }

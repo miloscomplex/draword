@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import { API_ROOT } from '../constants'
 
-function API(props) {
-  return (
-    <div>API goes here</div>
-  )
+export const handleFetch = (URL, callback) => {
+  fetch(`${API_ROOT}/${URL}`)
+    .then(res => res.json())
+    .then(data => callback(data))
 }
-
-export default API

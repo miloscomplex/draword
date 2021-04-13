@@ -5,11 +5,16 @@ import Score from '../components/ui/Score'
 import Canvas from '../components/canvas/Canvas'
 import ChatArea from '../components/chatBox/ChatArea'
 import cable from '../services/Cable'
+import { connect } from 'react-redux'
 
-class GameContainer extends React.Component {
+class GamePlay extends React.Component {
 
   state = {
     selectedPhrase: null
+  }
+
+  componentWillUnmount = () => {
+    console.log('GamePlay unmounted');
   }
 
   componentWillUnmount = () => {
@@ -36,4 +41,11 @@ class GameContainer extends React.Component {
   }
 }
 
-export default GameContainer
+const mapDispatchToProps = dispatch => {
+  return {
+    resetSelectedPhrase: phrase => dispatch({ type: 'RESET_PHRASE', payload: phrase})
+  }
+}
+
+
+export default connect(null, mapDispatchToProps)(GamePlay)
