@@ -30,10 +30,22 @@ class GameContainer extends React.Component {
 
   render() {
     //console.log(this.props.selectedPhrase)
-    // match is browser props 
+    // match is browser props
+    const busy = 'busy'
     return (
-      this.props.selectedPhrase === '' ? <PhraseSelector phrases={this.props.phrases} addSelected={this.phraseSelected} /> : <GamePlay match={this.props.match} />
+      <div>
+        { this.props.busySignal ? busy : null }
+        { this.props.selectedPhrase === '' ? <PhraseSelector phrases={this.props.phrases} addSelected={this.phraseSelected} /> : <GamePlay match={this.props.match} /> }
+      </div>
     )
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    selectedPhrase: state.phraseSelect.selectedPhrase,
+    phrases: state.phrases.phrasesList,
+    busySignal: state.busySignal
   }
 }
 
@@ -43,14 +55,6 @@ const mapDispatchToProps = dispatch => {
     addPhrases: phrases => dispatch({ type: 'ADD_PHRASES', payload: phrases }),
     resetSelectedPhrase: phrase => dispatch({ type: 'RESET_PHRASE', payload: phrase}),
     loadPhrases: () => { dispatch(loadPhrases()) }
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-
-    selectedPhrase: state.phraseSelect.selectedPhrase,
-    phrases: state.phrases.phrasesList,
   }
 }
 

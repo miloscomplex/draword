@@ -1,4 +1,3 @@
-
 const defaultStore = {
   phrasesList: []
 }
