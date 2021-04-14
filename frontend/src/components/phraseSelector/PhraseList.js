@@ -3,7 +3,7 @@ import { API_ROOT } from '../../constants';
 import API from '../../services/API'
 import { connect } from 'react-redux'
 
-class PhraseSelector extends React.Component {
+class PhraseList extends React.Component {
 
   render() {
 
@@ -21,4 +21,4 @@ class PhraseSelector extends React.Component {
 
 }
 
-export default PhraseSelector
+export default PhraseList

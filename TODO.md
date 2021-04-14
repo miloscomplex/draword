@@ -4,7 +4,7 @@ An application to play a game where user one draws to communicate the word not r
 
 - [x] Build out the Rails backend
 
-- [ ] Create Landing Page component
+- [x] Create Landing Page component
 
 - [~] (need to verify) Add validation and limit unused routes
 
@@ -14,13 +14,21 @@ An application to play a game where user one draws to communicate the word not r
 
 - [x] Build Chat component
 
-- [ ] Build PhraseSelector component
+- [x] Build PhraseSelector component
+
+- [ ] Integrate API check/setter for selected_phrase_id
 
 - [ ] Build Leaderboard component
 
 - [s] Utilize Router to switch out content
 
 - [x] ChatArea auto scrolls to bottom
+
+- [ ] Define role assignment for the rooms
+
+- [ ] one drawer per room
+
+- [ ] unlimited guessers
 
 - [x] The application contains a canvas that you can draw on with mousing down while in the canvas's constraints.
 

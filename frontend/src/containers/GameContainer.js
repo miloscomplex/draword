@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import GamePlay from './GamePlay'
-import PhraseSelector from './PhraseSelector'
+import PhraseContainer from './PhraseContainer'
 import { API_ROOT } from '../constants'
 import { handleFetch } from '../services/API'
 import { connect } from 'react-redux'
@@ -12,6 +12,13 @@ class GameContainer extends React.Component {
     selectedPhrase: ''
   }
 
+  handleFetch = () => {
+    fetch(`${API_ROOT}/rooms/${this.state.roomId}`)
+      .then(res => res.json())
+      .then(chats => this.setState({ chats }))
+  }
+
+
   phraseSelected = (phrase) => {
     this.setState({
       selectedPhrase: phrase
@@ -21,6 +28,7 @@ class GameContainer extends React.Component {
 
   componentDidMount = () => {
     this.props.loadPhrases()
+    console.log('this.props= ', this.props);
   }
 
   componentDidUpdate() {
@@ -35,7 +43,9 @@ class GameContainer extends React.Component {
     return (
       <div>
         { this.props.busySignal ? busy : null }
-        { this.props.selectedPhrase === '' ? <PhraseSelector phrases={this.props.phrases} addSelected={this.phraseSelected} /> : <GamePlay match={this.props.match} /> }
+        { /* if backend room.selected_phrase_id is false render PhraseContainer */ }
+
+        { this.props.selectedPhrase === '' ? <PhraseContainer phrases={this.props.phrases} addSelected={this.phraseSelected} /> : <GamePlay match={this.props.match} /> }
       </div>
     )
   }

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import PhraseComponent from '../components/phraseSelector/PhraseComponent'
+import PhraseList from '../components/phraseSelector/PhraseList'
 import { connect } from 'react-redux'
 
-class PhraseSelector extends React.Component {
+class PhraseContainer extends React.Component {
 
   componentWillUnmount = () => {
-    // change this to a rails call to set to active?: true and allow drawer rights to the room. 
-    const phrase = ''
-    this.props.resetSelectedPhrase(phrase)
+    // change this to a rails call to set to active?: true and allow drawer rights to the room.
+    //const phrase = ''
+    //this.props.resetSelectedPhrase(phrase)
     console.log('PhraseSelector umounted!');
   }
 
@@ -17,7 +17,7 @@ class PhraseSelector extends React.Component {
         <div className='phrase-selector'>
           <h2>Phrase Selector</h2>
           <p className='description'>Select One of the phrases/words below to draw.</p>
-          <PhraseComponent phrases={this.props.phrases} addSelected={this.props.addSelected} />
+          <PhraseList phrases={this.props.phrases} addSelected={this.props.addSelected} />
         </div>
       </div>
     )
@@ -30,4 +30,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(PhraseSelector)
+export default connect(null, mapDispatchToProps)(PhraseContainer)
