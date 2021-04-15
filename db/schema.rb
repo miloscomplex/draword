@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 2021_04_13_180936) do
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "selected_phrase_id"
-    t.index ["selected_phrase_id"], name: "index_rooms_on_selected_phrase_id"
+    t.integer "phrase_id"
+    t.index ["phrase_id"], name: "index_rooms_on_phrase_id"
   end
 
   create_table "scores", force: :cascade do |t|
@@ -79,6 +79,6 @@ ActiveRecord::Schema.define(version: 2021_04_13_180936) do
   add_foreign_key "canvas", "rooms"
   add_foreign_key "chats", "rooms"
   add_foreign_key "messages", "conversations"
-  add_foreign_key "rooms", "phrases", column: "selected_phrase_id"
+  add_foreign_key "rooms", "phrases"
   add_foreign_key "scores", "users"
 end
