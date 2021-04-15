@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :conversations, only: [:index, :create]
   resources :messages, only: [:create]
   # /cable is only a convention; init websockets vs HTTP
-  resources :rooms, only: [:index, :show, :create]
+  resources :rooms, only: [:index, :show, :create, :update]
   resources :chats, only: [:show, :create]
   resources :canvas, only: [:index, :show, :create]
 
