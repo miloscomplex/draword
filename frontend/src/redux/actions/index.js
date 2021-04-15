@@ -9,14 +9,14 @@ export function loadPhrases() {
 }
 
 export function setRoomPhrase(phraseObj) {
+  console.log('phraseObj= ', phraseObj);
   return (dispatch) => {
     dispatch({ type: 'FETCHING' })
-    fetch(`${API_ROOT}/rooms`, {
-      method: 'POST',
+    fetch(`${API_ROOT}/rooms/${phraseObj.room_id}`, {
+      method: 'PUT',
       headers: HEADERS,
       body: JSON.stringify(phraseObj)
     }).then(PARSE_JSON)
     .then(data => console.log(data))
-    // .then(data => dispatch({type: 'SET_ROOM_PHRASE', payload: data}))
   }
 }

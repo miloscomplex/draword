@@ -28,7 +28,7 @@ class RoomsController < ApplicationController
   end
 
   def update
-    room = Room.find_by_id(params[:id])
+    room = Room.find_by_id(params[:room_id])
     new_phrase = Phrase.find_by_id(params[:phrase_id])
     room.phrase = new_phrase
     if room.save

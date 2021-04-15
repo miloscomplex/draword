@@ -23,7 +23,7 @@ class PhraseContainer extends React.Component {
         <div className='phrase-selector'>
           <h2>Phrase Selector</h2>
           <p className='description'>Select One of the phrases/words below to draw.</p>
-          <PhraseList phrases={this.props.phrases} setRoomPhrase={this.props.setRoomPhrase} />
+          <PhraseList phrases={this.props.phrases} setRoomPhrase={this.props.setRoomPhrase} match={this.props.match} />
         </div>
       </div>
     )

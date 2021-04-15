@@ -5,15 +5,24 @@ import { connect } from 'react-redux'
 
 class PhraseList extends React.Component {
 
-  render() {
+  handleClick = (matchObj, phraseObj) => {
+    this.props.setRoomPhrase( {room_id: matchObj.params.id, phrase_id: phraseObj.id})
+  }
 
-    //console.log('prop.phrases= ', this.props.phrases);
-    const phraseList = this.props.phrases.map( (p, index) => <li key={index} onClick={e => this.props.setRoomPhrase(p)} > { p.phrase } </li> )
+  phraseList = (phrases, matchObj) => {
+    return phrases.map( phraseObj => {
+      return (
+        <li key={phraseObj.id} onClick={ event => this.handleClick(matchObj, phraseObj) } > { phraseObj.phrase } </li>
+      )
+    })
+  }
+
+  render() {
 
     return (
       <div>
         <ul className='phrases' >
-          { phraseList }
+          { this.phraseList(this.props.phrases, this.props.match) }
         </ul>
       </div>
     )
@@ -22,3 +31,5 @@ class PhraseList extends React.Component {
 }
 
 export default PhraseList
+
+// helpers
