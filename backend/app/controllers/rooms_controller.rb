@@ -27,10 +27,21 @@ class RoomsController < ApplicationController
     end
   end
 
+  def update
+    room = Room.find_by_id(params[:id])
+    new_phrase = Phrase.find_by_id(params[:phrase_id])
+    room.phrase = new_phrase
+    if room.save
+      render json: room
+    else
+      render json: { error: 'Could not update the room'}, status: 422
+    end
+  end
+
   private
 
   def room_params
-    params.require(:room).permit(:title)
+    params.require(:room).permit(:title, :selected_phrase_id)
   end
 
 end
