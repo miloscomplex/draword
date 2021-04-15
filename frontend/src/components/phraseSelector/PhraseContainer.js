@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import PhraseList from '../components/phraseSelector/PhraseList'
+import PhraseList from './PhraseList'
 import { connect } from 'react-redux'
+import { setRoomPhrase } from '../../redux/actions'
 
 class PhraseContainer extends React.Component {
 
@@ -26,7 +27,8 @@ class PhraseContainer extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    resetSelectedPhrase: phrase => dispatch({ type: 'RESET_PHRASE', payload: phrase})
+    resetSelectedPhrase: phrase => dispatch({ type: 'RESET_PHRASE', payload: phrase}),
+    setRoomPhrase: phraseObj => { dispatch(setRoomPhrase(phraseObj)) }
   }
 }
 

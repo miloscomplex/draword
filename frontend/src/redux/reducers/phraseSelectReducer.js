@@ -5,10 +5,12 @@ const defaultStore = {
 
 function phraseSelectReducer(state = defaultStore, action) {
   switch (action.type) {
-    case 'ADD_SELECTED':
-      return {...state, selectedPhrase: action.payload }
+    case 'SET_ROOM_PHRASE':
+      return null
+    case 'SELECTED_PHRASE':
+      return {state, selectedPhrase: action.payload }
     case 'RESET_PHRASE':
-      return {...state, selectedPhrase: action.payload }
+      return {state, selectedPhrase: '' }
     default:
       return state
   }
