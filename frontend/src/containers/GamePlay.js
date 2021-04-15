@@ -9,15 +9,8 @@ import { connect } from 'react-redux'
 
 class GamePlay extends React.Component {
 
-  state = {
-    selectedPhrase: null
-  }
-
   componentWillUnmount = () => {
     console.log('GamePlay unmounted');
-  }
-
-  componentWillUnmount = () => {
     cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()
     })
@@ -25,7 +18,7 @@ class GamePlay extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    //console.log(this.props)
     /* this.props.match.params ==> what's the url for the room */
     return (
       <div id='wrapper'>
@@ -41,5 +34,11 @@ class GamePlay extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    phrases: state.phrases.phrasesList,
+  }
+}
 
-export default GamePlay
+
+export default connect(mapStateToProps)(GamePlay)

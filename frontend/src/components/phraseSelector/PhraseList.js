@@ -8,7 +8,7 @@ class PhraseList extends React.Component {
   render() {
 
     //console.log('prop.phrases= ', this.props.phrases);
-    const phraseList = this.props.phrases.map( (p, index) => <li key={index} onClick={e => this.props.addSelected(e.target.innerText)}> { p.phrase } </li> )
+    const phraseList = this.props.phrases.map( (p, index) => <li key={index} onClick={e => this.props.setRoomPhrase(p)} > { p.phrase } </li> )
 
     return (
       <div>
