@@ -46,7 +46,7 @@ class RoomsList extends React.Component {
       <div className="roomsList">
         <h1>Rooms</h1>
         <p>Select a room or create a new one</p>
-        <ul>{mapRooms(this.props.rooms, this.props.isPhraseSelected)}</ul>
+        <ul>{ mapRooms(this.props.rooms) }</ul>
 
         <NewRoomForm />
       </div>
@@ -71,7 +71,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(RoomsList)
 
 // helpers
 
-const mapRooms = (rooms, callback) => {
+const mapRooms = rooms => {
   return rooms.map(room => {
     const selected = room.selected_phrase_id ? true : false
     return (

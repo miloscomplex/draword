@@ -16,6 +16,15 @@ export function loadRooms() {
   }
 }
 
+export function getRoom(roomId) {
+  return (dispatch) => {
+    dispatch({ type: 'FETCHING' })
+    fetch(`${API_ROOT}/rooms/${roomId}`)
+    .then(PARSE_JSON)
+    .then(data => dispatch({ type: 'GET_ROOM', payload: data}))
+  }
+}
+
 export function setRoomPhrase(phraseObj) {
   console.log('phraseObj= ', phraseObj);
   return (dispatch) => {
