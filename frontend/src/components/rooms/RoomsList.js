@@ -28,13 +28,13 @@ class RoomsList extends React.Component {
       {connected: () => {
         console.log('RoomsChannel connected!')
       },
-        disconnected: () => {
-          console.log('RoomsChannel disconnected!');
-        },
-        received: data => {
-          this.handleReceivedRoom(data)
-          console.log('RoomsChannel data received')
-        }
+      disconnected: () => {
+        console.log('RoomsChannel disconnected!');
+      },
+      received: data => {
+        this.handleReceivedRoom(data)
+        console.log('RoomsChannel data received')
+      }
     })
   }
 
@@ -47,7 +47,7 @@ class RoomsList extends React.Component {
       <div className="roomsList">
         <h1>Rooms</h1>
         <p>Select a room or create a new one</p>
-        <ul>{mapRooms(this.props.rooms)}</ul>
+        <ul>{mapRooms(this.props.rooms, this.props.isPhraseSelected)}</ul>
 
         <NewRoomForm />
       </div>
@@ -72,11 +72,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(RoomsList)
 
 // helpers
 
-const mapRooms = rooms => {
-  console.log('rooms= ', rooms);
+const mapRooms = (rooms, callback) => {
+  // rooms.forEach((room) => {
+  //   console.log('room= ', room)
+  //   callback(room.id)
+  // })
+
   return rooms.map(room => {
+    const selected = room.selected_phrase_id ? true : false
     return (
-      <Room key={room.id} id={room.id} title={room.title}  />
+      <Room key={room.id} id={room.id} title={room.title} isPhraseSelected={selected} />
     )
   })
 }

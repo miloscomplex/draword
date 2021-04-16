@@ -39,8 +39,8 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+// const mapDispatchToProps = dispatch => {
+// 
+// }
 
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(GameContainer)
+export default connect(mapStateToProps, null)(GameContainer)

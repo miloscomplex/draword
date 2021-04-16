@@ -28,3 +28,14 @@ export function setRoomPhrase(phraseObj) {
     .then(data => console.log(data))
   }
 }
+
+export function releasePhrase(phraseObj) {
+  return (dispatch) => {
+    fetch(`${API_ROOT}/rooms/${phraseObj.room_id}`, {
+      method: 'PUT',
+      headers: HEADERS,
+      body: JSON.stringify(phraseObj)
+    }).then(PARSE_JSON)
+    .then(data => console.log(data))
+  }
+}

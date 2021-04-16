@@ -7,16 +7,17 @@ class Room extends React.Component {
     return (
       <li>
         <Link to={`/rooms/${this.props.id}`} >{this.props.title }</Link>
-        <p>{ canYouDraw }</p>
+        <p>{ canYouDraw(this.props.isPhraseSelected) }</p>
       </li>
     )
   }
+
 }
 
 export default Room
 
 const canYouDraw = selectedPhrase => {
   return (
-    selectedPhrase ? <button>no click</button> : <button>you can draw</button>
+    selectedPhrase ? <button disabled>no click</button> : <button>you can draw</button>
   )
 }

@@ -58,6 +58,8 @@ An application to play a game where user one draws to communicate the word not r
 
 ### Stretch Goals
 
+- [ ] Setup action-cable for swapping the buttons on the room page
+
 - [ ] Make the canvas a flex size instead of static
 
 - [ ] Add color shift to text when time changes or points are reduced

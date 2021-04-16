@@ -6,6 +6,7 @@ import Canvas from '../components/canvas/Canvas'
 import ChatArea from '../components/chatBox/ChatArea'
 import cable from '../services/Cable'
 import { connect } from 'react-redux'
+import { releasePhrase } from '../redux/actions'
 
 class GamePlay extends React.Component {
 
@@ -15,6 +16,8 @@ class GamePlay extends React.Component {
       subscription.unsubscribe()
     })
     cable.disconnect()
+
+    this.props.releasePhrase( {room_id: this.props.match.params.id, phrase_id: null } )
   }
 
   render() {
@@ -40,5 +43,12 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    releasePhrase: phraseObj => { dispatch(releasePhrase(phraseObj)) }
+  }
+}
 
-export default connect(mapStateToProps)(GamePlay)
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(GamePlay)
