@@ -1,8 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import GamePlay from './GamePlay'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
-import { API_ROOT } from '../constants'
-import { handleFetch } from '../services/API'
 import { connect } from 'react-redux'
 
 class GameContainer extends React.Component {
@@ -40,7 +38,7 @@ const mapStateToProps = state => {
 }
 
 // const mapDispatchToProps = dispatch => {
-// 
+//
 // }
 
 export default connect(mapStateToProps, null)(GameContainer)

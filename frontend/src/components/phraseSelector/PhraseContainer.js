@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PhraseList from './PhraseList'
 import { connect } from 'react-redux'
 import { setRoomPhrase, loadPhrases } from '../../redux/actions'

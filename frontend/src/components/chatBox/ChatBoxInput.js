@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { API_ROOT, HEADERS } from '../../constants'
 
 class ChatBoxInput extends React.Component {

@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { API_ROOT, API_WS_ROOT, HEADERS } from '../../constants';
+import React from 'react'
+import { API_ROOT, HEADERS } from '../../constants';
 import cable from '../../services/Cable'
 
 class Canvas extends React.Component {

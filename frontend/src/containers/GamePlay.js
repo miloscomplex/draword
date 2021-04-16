@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ToolBox from '../components/canvas/ToolBox'
 import Timer from '../components/ui/Timer'
 import Score from '../components/ui/Score'

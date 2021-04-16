@@ -1,6 +1,6 @@
 import React from 'react';
 import ChatBoxInput from '../chatBox/ChatBoxInput';
-import { API_ROOT, API_WS_ROOT } from '../../constants';
+import { API_ROOT } from '../../constants';
 import ChatMessage from './ChatMessage';
 import cable from '../../services/Cable'
 

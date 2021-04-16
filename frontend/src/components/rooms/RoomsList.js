@@ -1,5 +1,4 @@
 import React from 'react';
-import { API_ROOT, API_WS_ROOT } from '../../constants';
 import NewRoomForm from './NewRoomForm'
 import Room from './Room'
 import cable from '../../services/Cable'
@@ -73,11 +72,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(RoomsList)
 // helpers
 
 const mapRooms = (rooms, callback) => {
-  // rooms.forEach((room) => {
-  //   console.log('room= ', room)
-  //   callback(room.id)
-  // })
-
   return rooms.map(room => {
     const selected = room.selected_phrase_id ? true : false
     return (

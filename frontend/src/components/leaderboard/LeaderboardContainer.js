@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import LeaderboardList from './LeaderboardList'
 
 class LeaderboardContainer extends React.Component {

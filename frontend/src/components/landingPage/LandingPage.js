@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import RoomsList from '../rooms/RoomsList'
 
 class HowToPlay extends React.Component {

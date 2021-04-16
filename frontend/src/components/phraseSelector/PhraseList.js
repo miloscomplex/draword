@@ -1,6 +1,4 @@
-import React, { Component } from 'react'
-import { API_ROOT } from '../../constants';
-import API from '../../services/API'
+import React from 'react'
 import { connect } from 'react-redux'
 
 class PhraseList extends React.Component {
