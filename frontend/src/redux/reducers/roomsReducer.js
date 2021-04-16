@@ -1,18 +1,17 @@
 
 const defaultStore = {
-  rooms: ''
+  roomsList: []
 }
 
 function roomsReducer(state = defaultStore, action) {
   switch (action.type) {
-    case 'ADD_ROOM':
-      return {...state, rooms: action.payload }
-    case 'LOAD_ROOM':
+    case 'ADD_ROOMS':
+      return {...state, roomsList: action.payload }
+    case 'LOAD_ROOMS':
       return action.payload
     default:
       return state
   }
-
 }
 
 export default roomsReducer

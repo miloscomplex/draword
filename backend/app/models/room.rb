@@ -1,7 +1,8 @@
 class Room < ApplicationRecord
   has_many :chats
   has_many :canvas
-  belongs_to :phrase, foreign_key: 'selected_phrase_id'
+  # need optional to save with null value
+  belongs_to :phrase, optional: true, foreign_key: 'selected_phrase_id'
 
   validates :title, presence: true
   validates :title, length: { minimum: 3, maximum: 10 }

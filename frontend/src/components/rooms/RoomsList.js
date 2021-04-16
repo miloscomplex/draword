@@ -4,15 +4,13 @@ import NewRoomForm from './NewRoomForm'
 import Room from './Room'
 import cable from '../../services/Cable'
 
+import { connect } from 'react-redux'
+import { loadRooms } from '../../redux/actions'
+
 class RoomsList extends React.Component {
 
-  state = {
-    rooms: [],
-    activeRoom: null
-  }
-
   componentDidMount = () => {
-    this.handleFetch()
+    this.props.loadRooms()
     this.roomsChannel()
   }
 
@@ -21,13 +19,6 @@ class RoomsList extends React.Component {
     cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()
     })
-
-  }
-
-  handleFetch = () => {
-    fetch(`${API_ROOT}/rooms`)
-      .then(res => res.json())
-      .then(rooms => this.setState({ rooms }));
   }
 
   roomsChannel = () => {
@@ -48,10 +39,7 @@ class RoomsList extends React.Component {
   }
 
   handleReceivedRoom = response => {
-    const { room } = response;
-    this.setState({
-      rooms: [...this.state.rooms, room]
-    })
+    this.props.loadRooms()
   }
 
   render = () => {
@@ -59,19 +47,33 @@ class RoomsList extends React.Component {
       <div className="roomsList">
         <h1>Rooms</h1>
         <p>Select a room or create a new one</p>
-        <ul>{mapRooms(this.state.rooms)}</ul>
+        <ul>{mapRooms(this.props.rooms)}</ul>
 
         <NewRoomForm />
       </div>
-    );
-  };
+    )
+  }
 }
 
-export default RoomsList;
+const mapStateToProps = state => {
+  return {
+    rooms: state.rooms.roomsList
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addRooms: room => dispatch({ type: 'ADD_ROOMS', payload: room}),
+    loadRooms: () => { dispatch(loadRooms()) },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RoomsList)
 
 // helpers
 
 const mapRooms = rooms => {
+  console.log('rooms= ', rooms);
   return rooms.map(room => {
     return (
       <Room key={room.id} id={room.id} title={room.title}  />

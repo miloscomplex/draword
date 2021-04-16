@@ -7,7 +7,7 @@ class Room extends React.Component {
     return (
       <li>
         <Link to={`/rooms/${this.props.id}`} >{this.props.title }</Link>
-        <p>{ }</p>
+        <p>{ canYouDraw }</p>
       </li>
     )
   }

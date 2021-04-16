@@ -8,6 +8,14 @@ export function loadPhrases() {
   }
 }
 
+export function loadRooms() {
+  return (dispatch) => {
+    dispatch({ type: 'FETCHING' })
+    fetch(`${API_ROOT}/rooms`).then(PARSE_JSON)
+    .then(data => dispatch({type: 'ADD_ROOMS', payload: data}))
+  }
+}
+
 export function setRoomPhrase(phraseObj) {
   console.log('phraseObj= ', phraseObj);
   return (dispatch) => {
