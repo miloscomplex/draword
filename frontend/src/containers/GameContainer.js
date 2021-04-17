@@ -9,15 +9,15 @@ import { getRoom } from '../redux/actions'
 
 class GameContainer extends React.Component {
 
-  currentRoom = null
   matchId = this.props.match
 
   componentDidMount = () => {
-    this.props.getRoom(this.matchId.params.id)
+    const hey = this.props.getRoom(this.props.match.params.id)
+    console.log('hey= ', hey);
   }
 
   componentDidUpdate() {
-    console.log('didUpdate')
+    console.log('GameContainer didUpdate')
   }
 
   render() {
@@ -28,15 +28,16 @@ class GameContainer extends React.Component {
     // console.log('this.props.match= ', this.props.match);
     const busy = 'busy'
     const notBusy = 'not busy'
-    const uhOh = <h2>Whoops! something went wrong maybe {this.matchId.url} isn't a valid room</h2>
+    const uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchId.url}</code> isn't a valid room</h2>
 
+    //console.log('currentRoom= ', this.currentRoom)
     return (
       <div>
         { this.props.busySignal ? busy : notBusy }
         { /* if backend room.selected_phrase_id is false render PhraseContainer  else load the game as a guesser */ }
         { this.props.selectedRoom ?
           <React.Fragment>
-            { this.props.selectedPhrase ? <GamePlay match={this.props.match} /> : <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} /> }
+            { this.props.selectedRoom.selected_phrase_id ? <GamePlay match={this.props.match} /> : <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} /> }
 
             { /* <GamePlayGuesser match={this.props.match} /> */ }
           </React.Fragment>
@@ -51,7 +52,6 @@ class GameContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     selectedRoom: state.rooms.selectedRoom,
-    selectedPhrase: state.rooms.selectedRoom.selected_phrase_id
   }
 }
 
