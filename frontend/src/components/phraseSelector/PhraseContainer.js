@@ -9,11 +9,12 @@ class PhraseContainer extends React.Component {
     // change this to a rails call to set to active?: true and allow drawee rights to the room.
     console.log('PhraseSelector umounted!');
   }
-
+  
+  //*********** convert phrase container not to have own state ********//
   componentDidMount = () => {
     this.props.loadPhrases()
-    console.log('phrase mounted!..', this.props.match.params.id);
 
+    console.log('phrase mounted!..', this.props.match.params.id);
     this.props.getRoom(this.props.match.params.id)
   }
 

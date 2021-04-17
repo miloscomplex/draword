@@ -53,12 +53,16 @@ button {
   border-style: none;
   color: white;
   text-transform: uppercase;
-  padding: .55em .5em .5em .5em;
+  padding: .55em .8em .5em .8em;
   font-weight: 600;
   border-radius: .25em;
   margin: .4em;
   width: 80%;
   max-width: 300px;
+}
+
+.newRoomForm button {
+  width: auto;
 }
 
 button:disabled {
@@ -87,7 +91,7 @@ input {
 
 #header h1 {
   font-family: 'Schoolbell', cursive;
-  font-size: 3.5em;
+  font-size: 4em;
   text-transform: uppercase;
 }
 

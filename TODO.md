@@ -36,7 +36,7 @@ REFERENCE https://codepen.io/yananas/pen/rwvZvY
 
 - [x] The application contains a canvas that you can draw on with mousing down while in the canvas's constraints.
 
-- [ ] A list of 3 words appears to the drawing user to choose one to draw, the three words are selected from a preexisting list
+- [x] A list of 3 words appears to the drawing user to choose one to draw, the three words are selected from a preexisting list
 
 - [ ] A timer starts once the word is selected.
 

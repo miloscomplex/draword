@@ -44,7 +44,7 @@ export function setRoomPhrase(phraseObj) {
       headers: HEADERS,
       body: JSON.stringify(phraseObj)
     }).then(PARSE_JSON)
-    .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data }))
+    .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data}) )
   }
 }
 

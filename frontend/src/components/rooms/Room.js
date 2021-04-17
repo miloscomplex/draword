@@ -6,7 +6,7 @@ class Room extends React.Component {
   render() {
     return (
       <li>
-        <Link to={`/rooms/${this.props.id}`} >{this.props.title }</Link>
+        <Link to={`/rooms/${this.props.id}`} >{ this.props.title }</Link>
         <p>{ canYouDraw(this.props.isPhraseSelected) }</p>
       </li>
     )

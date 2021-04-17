@@ -6,7 +6,7 @@ import Canvas from '../components/canvas/Canvas'
 import ChatArea from '../components/chatBox/ChatArea'
 import cable from '../services/Cable'
 import { connect } from 'react-redux'
-import { releasePhrase, getPhrase } from '../redux/actions'
+import { releasePhrase, getRoom } from '../redux/actions'
 
 class GamePlay extends React.Component {
 
@@ -22,7 +22,7 @@ class GamePlay extends React.Component {
   }
 
   componentDidMount = () => {
-    this.props.getPhrase(this.props.phrase)
+    this.props.getRoom(this.props.match.params.id)
   }
 
   render() {
@@ -54,7 +54,7 @@ const mapDispatchToProps = dispatch => {
   return {
     releasePhrase: phraseObj => { dispatch(releasePhrase(phraseObj)) },
     resetPhrase: phraseObj => dispatch({ type: 'RESET_PHRASE' }),
-    getPhrase: phraseId => { dispatch(getPhrase(phraseId)) }
+    getRoom: roomId => { dispatch(getRoom(roomId)) }
   }
 }
 
