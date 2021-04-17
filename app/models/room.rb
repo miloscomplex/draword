@@ -5,5 +5,5 @@ class Room < ApplicationRecord
   belongs_to :phrase, optional: true, foreign_key: 'selected_phrase_id'
 
   validates :title, presence: true
-  validates :title, length: { minimum: 3, maximum: 10 }
+  validates :title, length: { minimum: 3, maximum: 15 }
 end
