@@ -7,14 +7,14 @@ class PhraseContainer extends React.Component {
 
   componentWillUnmount = () => {
     // change this to a rails call to set to active?: true and allow drawee rights to the room.
-    //const phrase = ''
-    //this.props.resetSelectedPhrase(phrase)
     console.log('PhraseSelector umounted!');
   }
 
   componentDidMount = () => {
     this.props.loadPhrases()
-    //console.log('state= ', this.props.phrases);
+    console.log('phrase mounted!..', this.props.match.params.id);
+
+    this.props.getRoom(this.props.match.params.id)
   }
 
   render() {
@@ -39,10 +39,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addSelected: phrase => dispatch({ type: 'ADD_SELECTED', payload: phrase }),
-    addPhrases: phrases => dispatch({ type: 'ADD_PHRASES', payload: phrases }),
-    resetSelectedPhrase: phrase => dispatch({ type: 'RESET_PHRASE', payload: phrase}),
-    phraseSelected: phrase => dispatch({ type: 'SELECTED_PHRASE', payload: phrase }),
+    // resetSelectedPhrase: phrase => dispatch({ type: 'RESET_PHRASE', payload: phrase}),
     loadPhrases: () => { dispatch(loadPhrases()) },
     setRoomPhrase: phraseObj => { dispatch(setRoomPhrase(phraseObj)) }
   }

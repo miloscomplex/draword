@@ -1,6 +1,7 @@
 
 const defaultStore = {
-  roomsList: []
+  roomsList: [],
+  selectedRoom: ''
 }
 
 function roomsReducer(state = defaultStore, action) {
@@ -10,6 +11,8 @@ function roomsReducer(state = defaultStore, action) {
     case 'LOAD_ROOMS':
       return action.payload
     case 'GET_ROOM':
+      return {...state, selectedRoom: action.payload }
+    case 'UPDATE_ROOM':
       return {...state, selectedRoom: action.payload }
     default:
       return state
