@@ -25,13 +25,13 @@ class GameContainer extends React.Component {
     // console.log('this.props.match= ', this.props.match);
     const uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchId.url}</code> isn't a valid room</h2>
 
-    const phraseId = this.props.selectedRoom.selected_phrase_id
+    const selectedRoom = this.props.selectedRoom
 
     return (
       <div>
         { this.props.selectedRoom ?
           <React.Fragment>
-            { phraseId ? <GamePlay match={this.props.match} phrase={phraseId}/> : <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} /> }
+            { selectedRoom.phrase ? <GamePlay match={this.props.match} phrase={selectedRoom.phrase}/> : <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} /> }
           </React.Fragment>
           :
           uhOh

@@ -1,7 +1,7 @@
 import React from 'react'
 import PhraseList from './PhraseList'
 import { connect } from 'react-redux'
-import { setRoomPhrase, loadPhrases } from '../../redux/actions'
+import { editRoomPhrase, loadPhrases } from '../../redux/actions'
 
 class PhraseContainer extends React.Component {
 
@@ -9,8 +9,8 @@ class PhraseContainer extends React.Component {
     // change this to a rails call to set to active?: true and allow drawee rights to the room.
     console.log('PhraseSelector umounted!');
   }
-  
-  //*********** convert phrase container not to have own state ********//
+
+  //*********** convert phrase container not to have own state for selected Phrase ********//
   componentDidMount = () => {
     this.props.loadPhrases()
 
@@ -42,7 +42,7 @@ const mapDispatchToProps = dispatch => {
   return {
     // resetSelectedPhrase: phrase => dispatch({ type: 'RESET_PHRASE', payload: phrase}),
     loadPhrases: () => { dispatch(loadPhrases()) },
-    setRoomPhrase: phraseObj => { dispatch(setRoomPhrase(phraseObj)) }
+    setRoomPhrase: phraseObj => { dispatch(editRoomPhrase(phraseObj)) }
   }
 }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import LeaderboardList from './LeaderboardList'
+import { connect } from 'react-redux'
 
 class LeaderboardContainer extends React.Component {
 
@@ -13,11 +14,17 @@ class LeaderboardContainer extends React.Component {
         <div className='leaderboard'>
           <h2>Leaderboard</h2>
           <p className='description'>Here's the top team submissions</p>
-          <LeaderboardContainer leaders={this.state.leaders} />
+          <LeaderboardList leaders={this.state.leaders} />
         </div>
       </div>
     )
   }
 }
 
-export default LeaderboardContainer
+const mapStateToProps = state => {
+  return {
+    state: state
+  }
+}
+
+export default connect(mapStateToProps)(LeaderboardContainer)

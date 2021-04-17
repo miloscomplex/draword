@@ -19,6 +19,7 @@ function App() {
         <Route exact path='/new' component={RoomsList} />
         <Route exact path='/leaderboard' component={LeaderboardContainer} />
         <Route exact path='/how-to-play' component={HowToPlay} />
+        <Route exact path='/rooms' component={RoomsList} />
         <Route exact path='/rooms/:id' render={routerProps => <GameContainer {...routerProps} />} />
         <Footer />
       </Router>

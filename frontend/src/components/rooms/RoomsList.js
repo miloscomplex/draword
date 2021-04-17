@@ -62,7 +62,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addRooms: room => dispatch({ type: 'ADD_ROOMS', payload: room}),
     loadRooms: () => { dispatch(loadRooms()) },
   }
 }
@@ -73,9 +72,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(RoomsList)
 
 const mapRooms = rooms => {
   return rooms.map(room => {
-    const selected = room.selected_phrase_id ? true : false
     return (
-      <Room key={room.id} id={room.id} title={room.title} isPhraseSelected={selected} />
+      <Room key={room.id} id={room.id} title={room.title} isPhraseSelected={room.selected_phrase_id} />
     )
   })
 }

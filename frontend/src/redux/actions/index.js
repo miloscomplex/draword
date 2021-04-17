@@ -35,7 +35,7 @@ export function getRoom(roomId) {
   }
 }
 
-export function setRoomPhrase(phraseObj) {
+export function editRoomPhrase(phraseObj) {
   console.log('phraseObj= ', phraseObj);
   return (dispatch) => {
     dispatch({ type: 'FETCHING' })
@@ -45,16 +45,5 @@ export function setRoomPhrase(phraseObj) {
       body: JSON.stringify(phraseObj)
     }).then(PARSE_JSON)
     .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data}) )
-  }
-}
-
-export function releasePhrase(phraseObj) {
-  return (dispatch) => {
-    fetch(`${API_ROOT}/rooms/${phraseObj.room_id}`, {
-      method: 'PUT',
-      headers: HEADERS,
-      body: JSON.stringify(phraseObj)
-    }).then(PARSE_JSON)
-    .then(data => console.log(data))
   }
 }

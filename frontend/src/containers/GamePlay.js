@@ -6,9 +6,17 @@ import Canvas from '../components/canvas/Canvas'
 import ChatArea from '../components/chatBox/ChatArea'
 import cable from '../services/Cable'
 import { connect } from 'react-redux'
-import { releasePhrase, getRoom } from '../redux/actions'
+import { editRoomPhrase, getRoom } from '../redux/actions'
 
 class GamePlay extends React.Component {
+
+  state = {
+    playing: false
+  }
+
+  componentDidMount = () => {
+    this.props.getRoom(this.props.match.params.id)
+  }
 
   componentWillUnmount = () => {
 
@@ -17,27 +25,25 @@ class GamePlay extends React.Component {
       subscription.unsubscribe()
     })
     cable.disconnect()
-    this.props.releasePhrase( {room_id: this.props.match.params.id, phrase_id: null } )
-    this.props.resetPhrase()
+    this.props.releasePhrase( {room_id: this.props.match.params.id, selected_phrase_id: null } )
   }
 
-  componentDidMount = () => {
-    this.props.getRoom(this.props.match.params.id)
-  }
 
   render() {
     /* this.props.match.params ==> what's the url for the room */
+    const roomURL = this.props.match.params
+
     return (
       <React.Fragment>
-      <div className='phraseReminder'> Your phrase/word is <strong>{this.props.selectedPhrase}</strong></div>
-      <div id='wrapper'>
-        <div id='canvas'>
-          <Canvas  params={this.props.match.params} />
-          <Timer />
-          <Score />
+        <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedPhrase.phrase }</strong></div>
+        <div id='wrapper'>
+          <div id='canvas'>
+            <Canvas  params={roomURL} />
+            <Timer />
+            <Score />
+          </div>
+          <ChatArea params={roomURL} />
         </div>
-        <ChatArea params={this.props.match.params} />
-      </div>
       </React.Fragment>
     )
   }
@@ -45,15 +51,13 @@ class GamePlay extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    phrases: state.phrases.phrasesList,
-    selectedPhrase: state.phraseSelect.selectedPhrase.phrase
+    selectedPhrase: state.rooms.selectedRoom.phrase
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    releasePhrase: phraseObj => { dispatch(releasePhrase(phraseObj)) },
-    resetPhrase: phraseObj => dispatch({ type: 'RESET_PHRASE' }),
+    releasePhrase: phraseObj => { dispatch(editRoomPhrase(phraseObj)) },
     getRoom: roomId => { dispatch(getRoom(roomId)) }
   }
 }
