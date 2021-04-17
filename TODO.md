@@ -62,6 +62,8 @@ REFERENCE https://codepen.io/yananas/pen/rwvZvY
 
 ### Stretch Goals
 
+- [ ] Give message bubbles colors per user. 
+
 - [ ] Setup action-cable for swapping the buttons on the room page
 
 - [ ] Make the canvas a flex size instead of static

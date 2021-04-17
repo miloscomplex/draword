@@ -62,6 +62,10 @@ button {
   max-width: 300px;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .newRoomForm button {
   width: auto;
 }

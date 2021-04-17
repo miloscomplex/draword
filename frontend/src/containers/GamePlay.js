@@ -28,23 +28,36 @@ class GamePlay extends React.Component {
     this.props.releasePhrase( {room_id: this.props.match.params.id, selected_phrase_id: null } )
   }
 
+  handleClick = () => {
+    this.setState({ playing: true })
+  }
+
 
   render() {
     /* this.props.match.params ==> what's the url for the room */
     const roomURL = this.props.match.params
 
     return (
-      <React.Fragment>
-        <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedPhrase.phrase }</strong></div>
-        <div id='wrapper'>
-          <div id='canvas'>
-            <Canvas  params={roomURL} />
-            <Timer />
-            <Score />
+      <div>
+        { this.state.playing ?
+        <React.Fragment>
+          <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedPhrase.phrase }</strong></div>
+          <div id='wrapper'>
+            <div id='canvas'>
+              <Canvas  params={roomURL} />
+              <Timer />
+              <Score />
+            </div>
+            <ChatArea params={roomURL} />
           </div>
-          <ChatArea params={roomURL} />
+        </React.Fragment>
+        :
+        <div>
+          <h2>Reminder:</h2> <p>Your Word/Phrase is {this.props.selectedPhrase.phrase}</p>
+          <button onClick={this.handleClick}>Click to start!</button>
         </div>
-      </React.Fragment>
+      }
+      </div>
     )
   }
 }

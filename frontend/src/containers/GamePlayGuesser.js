@@ -6,7 +6,7 @@ import Canvas from '../components/canvas/Canvas'
 import ChatArea from '../components/chatBox/ChatArea'
 import cable from '../services/Cable'
 import { connect } from 'react-redux'
-import { editRoomPhrase, getRoom } from '../redux/actions'
+import { getRoom } from '../redux/actions'
 
 class GamePlay extends React.Component {
 
@@ -21,7 +21,6 @@ class GamePlay extends React.Component {
       subscription.unsubscribe()
     })
     cable.disconnect()
-    this.props.releasePhrase( {room_id: this.props.match.params.id, selected_phrase_id: null } )
   }
 
 
@@ -29,14 +28,14 @@ class GamePlay extends React.Component {
     /* this.props.match.params ==> what's the url for the room */
     return (
       <React.Fragment>
-      <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedPhrase.phrase }</strong></div>
+      <div className='phraseReminder'> Good Luck! Remember think of Karokie Songs</div>
       <div id='wrapper'>
         <div id='canvas'>
           <Canvas  params={this.props.match.params} />
           <Timer />
           <Score />
         </div>
-        <ChatArea params={this.props.match.params} />
+        <ChatArea params={this.props.match.params} phrase={this.props.selectedPhrase} />
       </div>
       </React.Fragment>
     )
@@ -51,7 +50,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    releasePhrase: phraseObj => { dispatch(editRoomPhrase(phraseObj)) },
     getRoom: roomId => { dispatch(getRoom(roomId)) }
   }
 }
