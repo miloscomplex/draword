@@ -1,5 +1,7 @@
 An application to play a game where user one draws to communicate the word not revealed to guessing user one (or more). User two can see what user one is drawing live and submits guesses via a text form. If user two can guess it in the allotted time, they win. If not, they lose.
 
+REFERENCE https://codepen.io/yananas/pen/rwvZvY
+
 ### MVP
 
 - [x] Build out the Rails backend
@@ -12,7 +14,7 @@ An application to play a game where user one draws to communicate the word not r
 
 - [x] Build Canvas component
 
-- [x] Verification of Room URL 
+- [x] Verification of Room URL
 
 - [x] Build Chat component
 
@@ -22,7 +24,7 @@ An application to play a game where user one draws to communicate the word not r
 
 - [ ] Build Leaderboard component
 
-- [s] Utilize Router to switch out content
+- [x] Utilize Router to switch out content
 
 - [x] ChatArea auto scrolls to bottom
 

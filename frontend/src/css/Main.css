@@ -72,6 +72,7 @@ input {
   width: 80%;
   border-radius: .2em;
   max-width: 300px;
+  box-sizing: border-box;
 }
 
 #footer {
