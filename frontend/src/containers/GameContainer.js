@@ -22,28 +22,19 @@ class GameContainer extends React.Component {
 
   render() {
 
-    // should have a verification of room url
-
     // match is browser props
     // console.log('this.props.match= ', this.props.match);
-    const busy = 'busy'
-    const notBusy = 'not busy'
     const uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchId.url}</code> isn't a valid room</h2>
 
-    //console.log('currentRoom= ', this.currentRoom)
     return (
       <div>
-        { this.props.busySignal ? busy : notBusy }
-        { /* if backend room.selected_phrase_id is false render PhraseContainer  else load the game as a guesser */ }
         { this.props.selectedRoom ?
           <React.Fragment>
             { this.props.selectedRoom.selected_phrase_id ? <GamePlay match={this.props.match} /> : <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} /> }
-
-            { /* <GamePlayGuesser match={this.props.match} /> */ }
           </React.Fragment>
           :
           uhOh
-         }
+        }
       </div>
     )
   }

@@ -22,7 +22,6 @@ export function getRoom(roomId) {
     fetch(`${API_ROOT}/rooms/${roomId}`)
     .then(PARSE_JSON)
     .then(data => dispatch({ type: 'GET_ROOM', payload: data}))
-    //.catch( err => dispatch ({ type: 'GET_ROOM', payload: null  }))
     .catch( err =>  console.log('err= ', err))
   }
 }

@@ -12,6 +12,8 @@ An application to play a game where user one draws to communicate the word not r
 
 - [x] Build Canvas component
 
+- [x] Verification of Room URL 
+
 - [x] Build Chat component
 
 - [x] Build PhraseSelector component
