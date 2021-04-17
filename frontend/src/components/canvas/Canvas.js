@@ -1,6 +1,7 @@
 import React from 'react'
 import { API_ROOT, HEADERS } from '../../constants';
 import cable from '../../services/Cable'
+import ToolBox from './ToolBox'
 
 class Canvas extends React.Component {
 
@@ -171,6 +172,7 @@ class Canvas extends React.Component {
     //console.log('cable= ', cable)
     //console.log('this.canvasChannel', this.canvasChannel());
     return (
+      <React.Fragment>
         <canvas
           onMouseDown={event => this.startDrawing(event)}
           onMouseUp={event => this.stopDrawing(event)}
@@ -178,6 +180,8 @@ class Canvas extends React.Component {
           onMouseLeave={event => this.stopDrawing(event)}
           ref={this.canvasRef}
         />
+        <ToolBox />
+      </React.Fragment>
     )
   }
 }

@@ -35,7 +35,6 @@ class GamePlay extends React.Component {
           <Canvas  params={this.props.match.params} />
           <Timer />
           <Score />
-          <ToolBox />
         </div>
         <ChatArea params={this.props.match.params} />
       </div>
