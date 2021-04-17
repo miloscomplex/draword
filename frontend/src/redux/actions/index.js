@@ -8,6 +8,15 @@ export function loadPhrases() {
   }
 }
 
+export function getPhrase(phraseId) {
+  return (dispatch) => {
+    dispatch({ type: 'FETCHING' })
+    fetch(`${API_ROOT}/phrases/${phraseId}`)
+    .then(PARSE_JSON)
+    .then(data => dispatch({ type: 'SET_ROOM_PHRASE', payload: data }))
+  }
+}
+
 export function loadRooms() {
   return (dispatch) => {
     dispatch({ type: 'FETCHING' })

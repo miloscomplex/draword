@@ -57,6 +57,8 @@ button {
   font-weight: 600;
   border-radius: .25em;
   margin: .4em;
+  width: 80%;
+  max-width: 300px;
 }
 
 button:disabled {
@@ -69,6 +71,7 @@ input {
   padding: .5em;
   width: 80%;
   border-radius: .2em;
+  max-width: 300px;
 }
 
 #footer {
@@ -162,7 +165,7 @@ input {
 }
 
 .chat-messages p {
-  background-color: lightblue;
+  background-color: #cdeff7;
   padding: .75em;
   border-radius: .6em;
   font-weight: 500;
@@ -180,10 +183,6 @@ input {
   border-radius: .3em;
   display: inline-block;
   margin: 0 .5em .5em 0;
-}
-
-.roomsList button {
-  width: 80%;
 }
 
 .roomsList li a {
@@ -226,6 +225,11 @@ input {
 .phrases li:hover {
   background-color: #cdeff7;
   cursor: pointer;
+}
+
+.phraseReminder {
+  background-color: #cdeff7;
+  padding: .75em;
 }
 
 .scroll-fix {

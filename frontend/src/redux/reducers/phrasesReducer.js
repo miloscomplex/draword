@@ -8,6 +8,8 @@ function phrasesReducer(state = defaultStore, action) {
       return {...state, phrasesList: action.payload }
     case 'LOAD_PHRASES':
       return action.payload
+    case 'GET_PHRASE':
+      return action.payload 
     default:
       return state
   }
