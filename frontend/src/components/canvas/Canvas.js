@@ -17,6 +17,7 @@ class Canvas extends React.Component {
       canvasWidth: 500,
       canvasHeight: 500,
       roomId: this.props.params.id,
+      canDraw: true
     }
     this.dataCache = null
   }
@@ -173,6 +174,7 @@ class Canvas extends React.Component {
     //console.log('this.canvasChannel', this.canvasChannel());
     return (
       <React.Fragment>
+        { this.state.canDraw ?
         <canvas
           onMouseDown={event => this.startDrawing(event)}
           onMouseUp={event => this.stopDrawing(event)}
@@ -180,6 +182,10 @@ class Canvas extends React.Component {
           onMouseLeave={event => this.stopDrawing(event)}
           ref={this.canvasRef}
         />
+        :
+        <canvas ref={this.canvasRef}
+        />
+        }
         <ToolBox />
       </React.Fragment>
     )

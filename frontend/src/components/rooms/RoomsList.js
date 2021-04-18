@@ -20,6 +20,14 @@ class RoomsList extends React.Component {
     })
   }
 
+  mapRooms = rooms => {
+    return rooms.map(room => {
+      return (
+        <Room key={room.id} id={room.id} title={room.title} isPhraseSelected={room.selected_phrase_id} handleClick={this.handleClick} />
+      )
+    })
+  }
+
   roomsChannel = () => {
     const subscribe = cable.subscriptions.create({
     channel: `RoomsChannel`,
@@ -41,12 +49,17 @@ class RoomsList extends React.Component {
     this.props.loadRooms()
   }
 
+  handleClick = (event, roomId) => {
+    //console.log('I was clicked', roomId, event);
+    
+  }
+
   render = () => {
     return (
       <div className="roomsList">
         <h1>Rooms</h1>
         <p>Select a room or create a new one</p>
-        <ul>{ mapRooms(this.props.rooms) }</ul>
+        <ul>{ this.mapRooms(this.props.rooms) }</ul>
 
         <NewRoomForm />
       </div>
@@ -69,11 +82,3 @@ const mapDispatchToProps = dispatch => {
 export default connect(mapStateToProps, mapDispatchToProps)(RoomsList)
 
 // helpers
-
-const mapRooms = rooms => {
-  return rooms.map(room => {
-    return (
-      <Room key={room.id} id={room.id} title={room.title} isPhraseSelected={room.selected_phrase_id} />
-    )
-  })
-}

@@ -56,13 +56,13 @@ REFERENCE https://codepen.io/yananas/pen/rwvZvY
 
 - [ ] Have a congratulations box and allow the score to be submitted (Word and elapsed time).
 
-- [ ] Utilize web-sockets to show the drawings live.
+- [x] Utilize web-sockets to show the drawings live.
 
 - [ ] Scores can be submitted with name and initials.
 
 ### Stretch Goals
 
-- [ ] Give message bubbles colors per user. 
+- [ ] Give message bubbles colors per user.
 
 - [ ] Setup action-cable for swapping the buttons on the room page
 
