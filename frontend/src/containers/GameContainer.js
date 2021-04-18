@@ -21,8 +21,7 @@ class GameContainer extends React.Component {
 
   render() {
     console.log('this.props.selectedRoom= ', this.props.selectedRoom);
-    // match is browser props
-    // console.log('this.props.match= ', this.props.match);
+    // match is this browser props
     const uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchId.url}</code> isn't a valid room</h2>
 
     const selectedRoom = this.props.selectedRoom

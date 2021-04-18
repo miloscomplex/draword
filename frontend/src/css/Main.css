@@ -49,7 +49,11 @@ a {
   color: rgb(18, 179, 219);
 }
 
-button {
+.button {
+  font-size: .9em;
+}
+
+button, .button a {
   background-color: black;
   border-style: none;
   color: white;
@@ -60,6 +64,7 @@ button {
   margin: .4em;
   width: 80%;
   max-width: 300px;
+  font-size: .8em;
 }
 
 button:hover {
@@ -72,6 +77,11 @@ button:hover {
 
 button:disabled {
   background-color: grey;
+}
+
+a.disabled {
+  background-color: grey;
+  cursor: auto;
 }
 
 input {
@@ -195,12 +205,13 @@ input {
   margin: 0 .5em .5em 0;
 }
 
-.roomsList li a {
-  padding: 2em;
-  margin: 0 .5em .5em 0;
+.roomsList li a.room {
+  padding: 2em 0;
+  display: block;
+  margin: auto;
   border-radius: .3em;
   display: block;
-  width: 130px;
+  width: 200px;
 }
 
 .roomsList li:hover {
