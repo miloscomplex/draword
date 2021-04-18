@@ -40,22 +40,25 @@ class GamePlay extends React.Component {
 
     return (
       <div>
-        {
-
-        <React.Fragment>
-
-          <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedPhrase.phrase }</strong></div>
-          <div id='wrapper'>
-            <div id='canvas'>
-              <Canvas  params={roomURL} />
-              <Timer />
-              <Score />
+          { this.state.playing ?
+          <React.Fragment>
+            <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedPhrase.phrase }</strong></div>
+            <div id='wrapper'>
+              <div id='canvas'>
+                <Canvas  params={roomURL} />
+                <Timer />
+                <Score />
+              </div>
+              <ChatArea params={roomURL} />
             </div>
-            <ChatArea params={roomURL} />
-          </div>
-        </React.Fragment>
-
-      }
+          </React.Fragment>
+          :
+          <React.Fragment>
+            <h2>Reminder:</h2>
+            <p>Your Word/Phrase is {this.props.selectedPhrase.phrase}</p>
+            <button onClick={this.handleClick}>Click to start!</button>
+          </React.Fragment>
+        }
       </div>
     )
   }

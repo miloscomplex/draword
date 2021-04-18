@@ -50,8 +50,9 @@ class RoomsList extends React.Component {
   }
 
   handleClick = (event, roomId) => {
-    //console.log('I was clicked', roomId, event);
-    
+    console.log('I was clicked', roomId, event);
+
+
   }
 
   render = () => {
