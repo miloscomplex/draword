@@ -20,7 +20,6 @@ export function getPhrase(phraseId) {
 export function loadRooms() {
   return (dispatch) => {
     dispatch({ type: 'FETCHING' })
-    dispatch({ type: 'FETCHING' })
     fetch(`${API_ROOT}/rooms`).then(PARSE_JSON)
     .then(data => dispatch({type: 'ADD_ROOMS', payload: data}))
   }
@@ -37,25 +36,26 @@ export function getRoom(roomId) {
 }
 
 export function editRoomPhrase(phraseObj) {
-  console.log('phraseObj= ', phraseObj);
+  console.log('phraseObjHiHIHI= ', phraseObj);
   return (dispatch) => {
     dispatch({ type: 'FETCHING' })
     fetch(`${API_ROOT}/rooms/${phraseObj.room_id}`, {
       method: 'PUT',
       headers: HEADERS,
-      body: JSON.stringify(phraseObj)
+      body: JSON.stringify(phraseObj),
     }).then(PARSE_JSON)
     .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data}) )
   }
 }
 
 export function setHasDrawer(roomObj) {
+  //console.log('phraseObj= ', phraseObj);
   return (dispatch) => {
     dispatch({ type: 'FETCHING' })
     fetch(`${API_ROOT}/rooms/${roomObj.id}`, {
       method: 'PUT',
       headers: HEADERS,
-      body: JSON.stringify(roomObj)
+      body: JSON.stringify(roomObj),
     }).then(PARSE_JSON)
     .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data}) )
   }

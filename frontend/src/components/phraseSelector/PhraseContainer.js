@@ -13,7 +13,6 @@ class PhraseContainer extends React.Component {
   //*********** convert phrase container not to have own state for selected Phrase ********//
   componentDidMount = () => {
     this.props.loadPhrases()
-
     console.log('phrase mounted!..', this.props.match.params.id);
     this.props.getRoom(this.props.match.params.id)
   }

@@ -3,7 +3,6 @@ import ToolBox from '../components/canvas/ToolBox'
 import Timer from '../components/ui/Timer'
 import Score from '../components/ui/Score'
 import Canvas from '../components/canvas/Canvas'
-import CanvasContainer from '../components/canvas/CanvasContainer'
 import ChatArea from '../components/chatBox/ChatArea'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import cable from '../services/Cable'
@@ -11,6 +10,10 @@ import { connect } from 'react-redux'
 import { editRoomPhrase, getRoom } from '../redux/actions'
 
 class GamePlay extends React.Component {
+
+  state = {
+    playing: false
+  }
 
   componentDidMount = () => {
     this.props.getRoom(this.props.match.params.id)
@@ -23,22 +26,43 @@ class GamePlay extends React.Component {
       subscription.unsubscribe()
     })
     cable.disconnect()
-    //this.props.releasePhrase( {room_id: this.props.match.params.id, selected_phrase_id: null, has_drawer: false } )
+    this.props.releasePhrase( {room_id: this.props.match.params.id, selected_phrase_id: null, has_drawer: false } )
   }
+
+  handleClick = () => {
+    this.setState({ playing: true })
+  }
+
 
   render() {
     /* this.props.match.params ==> what's the url for the room */
-    const roomURL = this.props.match
+    const roomURL = this.props.match.params
 
     return (
       <div>
+            this.props.selectedRoom.phrase ?
             {
-              this.props.selectedRoom.phrase
-            ?
-              <CanvasContainer match={roomURL} />
+            this.state.playing ?
+              <React.Fragment>
+                <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedPhrase.phrase }</strong></div>
+                <div id='wrapper'>
+                  <div id='canvas'>
+                    <Canvas  params={roomURL} />
+                    <Timer />
+                    <Score />
+                  </div>
+                  <ChatArea params={roomURL} />
+                </div>
+              </React.Fragment>
             :
-              <PhraseContainer match={roomURL} getRoom={this.props.getRoom} />
+              <React.Fragment>
+                <h2>Reminder:</h2>
+                <p>Your Word/Phrase is {this.props.selectedPhrase.phrase}</p>
+                <button onClick={this.handleClick}>Click to start!</button>
+              </React.Fragment>
             }
+            :
+            <PhraseContainer />
       </div>
     )
   }
