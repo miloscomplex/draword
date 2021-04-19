@@ -24,7 +24,7 @@ class GameContainer extends React.Component {
     // match is this browser props
     const uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchId.url}</code> isn't a valid room</h2>
 
-    const selectedRoom = this.props.selectedRoom
+    const { selectedRoom, isDrawing } = this.props
     //const isDrawing = this.props.isDrawing
     // load different gamePlay if the passed props are true or false
     // prop passsed from roomList.js
@@ -37,11 +37,11 @@ class GameContainer extends React.Component {
         { selectedRoom ?
           <React.Fragment>
             {
-              selectedRoom.has_drawer
+              selectedRoom.isDrawing
               ?
-              <GamePlayGuesser match={this.props.match} />
-              :
               <GamePlay match={this.props.match} />
+              :
+              <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} />
             }
           </React.Fragment>
           :
@@ -55,7 +55,6 @@ class GameContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     selectedRoom: state.rooms.selectedRoom,
-    hasDrawer: state.rooms.selectedRoom
   }
 }
 

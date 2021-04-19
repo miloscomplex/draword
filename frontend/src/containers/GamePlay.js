@@ -23,7 +23,7 @@ class GamePlay extends React.Component {
       subscription.unsubscribe()
     })
     cable.disconnect()
-    //this.props.releasePhrase( {room_id: this.props.match.params.id, selected_phrase_id: null, has_drawer: false } )
+    this.props.releasePhrase( {room_id: this.props.match.params.id, selected_phrase_id: null } )
   }
 
   render() {
@@ -32,13 +32,26 @@ class GamePlay extends React.Component {
 
     return (
       <div>
-            {
-              this.props.selectedRoom.phrase
-            ?
-              <CanvasContainer match={roomURL} />
+          {
+            this.state.playing ?
+              <React.Fragment>
+                <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedPhrase.phrase }</strong></div>
+                <div id='wrapper'>
+                  <div id='canvas'>
+                    <Canvas  params={roomURL} />
+                    <Timer />
+                    <Score />
+                  </div>
+                  <ChatArea params={roomURL} />
+                </div>
+              </React.Fragment>
             :
-              <PhraseContainer match={roomURL} getRoom={this.props.getRoom} />
-            }
+              <React.Fragment>
+                <h2>Reminder:</h2>
+                <p>Your Word/Phrase is {this.props.selectedPhrase.phrase}</p>
+                <button onClick={this.handleClick}>Click to start!</button>
+              </React.Fragment>
+          }
       </div>
     )
   }
