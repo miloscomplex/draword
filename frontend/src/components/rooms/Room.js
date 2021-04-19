@@ -15,8 +15,8 @@ class Room extends React.Component {
   render() {
     return (
       <li>
-        <Link className='room' to={`/rooms/${this.props.id}`} onClick={ event => this.props.handleClick(event, this.props.id, false) } > { this.props.title }</Link>
-        <p className='button' >{ this.canYouDraw(this.props.isPhraseSelected) }</p>
+        <Link to={`/rooms/${this.props.id}`} >{this.props.title }</Link>
+        <p>{ canYouDraw(this.props.isPhraseSelected) }</p>
       </li>
     )
   }

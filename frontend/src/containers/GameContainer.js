@@ -25,20 +25,10 @@ class GameContainer extends React.Component {
   render() {
     //console.log('this.props.selectedRoom= ', this.props.selectedRoom);
 
-    const uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchObj.url}</code> isn't a valid room</h2>
-
-    const { selectedRoom, selectedPhrase } = this.props
-
-
-    // load different gamePlay if the passed props are true or false
-    // prop passsed from roomList.js
-    // should only contain Game Play and drawee can have the phrase component
-    // TODO: setup a dispatch and prop for guesser/drawer role
-
-    /* <GamePlay match={this.props.match} getRoom={this.props.getRoom} /> */
-    /*<PhraseContainer match={this.props.match} getRoom={this.props.getRoom}
-    /> */
-
+    // match is browser props
+    // console.log('this.props.match= ', this.props.match);
+    const uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchId.url}</code> isn't a valid room</h2>
+    const phraseId = this.props.selectedRoom.selected_phrase_id
     return (
       <div>
         { selectedPhrase ?
