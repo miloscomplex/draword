@@ -35,7 +35,7 @@ class GamePlay extends React.Component {
           {
             this.state.playing ?
               <React.Fragment>
-                <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedPhrase.phrase }</strong></div>
+                <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedPhrase }</strong></div>
                 <div id='wrapper'>
                   <div id='canvas'>
                     <Canvas  params={roomURL} />
@@ -48,7 +48,7 @@ class GamePlay extends React.Component {
             :
               <React.Fragment>
                 <h2>Reminder:</h2>
-                <p>Your Word/Phrase is {this.props.selectedRoom.phrase}</p>
+                <p>Your Word/Phrase is {this.props.selectedPhrase}</p>
                 <button onClick={this.handleClick}>Click to start!</button>
               </React.Fragment>
           }
@@ -59,7 +59,8 @@ class GamePlay extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    selectedRoom: state.rooms.selectedRoom
+    selectedRoom: state.rooms.selectedRoom,
+    selectedPhrase: state.phrases.selectedPhrase
   }
 }
 

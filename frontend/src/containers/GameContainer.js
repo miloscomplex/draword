@@ -23,7 +23,7 @@ class GameContainer extends React.Component {
   }
 
   render() {
-    console.log('this.props.selectedRoom= ', this.props.selectedRoom);
+    //console.log('this.props.selectedRoom= ', this.props.selectedRoom);
 
     const uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchObj.url}</code> isn't a valid room</h2>
 
@@ -42,10 +42,7 @@ class GameContainer extends React.Component {
     return (
       <div>
         { selectedRoom ?
-          <React.Fragment>
-            <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} />
-            { this.props.selectedRoom.selected_phrase_id ? <GamePlay match={this.props.match} /> : '' }
-          </React.Fragment>
+          <GamePlay match={this.props.match}/>
           :
           uhOh
         }
@@ -57,6 +54,7 @@ class GameContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     selectedRoom: state.rooms.selectedRoom,
+    selectedPhrase: state.phrases.selectedPhrase
   }
 }
 

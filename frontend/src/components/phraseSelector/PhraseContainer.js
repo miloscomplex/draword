@@ -1,7 +1,7 @@
 import React from 'react'
 import PhraseList from './PhraseList'
 import { connect } from 'react-redux'
-import { editRoom, loadPhrases } from '../../redux/actions'
+import { editRoom, loadPhrases, setPhrase } from '../../redux/actions'
 
 class PhraseContainer extends React.Component {
 
@@ -18,8 +18,9 @@ class PhraseContainer extends React.Component {
   }
 
   handleClick = (matchObjId, phraseObjId) => {
-    console.log(matchObjId, phraseObjId)
-    this.props.setRoomPhrase( {room_id: matchObjId, phrase_id: phraseObjId} )
+    //console.log(matchObjId, phraseObjId)
+    this.props.setRoom( {room_id: matchObjId, phrase_id: phraseObjId} )
+    this.props.setPhrase(phraseObjId)
   }
 
   render() {
@@ -45,7 +46,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadPhrases: () => { dispatch(loadPhrases()) },
-    setRoomPhrase: phraseObj => { dispatch(editRoom(phraseObj)) }
+    setRoom: phraseObj => { dispatch(editRoom(phraseObj)) },
+    setPhrase: phraseObj => { dispatch(setPhrase(phraseObj)) }
   }
 }
 

@@ -57,14 +57,14 @@ export function setRoom(roomId) {
 }
 
 export function editRoom(roomObj) {
-  console.log('editRoom roomObj= ', roomObj);
+  //console.log('editRoom roomObj= ', roomObj);
   return (dispatch) => {
     dispatch({ type: 'FETCHING' })
-    fetch(`${API_ROOT}/rooms/${roomObj.id}`, {
+    fetch(`${API_ROOT}/rooms/${roomObj.room_id}`, {
       method: 'PUT',
       headers: HEADERS,
       body: JSON.stringify(roomObj),
     }).then(PARSE_JSON)
-    .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data}) )
+    .then(data => console.log('editRoom= ', data) )
   }
 }
