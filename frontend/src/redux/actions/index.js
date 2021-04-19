@@ -8,6 +8,17 @@ export function loadPhrases() {
   }
 }
 
+
+export function setPhrase(phraseId) {
+  return (dispatch) => {
+    dispatch({ type: 'FETCHING' })
+    fetch(`${API_ROOT}/phrases/${phraseId}`)
+    .then(PARSE_JSON)
+    .then(data => dispatch({ type: 'SET_ROOM_PHRASE', payload: data}))
+    .catch( err =>  console.log('err= ', err))
+  }
+}
+
 export function getPhrase(phraseId) {
   return (dispatch) => {
     dispatch({ type: 'FETCHING' })
@@ -30,27 +41,23 @@ export function getRoom(roomId) {
     dispatch({ type: 'FETCHING' })
     fetch(`${API_ROOT}/rooms/${roomId}`)
     .then(PARSE_JSON)
+    .then(data => dispatch({ type: 'SET_ROOM', payload: data}) )
+    .catch( err =>  console.log('err= ', err))
+  }
+}
+
+export function setRoom(roomId) {
+  return (dispatch) => {
+    dispatch({ type: 'FETCHING' })
+    fetch(`${API_ROOT}/rooms/${roomId}`)
+    .then(PARSE_JSON)
     .then(data => dispatch({ type: 'GET_ROOM', payload: data}))
     .catch( err =>  console.log('err= ', err))
   }
 }
 
-export function editRoomPhrase(phraseObj) {
-  console.log('phraseObjHiHIHI= ', phraseObj);
-  return (dispatch) => {
-    dispatch({ type: 'FETCHING' })
-    fetch(`${API_ROOT}/rooms/${phraseObj.room_id}`, {
-      method: 'PUT',
-      headers: HEADERS,
-      body: JSON.stringify(phraseObj),
-    }).then(PARSE_JSON)
-    .then(data => console.log('editRoomPhrase return= ', data) )
-    //.then(data => dispatch({ type: 'UPDATE_ROOM', payload: data }) )
-  }
-}
-
 export function editRoom(roomObj) {
-  //console.log('phraseObj= ', phraseObj);
+  console.log('editRoom roomObj= ', roomObj);
   return (dispatch) => {
     dispatch({ type: 'FETCHING' })
     fetch(`${API_ROOT}/rooms/${roomObj.id}`, {
@@ -58,7 +65,6 @@ export function editRoom(roomObj) {
       headers: HEADERS,
       body: JSON.stringify(roomObj),
     }).then(PARSE_JSON)
-    .then(data => console.log('editRoom return= ', data) )
     .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data}) )
   }
 }

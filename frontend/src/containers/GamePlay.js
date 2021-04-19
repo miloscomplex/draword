@@ -8,16 +8,12 @@ import ChatArea from '../components/chatBox/ChatArea'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import cable from '../services/Cable'
 import { connect } from 'react-redux'
-import { editRoomPhrase, getRoom } from '../redux/actions'
+import { editRoom } from '../redux/actions'
 
 class GamePlay extends React.Component {
 
   state = {
     playing: false,
-  }
-
-  componentDidMount = () => {
-    //this.props.getRoom(this.props.match.params.id)
   }
 
   componentWillUnmount = () => {
@@ -27,7 +23,7 @@ class GamePlay extends React.Component {
       subscription.unsubscribe()
     })
     cable.disconnect()
-    //this.props.releasePhrase( {room_id: this.props.match.params.id, selected_phrase_id: null } )
+    this.props.releaseRoom( {room_id: this.props.match.params.id, selected_phrase_id: null, has_drawer: false } )
   }
 
   render() {
@@ -69,7 +65,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    releasePhrase: phraseObj => { dispatch(editRoomPhrase(phraseObj)) },
+    releaseRoom: roomObj => { dispatch(editRoom(roomObj)) },
     //getRoom: roomId => { dispatch(getRoom(roomId)) }
   }
 }
