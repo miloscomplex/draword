@@ -6,16 +6,16 @@ class Room extends React.Component {
 
   canYouDraw = selectedPhrase => {
     return (
-      selectedPhrase ? <Link className='disabled' >you cannot draw </Link>
+      selectedPhrase ? <a className='disabled' >you cannot draw </a>
       :
-      <Link to={`/rooms/${this.props.id}`} onClick={ event => this.props.handleClick(event, this.props.id) }>you can draw</Link>
+      <Link to={`/rooms/${this.props.id}`} onClick={ event => this.props.handleClick(event, this.props.id, true) }>you can draw</Link>
     )
   }
 
   render() {
     return (
       <li>
-        <Link className='room' to={`/rooms/${this.props.id}`} > { this.props.title }</Link>
+        <Link className='room' to={`/rooms/${this.props.id}`} onClick={ event => this.props.handleClick(event, this.props.id, false) } > { this.props.title }</Link>
         <p className='button' >{ this.canYouDraw(this.props.isPhraseSelected) }</p>
       </li>
     )

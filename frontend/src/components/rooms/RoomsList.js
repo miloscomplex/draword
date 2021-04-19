@@ -4,7 +4,7 @@ import Room from './Room'
 import cable from '../../services/Cable'
 
 import { connect } from 'react-redux'
-import { loadRooms } from '../../redux/actions'
+import { loadRooms, editRoom } from '../../redux/actions'
 
 class RoomsList extends React.Component {
 
@@ -49,9 +49,10 @@ class RoomsList extends React.Component {
     this.props.loadRooms()
   }
 
-  handleClick = (event, roomId) => {
+  handleClick = (event, roomId, hasDrawer) => {
     console.log('I was clicked', roomId, event);
     // set is drawing to true here
+    this.props.editRoom({room_id: roomId, has_drawer: hasDrawer})
 
   }
 
@@ -77,6 +78,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadRooms: () => { dispatch(loadRooms()) },
+    editRoom: (roomObj) => { dispatch(editRoom(roomObj)) }
   }
 }
 

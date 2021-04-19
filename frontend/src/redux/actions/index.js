@@ -48,7 +48,7 @@ export function editRoomPhrase(phraseObj) {
   }
 }
 
-export function setHasDrawer(roomObj) {
+export function editRoom(roomObj) {
   //console.log('phraseObj= ', phraseObj);
   return (dispatch) => {
     dispatch({ type: 'FETCHING' })
