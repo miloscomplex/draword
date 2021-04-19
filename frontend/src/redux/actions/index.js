@@ -49,10 +49,10 @@ export function getRoom(roomId) {
 export function setRoom(roomId) {
   return (dispatch) => {
     dispatch({ type: 'FETCHING' })
-    fetch(`${API_ROOT}/rooms/${phraseObj.room_id}`, {
+    fetch(`${API_ROOT}/rooms/${roomId}`, {
       method: 'PUT',
       headers: HEADERS,
-      body: JSON.stringify(phraseObj)
+      body: JSON.stringify(roomId)
     }).then(PARSE_JSON)
     .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data }))
   }

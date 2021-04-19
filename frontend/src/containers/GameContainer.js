@@ -27,11 +27,11 @@ class GameContainer extends React.Component {
 
     // match is browser props
     // console.log('this.props.match= ', this.props.match);
-    const uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchId.url}</code> isn't a valid room</h2>
+    const uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchObj.url}</code> isn't a valid room</h2>
     const phraseId = this.props.selectedRoom.selected_phrase_id
     return (
       <div>
-        { selectedPhrase ?
+        { this.props.selectedPhrase ?
               <GamePlay match={this.props.match} />
               :
               <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} />

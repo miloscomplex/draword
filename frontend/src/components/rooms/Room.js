@@ -16,7 +16,7 @@ class Room extends React.Component {
     return (
       <li>
         <Link to={`/rooms/${this.props.id}`} >{this.props.title }</Link>
-        <p>{ canYouDraw(this.props.isPhraseSelected) }</p>
+        <p>{ this.canYouDraw(this.props.isPhraseSelected) }</p>
       </li>
     )
   }

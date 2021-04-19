@@ -23,7 +23,7 @@ class GamePlay extends React.Component {
       subscription.unsubscribe()
     })
     cable.disconnect()
-    this.props.releasePhrase( {room_id: this.props.match.params.id, phrase_id: null } )
+    //this.props.releasePhrase( {room_id: this.props.match.params.id, phrase_id: null } )
     this.props.resetPhrase()
   }
 
@@ -71,7 +71,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    releasePhrase: phraseObj => { dispatch(releasePhrase(phraseObj)) },
+    //releasePhrase: phraseObj => { dispatch(releasePhrase(phraseObj)) },
     resetPhrase: phraseObj => dispatch({ type: 'RESET_PHRASE' }),
     getPhrase: phraseId => { dispatch(getPhrase(phraseId)) }
   }
