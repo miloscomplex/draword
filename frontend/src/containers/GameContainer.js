@@ -27,7 +27,7 @@ class GameContainer extends React.Component {
 
     const uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchObj.url}</code> isn't a valid room</h2>
 
-    const { selectedRoom, isDrawing } = this.props
+    const { selectedRoom, selectedPhrase } = this.props
 
 
     // load different gamePlay if the passed props are true or false
@@ -41,10 +41,10 @@ class GameContainer extends React.Component {
 
     return (
       <div>
-        { selectedRoom ?
-          <GamePlay match={this.props.match}/>
-          :
-          uhOh
+        { selectedPhrase ?
+              <GamePlay match={this.props.match} />
+              :
+              <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} />
         }
       </div>
     )
