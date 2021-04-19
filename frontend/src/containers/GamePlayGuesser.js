@@ -2,7 +2,7 @@ import React from 'react'
 import ToolBox from '../components/canvas/ToolBox'
 import Timer from '../components/ui/Timer'
 import Score from '../components/ui/Score'
-import Canvas from '../components/canvas/Canvas'
+import Canvas from '../components/canvas/CanvasGuesser'
 import ChatArea from '../components/chatBox/ChatArea'
 import cable from '../services/Cable'
 import { connect } from 'react-redux'
@@ -16,7 +16,7 @@ class GamePlay extends React.Component {
 
   componentWillUnmount = () => {
 
-    console.log('GamePlay unmounted');
+    console.log('GamePlayGuesser unmounted');
     cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()
     })
@@ -28,7 +28,7 @@ class GamePlay extends React.Component {
     /* this.props.match.params ==> what's the url for the room */
     return (
       <React.Fragment>
-      <div className='phraseReminder'> Good Luck! Remember think of Karokie Songs</div>
+      <div className='phraseReminder'> Good Luck! Remember think of Karaoke Songs</div>
       <div id='wrapper'>
         <div id='canvas'>
           <Canvas  params={this.props.match.params} />

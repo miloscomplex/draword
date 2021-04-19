@@ -26,7 +26,7 @@ class GamePlay extends React.Component {
       subscription.unsubscribe()
     })
     cable.disconnect()
-    this.props.releasePhrase( {room_id: this.props.match.params.id, selected_phrase_id: null } )
+    this.props.releasePhrase( {room_id: this.props.match.params.id, selected_phrase_id: null, has_drawer: false } )
   }
 
   handleClick = () => {
@@ -40,7 +40,9 @@ class GamePlay extends React.Component {
 
     return (
       <div>
-          {
+            this.props.selectedPhrase ?
+            
+            {
             this.state.playing ?
               <React.Fragment>
                 <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedPhrase.phrase }</strong></div>
@@ -59,7 +61,7 @@ class GamePlay extends React.Component {
                 <p>Your Word/Phrase is {this.props.selectedPhrase.phrase}</p>
                 <button onClick={this.handleClick}>Click to start!</button>
               </React.Fragment>
-          }
+            }
       </div>
     )
   }

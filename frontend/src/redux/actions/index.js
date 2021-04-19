@@ -32,7 +32,7 @@ export function getRoom(roomId) {
     fetch(`${API_ROOT}/rooms/${roomId}`)
     .then(PARSE_JSON)
     .then(data => dispatch({ type: 'GET_ROOM', payload: data}))
-    .catch( err =>  console.log('err= ', err))
+    .catch( error =>  dispatch({ type: 'ERROR', payload: error}))
   }
 }
 
@@ -44,6 +44,18 @@ export function editRoomPhrase(phraseObj) {
       method: 'PUT',
       headers: HEADERS,
       body: JSON.stringify(phraseObj)
+    }).then(PARSE_JSON)
+    .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data}) )
+  }
+}
+
+export function setHasDrawer(roomObj) {
+  return (dispatch) => {
+    dispatch({ type: 'FETCHING' })
+    fetch(`${API_ROOT}/rooms/${roomObj.id}`, {
+      method: 'PUT',
+      headers: HEADERS,
+      body: JSON.stringify(roomObj)
     }).then(PARSE_JSON)
     .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data}) )
   }

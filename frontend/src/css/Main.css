@@ -159,6 +159,9 @@ input {
   padding: .5em;
 }
 
+.button a:hover {
+  background-color: #555;
+}
 .score {
   display: inline-block;
   position: absolute;
