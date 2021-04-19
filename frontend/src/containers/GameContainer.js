@@ -24,18 +24,22 @@ class GameContainer extends React.Component {
     // match is this browser props
     const uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchId.url}</code> isn't a valid room</h2>
 
-    const selectedRoom = this.props.selectedRoom
+    const { selectedRoom, isDrawing } = this.props
+    //const isDrawing = this.props.isDrawing
     // load different gamePlay if the passed props are true or false
-    // prop passsed form roomList.js
+    // prop passsed from roomList.js
 
+    // should only contain Game Play and drawee can have the phrase component
+    // TODO: setup a dispatch and prop for guesser/drawer role
+    
     return (
       <div>
         { selectedRoom ?
           <React.Fragment>
             {
-              selectedRoom.phrase
+              selectedRoom.isDrawing
               ?
-              <GamePlay match={this.props.match} phrase={selectedRoom.phrase}/>
+              <GamePlay match={this.props.match} />
               :
               <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} />
             }

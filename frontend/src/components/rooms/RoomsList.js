@@ -51,7 +51,7 @@ class RoomsList extends React.Component {
 
   handleClick = (event, roomId) => {
     console.log('I was clicked', roomId, event);
-
+    // set is drawing to true here
 
   }
 

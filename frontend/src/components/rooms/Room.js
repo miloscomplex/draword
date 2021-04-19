@@ -8,7 +8,7 @@ class Room extends React.Component {
     return (
       selectedPhrase ? <Link className='disabled' >you cannot draw </Link>
       :
-      <Link to={`/rooms/${this.props.id}`} isDrawing={true} onClick={ event => this.props.handleClick(event, this.props.id) }>you can draw</Link>
+      <Link to={`/rooms/${this.props.id}`} onClick={ event => this.props.handleClick(event, this.props.id) }>you can draw</Link>
     )
   }
 
