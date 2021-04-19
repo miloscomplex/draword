@@ -1,7 +1,7 @@
 
 const defaultStore = {
   roomsList: [],
-  selectedRoom: ''
+  selectedRoom: []
 }
 
 function roomsReducer(state = defaultStore, action) {

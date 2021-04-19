@@ -44,7 +44,8 @@ export function editRoomPhrase(phraseObj) {
       headers: HEADERS,
       body: JSON.stringify(phraseObj),
     }).then(PARSE_JSON)
-    .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data}) )
+    .then(data => console.log('editRoomPhrase return= ', data) )
+    //.then(data => dispatch({ type: 'UPDATE_ROOM', payload: data }) )
   }
 }
 
@@ -57,6 +58,7 @@ export function editRoom(roomObj) {
       headers: HEADERS,
       body: JSON.stringify(roomObj),
     }).then(PARSE_JSON)
+    .then(data => console.log('editRoom return= ', data) )
     .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data}) )
   }
 }

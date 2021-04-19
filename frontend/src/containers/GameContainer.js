@@ -36,13 +36,8 @@ class GameContainer extends React.Component {
       <div>
         { selectedRoom ?
           <React.Fragment>
-            {
-              selectedRoom.isDrawing
-              ?
               <GamePlay match={this.props.match} />
-              :
               <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} />
-            }
           </React.Fragment>
           :
           uhOh

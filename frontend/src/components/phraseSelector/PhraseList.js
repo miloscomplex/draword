@@ -3,25 +3,21 @@ import { connect } from 'react-redux'
 
 class PhraseList extends React.Component {
 
-  handleClick = (matchObjId, phraseObjId) => {
-    console.log(matchObjId, phraseObjId)
-    this.props.setRoomPhrase( {room_id: matchObjId, phrase_id: phraseObjId})
-  }
-
-  phraseList = (phrases, matchObj) => {
+  phraseList = (phrases, match) => {
     return phrases.map( phraseObj => {
       return (
-        <li key={phraseObj.id} onClick={ event => this.handleClick(matchObj.params.id, phraseObj.id) } > { phraseObj.phrase } </li>
+        <li key={phraseObj.id} onClick={ event => this.props.handleClick(match, phraseObj.id)} > {phraseObj.phrase} </li>
       )
     })
   }
 
   render() {
+    console.log('this.props.match= ', this.props.match);
 
     return (
       <div>
         <ul className='phrases' >
-          { this.phraseList(this.props.phrases, this.props.match) }
+          { this.phraseList(this.props.phrases, this.props.match.params.id) }
         </ul>
       </div>
     )

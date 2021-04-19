@@ -39,7 +39,7 @@ class GamePlay extends React.Component {
     const roomURL = this.props.match.params
 
     return (
-      <div>
+      <div> 
             this.props.selectedRoom.phrase ?
             {
             this.state.playing ?

@@ -12,8 +12,12 @@ import { editRoomPhrase, getRoom } from '../redux/actions'
 
 class GamePlay extends React.Component {
 
+  state = {
+    playing: false,
+  }
+
   componentDidMount = () => {
-    this.props.getRoom(this.props.match.params.id)
+    //this.props.getRoom(this.props.match.params.id)
   }
 
   componentWillUnmount = () => {
@@ -23,7 +27,7 @@ class GamePlay extends React.Component {
       subscription.unsubscribe()
     })
     cable.disconnect()
-    this.props.releasePhrase( {room_id: this.props.match.params.id, selected_phrase_id: null } )
+    //this.props.releasePhrase( {room_id: this.props.match.params.id, selected_phrase_id: null } )
   }
 
   render() {
@@ -48,7 +52,7 @@ class GamePlay extends React.Component {
             :
               <React.Fragment>
                 <h2>Reminder:</h2>
-                <p>Your Word/Phrase is {this.props.selectedPhrase.phrase}</p>
+                <p>Your Word/Phrase is {this.props.selectedRoom.phrase}</p>
                 <button onClick={this.handleClick}>Click to start!</button>
               </React.Fragment>
           }
@@ -66,7 +70,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     releasePhrase: phraseObj => { dispatch(editRoomPhrase(phraseObj)) },
-    getRoom: roomId => { dispatch(getRoom(roomId)) }
+    //getRoom: roomId => { dispatch(getRoom(roomId)) }
   }
 }
 
