@@ -9,7 +9,13 @@ function roomsReducer(state = defaultStore, action) {
     case 'LOAD_CHAT':
       return {...state, chats: action.payload.chats }
     case 'ADD_CHAT':
-      return {...state, chats: [...state.chats, action.payload.chats ]}
+      const newChat = action.payload
+      return {...state,
+        selectedRoom: {
+          ...state.selectedRoom,
+            chats: [ ...state.selectedRoom.chats, newChat ]
+            }
+          }
     case 'ADD_ROOMS':
       return {...state, roomsList: action.payload }
     case 'SET_ROOM':
