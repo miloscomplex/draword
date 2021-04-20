@@ -8,7 +8,7 @@ import ChatArea from '../components/chatBox/ChatArea'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import cable from '../services/Cable'
 import { connect } from 'react-redux'
-import { releasePhrase, getPhrase } from '../redux/actions'
+import { getPhrase } from '../redux/actions'
 
 class GamePlay extends React.Component {
 
@@ -28,7 +28,11 @@ class GamePlay extends React.Component {
   }
 
   componentDidMount = () => {
-    this.props.getPhrase(this.props.phrase)
+    //this.props.getPhrase(this.props.phrase.id)
+  }
+
+  handleClick = () => {
+    this.setState({ playing: true })
   }
 
   render() {
@@ -40,7 +44,7 @@ class GamePlay extends React.Component {
           {
             this.state.playing ?
               <React.Fragment>
-                <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedPhrase }</strong></div>
+                <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedRoom.phrase.phrase }</strong></div>
                 <div id='wrapper'>
                   <div id='canvas'>
                     <Canvas  params={roomURL} />
@@ -53,7 +57,7 @@ class GamePlay extends React.Component {
             :
               <React.Fragment>
                 <h2>Reminder:</h2>
-                <p>Your Word/Phrase is {this.props.selectedPhrase}</p>
+                <p>Your Word/Phrase is <strong>{this.props.selectedRoom.phrase.phrase}</strong></p>
                 <button onClick={this.handleClick}>Click to start!</button>
               </React.Fragment>
           }
@@ -65,13 +69,12 @@ class GamePlay extends React.Component {
 const mapStateToProps = state => {
   return {
     selectedRoom: state.rooms.selectedRoom,
-    selectedPhrase: state.phrases.selectedPhrase
+    selectedPhrase: state.selectedPhrase
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    //releasePhrase: phraseObj => { dispatch(releasePhrase(phraseObj)) },
     resetPhrase: phraseObj => dispatch({ type: 'RESET_PHRASE' }),
     getPhrase: phraseId => { dispatch(getPhrase(phraseId)) }
   }

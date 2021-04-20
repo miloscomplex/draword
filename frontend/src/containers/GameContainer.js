@@ -4,7 +4,7 @@ import GamePlayGuesser from './GamePlayGuesser'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
 import { API_ROOT, PARSE_JSON } from '../constants'
-import { getRoom, setPhrase } from '../redux/actions'
+import { getRoom, setPhrase, editRoom } from '../redux/actions'
 
 
 class GameContainer extends React.Component {
@@ -19,7 +19,16 @@ class GameContainer extends React.Component {
   }
 
   componentDidUpdate() {
-    //console.log('GameContainer didUpdate')
+    console.log('GameContainer didUpdate')
+  }
+
+
+  handleClick = (matchObjId, phraseObjId) => {
+    //console.log(matchObjId, phraseObjId)
+    this.props.setRoom( {room_id: matchObjId, phrase_id: phraseObjId} )
+    // do not get why this works and below throws an error
+
+    //this.props.setPhrase( {room_id: matchObjId, phrase_id: phraseObjId} )
   }
 
   render() {
@@ -28,13 +37,13 @@ class GameContainer extends React.Component {
     // match is browser props
     // console.log('this.props.match= ', this.props.match);
     const uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchObj.url}</code> isn't a valid room</h2>
-    const phraseId = this.props.selectedRoom.selected_phrase_id
+    //const phrase = this.props.selectedRoom.selected_phrase_id
     return (
       <div>
-        { this.props.selectedPhrase ?
+        { this.props.selectedRoom.selected_phrase_id ?
               <GamePlay match={this.props.match} />
               :
-              <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} />
+              <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} handleClick={this.handleClick} />
         }
       </div>
     )
@@ -44,13 +53,15 @@ class GameContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     selectedRoom: state.rooms.selectedRoom,
-    selectedPhrase: state.phrases.selectedPhrase
+    selectedPhrase: state.selectedPhrase.phrase
   }
 }
+
 
 const mapDispatchToProps = dispatch => {
   return {
     getRoom: roomId => { dispatch(getRoom(roomId)) },
+   setRoom: phraseObj => { dispatch(editRoom(phraseObj)) },
     setPhrase: phraseId => { dispatch(setPhrase(phraseId)) }
   }
 }

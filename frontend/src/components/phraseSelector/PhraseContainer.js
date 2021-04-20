@@ -13,14 +13,7 @@ class PhraseContainer extends React.Component {
   componentDidMount = () => {
     this.props.loadPhrases()
     console.log('phrase mounted!..', this.props.match.params.id);
-
     this.props.getRoom(this.props.match.params.id)
-  }
-
-  handleClick = (matchObjId, phraseObjId) => {
-    //console.log(matchObjId, phraseObjId)
-    this.props.setRoom( {room_id: matchObjId, phrase_id: phraseObjId} )
-    this.props.setPhrase(phraseObjId)
   }
 
   render() {
@@ -29,7 +22,7 @@ class PhraseContainer extends React.Component {
         <div className='phrase-selector'>
           <h2>Phrase Selector</h2>
           <p className='description'>Select One of the phrases/words below to draw.</p>
-          <PhraseList phrases={this.props.phrases} handleClick={this.handleClick} match={this.props.match} />
+          <PhraseList phrases={this.props.phrases} handleClick={this.props.handleClick} match={this.props.match} />
         </div>
       </div>
     )

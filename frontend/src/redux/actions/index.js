@@ -9,12 +9,13 @@ export function loadPhrases() {
 }
 
 
-export function setPhrase(phraseId) {
+export function setPhrase(phraseObj) {
   return (dispatch) => {
     dispatch({ type: 'FETCHING' })
-    fetch(`${API_ROOT}/phrases/${phraseId}`)
+    fetch(`${API_ROOT}/phrases/${phraseObj.phrase_id}`)
     .then(PARSE_JSON)
-    .then(data => dispatch({ type: 'SET_ROOM_PHRASE', payload: data}))
+    //.then(data => console.log('setPhrase= ', data))
+    .then(data => dispatch({ type: 'SET_ROOM_PHRASE', payload: data }))
     .catch( err =>  console.log('err= ', err))
   }
 }
@@ -67,6 +68,6 @@ export function editRoom(roomObj) {
       headers: HEADERS,
       body: JSON.stringify(roomObj),
     }).then(PARSE_JSON)
-    .then(data => console.log('editRoom= ', data) )
+    .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data }))
   }
 }
