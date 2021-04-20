@@ -43,7 +43,7 @@ class ChatsArea extends React.Component {
 
   handleReceivedChat = response => {
     const { chat } = response
-    this.props.loadChats(this.roomURLs)
+    this.props.addChat(chat)
   }
 
   render = () => {

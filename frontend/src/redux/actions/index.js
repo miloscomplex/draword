@@ -20,13 +20,7 @@ export function loadChats(roomId) {
 
 export function addChat(chatObj) {
   return (dispatch) => {
-    dispatch({ type: 'FETCHING' })
-    fetch(`${API_ROOT}/chats/`, {
-      method: 'POST',
-      headers: HEADERS,
-      body: JSON.stringify(chatObj),
-    }).then(PARSE_JSON)
-    .then(data => dispatch({ type: 'ADD_CHAT', payload: data }))
+    dispatch({ type: 'ADD_CHAT', payload: chatObj })
   }
 }
 
