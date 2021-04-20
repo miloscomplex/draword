@@ -8,6 +8,28 @@ export function loadPhrases() {
   }
 }
 
+export function loadChats(roomId) {
+  return (dispatch) => {
+    dispatch({ type: 'FETCHING' })
+    fetch(`${API_ROOT}/rooms/${roomId}`)
+    .then(PARSE_JSON)
+    //.then(data => console.log('loadChats= ', data.chats ))
+    .then(data => dispatch({type: 'LOAD_CHATS', payload: data}))
+  }
+}
+
+export function addChat(chatObj) {
+  return (dispatch) => {
+    dispatch({ type: 'FETCHING' })
+    fetch(`${API_ROOT}/chats/`, {
+      method: 'POST',
+      headers: HEADERS,
+      body: JSON.stringify(chatObj),
+    }).then(PARSE_JSON)
+    .then(data => dispatch({ type: 'ADD_CHAT', payload: data }))
+  }
+}
+
 
 export function setPhrase(phraseObj) {
   return (dispatch) => {

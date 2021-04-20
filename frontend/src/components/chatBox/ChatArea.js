@@ -3,18 +3,17 @@ import ChatBoxInput from '../chatBox/ChatBoxInput';
 import { API_ROOT } from '../../constants';
 import ChatMessage from './ChatMessage';
 import cable from '../../services/Cable'
+import { connect } from 'react-redux'
+import { loadChats, addChat } from '../../redux/actions'
 
 class ChatsArea extends React.Component {
 
-  state = {
-    chats: [],
-    roomId: this.props.params.id
-  }
+  roomURL = this.props.match.params.id
 
   componentDidMount = () => {
-    this.handleFetch()
     this.chatsChannel()
     this.scrollToBottom()
+    this.props.loadChats(this.roomURL)
   }
 
   componentDidUpdate = () => {
@@ -23,12 +22,6 @@ class ChatsArea extends React.Component {
 
   scrollToBottom = () => {
     this.messagesEnd.scrollIntoView({ behavior: "smooth" });
-  }
-
-  handleFetch = () => {
-    fetch(`${API_ROOT}/chats/${this.state.roomId}`)
-      .then(res => res.json())
-      .then(chats => this.setState({ chats }))
   }
 
   chatsChannel = () => {
@@ -50,32 +43,47 @@ class ChatsArea extends React.Component {
 
   handleReceivedChat = response => {
     const { chat } = response
-    this.setState({
-      chats: [...this.state.chats, chat]
-    })
+    this.props.loadChats(this.roomURLs)
   }
 
   render = () => {
     console.log(cable);
-    const { chats, roomId } = this.state
+    const { chats, roomId } = this.props.state
+    //console.log('chats= ', chats);
+
     return (
       <div id='chatWindow'>
         <h2>Chat Window</h2>
         { /* you can't pass down objects via props */ }
         <div ref={this.chatContainer} className='chat-messages'>
-          { orderedChats(chats).length ? orderedChats(chats) : suchEmpty }
+          { orderedChats(this.props.chats) ? orderedChats(this.props.chats) : suchEmpty }
           <div className='scroll-fix'
             ref={(el) => { this.messagesEnd = el }}>
           </div>
         </div>
 
-        <ChatBoxInput roomId={this.state.roomId}/>
+        <ChatBoxInput roomId={this.roomURL}/>
       </div>
     )
   }
 }
 
-export default ChatsArea;
+const mapStateToProps = state => {
+  return {
+    chats: state.rooms.selectedRoom.chats,
+    state: state.rooms.selectedRoom
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    //loadPhrases: () => { dispatch(loadPhrases()) },
+    loadChats: roomId => { dispatch(loadChats(roomId)) },
+    addChat: chatObj => { dispatch(addChat(chatObj)) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatsArea)
 
 // helpers
 

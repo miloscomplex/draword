@@ -38,6 +38,7 @@ class GamePlay extends React.Component {
   render() {
     /* this.props.match.params ==> what's the url for the room */
     const roomURL = this.props.match
+    console.log('roomURL= ', roomURL);
 
     return (
       <div>
@@ -51,7 +52,7 @@ class GamePlay extends React.Component {
                     <Timer />
                     <Score />
                   </div>
-                  <ChatArea params={roomURL} />
+                  <ChatArea match={roomURL} />
                 </div>
               </React.Fragment>
             :
