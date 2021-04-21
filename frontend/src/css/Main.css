@@ -212,6 +212,7 @@ input {
   border-radius: .3em;
   display: block;
   width: 200px;
+  font-weight: 600;
 }
 
 .roomsList li:hover {
