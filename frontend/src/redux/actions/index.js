@@ -24,7 +24,6 @@ export function addChat(chatObj) {
   }
 }
 
-
 export function setPhrase(phraseObj) {
   return (dispatch) => {
     dispatch({ type: 'FETCHING' })
@@ -33,6 +32,18 @@ export function setPhrase(phraseObj) {
     //.then(data => console.log('setPhrase= ', data))
     .then(data => dispatch({ type: 'SET_ROOM_PHRASE', payload: data }))
     .catch( err =>  console.log('err= ', err))
+  }
+}
+
+export function setRoom(roomId) {
+  return (dispatch) => {
+    dispatch({ type: 'FETCHING' })
+    fetch(`${API_ROOT}/rooms/${roomId}`, {
+      method: 'PUT',
+      headers: HEADERS,
+      body: JSON.stringify(roomId)
+    }).then(PARSE_JSON)
+    .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data }))
   }
 }
 
@@ -60,18 +71,6 @@ export function getRoom(roomId) {
     .then(PARSE_JSON)
     .then(data => dispatch({ type: 'SET_ROOM', payload: data}) )
     .catch( err =>  console.log('err= ', err))
-  }
-}
-
-export function setRoom(roomId) {
-  return (dispatch) => {
-    dispatch({ type: 'FETCHING' })
-    fetch(`${API_ROOT}/rooms/${roomId}`, {
-      method: 'PUT',
-      headers: HEADERS,
-      body: JSON.stringify(roomId)
-    }).then(PARSE_JSON)
-    .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data }))
   }
 }
 

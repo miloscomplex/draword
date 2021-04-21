@@ -8,7 +8,7 @@ import ChatArea from '../components/chatBox/ChatArea'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import cable from '../services/Cable'
 import { connect } from 'react-redux'
-import { getPhrase } from '../redux/actions'
+import { getPhrase, editRoom } from '../redux/actions'
 
 class GamePlay extends React.Component {
 
@@ -18,13 +18,12 @@ class GamePlay extends React.Component {
 
   componentWillUnmount = () => {
 
-    console.log('GamePlay unmounted');
+    console.log('GamePlay unmounted')
     cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()
     })
     cable.disconnect()
-    //this.props.releasePhrase( {room_id: this.props.match.params.id, phrase_id: null } )
-    this.props.resetPhrase()
+    this.props.releasePhrase( {room_id: this.props.selectedRoom.id, phrase_id: null} )
   }
 
   componentDidMount = () => {
@@ -48,7 +47,7 @@ class GamePlay extends React.Component {
                 <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedRoom.phrase.phrase }</strong></div>
                 <div id='wrapper'>
                   <div id='canvas'>
-                    <Canvas  params={roomURL} />
+                    <Canvas  match={roomURL} />
                     <Timer />
                     <Score />
                   </div>
@@ -76,8 +75,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    resetPhrase: phraseObj => dispatch({ type: 'RESET_PHRASE' }),
-    getPhrase: phraseId => { dispatch(getPhrase(phraseId)) }
+    //releasePhrase: () => dispatch({ type: 'RELEASE_PHRASE' }),
+    getPhrase: phraseId => { dispatch(getPhrase(phraseId)) },
+    releasePhrase: phraseObj => { dispatch(editRoom(phraseObj)) },
   }
 }
 

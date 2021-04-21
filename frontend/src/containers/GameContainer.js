@@ -1,6 +1,5 @@
 import React from 'react'
 import GamePlay from './GamePlay'
-import GamePlayGuesser from './GamePlayGuesser'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
 import { API_ROOT, PARSE_JSON } from '../constants'
@@ -44,7 +43,8 @@ class GameContainer extends React.Component {
           this.props.selectedRoom
           ?
           (
-          this.props.selectedRoom.selected_phrase_id ?
+          this.props.selectedRoom.selected_phrase_id
+              ?
               <GamePlay match={this.props.match} />
               :
               <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} handleClick={this.handleClick} />
@@ -68,7 +68,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getRoom: roomId => { dispatch(getRoom(roomId)) },
-   setRoom: phraseObj => { dispatch(editRoom(phraseObj)) },
+    setRoom: phraseObj => { dispatch(editRoom(phraseObj)) },
     setPhrase: phraseId => { dispatch(setPhrase(phraseId)) }
   }
 }

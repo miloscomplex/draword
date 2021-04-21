@@ -23,6 +23,15 @@ function roomsReducer(state = defaultStore, action) {
       return {...state, selectedRoom: action.payload }
     case 'UPDATE_ROOM':
       return {...state, selectedRoom: action.payload }
+    case 'RELEASE_PHRASE':
+      return {
+        ...state,
+        selectedRoom: {
+          ...state.selectedRoom,
+            selected_phrase_id: null,
+            selectedPhrase: null 
+        }
+      }
     default:
       return state
   }

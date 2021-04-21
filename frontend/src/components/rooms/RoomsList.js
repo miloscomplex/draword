@@ -14,6 +14,7 @@ class RoomsList extends React.Component {
   }
 
   componentWillUnmount = () => {
+    console.log('RoomsList unmounted');
     cable.disconnect()
     cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()

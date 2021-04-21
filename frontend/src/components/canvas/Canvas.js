@@ -16,7 +16,7 @@ class Canvas extends React.Component {
       drawings: [],
       canvasWidth: 500,
       canvasHeight: 500,
-      roomId: this.props.params.id,
+      roomId: this.props.match.params.id,
       canDraw: true
     }
     this.dataCache = null
@@ -80,8 +80,6 @@ class Canvas extends React.Component {
       return
     }
     const {offsetX, offsetY} = event.nativeEvent
-    // this.contextRef.current.beginPath()
-    // this.contextRef.current.moveTo(offsetX, offsetY)
     this.setState({ isDrawing: true })
     this.handlePostFetch(
     {   action: 'beginPath',
@@ -96,10 +94,7 @@ class Canvas extends React.Component {
       return
     }
     const {offsetX, offsetY} = event.nativeEvent
-    // this.contextRef.current.closePath()
     this.setState({ isDrawing: false })
-    // let saveVal = this.contextRef.current.save()
-    //console.log(this.contextRef.current)
     this.handlePostFetch(
     {   action: 'closePath',
         offsetX: offsetX,
@@ -112,10 +107,7 @@ class Canvas extends React.Component {
     if (!this.state.isDrawing) {
       return
     }
-    //console.log('im drawing');
     const {offsetX, offsetY} = event.nativeEvent
-    // this.contextRef.current.lineTo(offsetX, offsetY)
-    // this.contextRef.current.stroke()
     this.handlePostFetch(
     {   action: 'lineTo',
         offsetX: offsetX,
