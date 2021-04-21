@@ -17,7 +17,8 @@ class Canvas extends React.Component {
       canvasWidth: 500,
       canvasHeight: 500,
       roomId: this.props.match.params.id,
-      canDraw: true
+      canDraw: true,
+      bgColor: '#000000'
     }
     this.dataCache = null
   }
@@ -137,28 +138,41 @@ class Canvas extends React.Component {
   drawOnCanvas = (drawingObj) => {
     console.log('hello', drawingObj);
     const {offsetX, offsetY} = drawingObj
+    const canvas = this.contextRef.current
     switch (drawingObj.action) {
       case 'beginPath':
-        this.contextRef.current.beginPath()
-        this.contextRef.current.moveTo(offsetX, offsetY)
+        canvas.beginPath()
+        canvas.moveTo(offsetX, offsetY)
         this.setState({ isDrawing: true });
-        this.contextRef.current.stroke();
+        canvas.stroke();
         break
 
       case 'lineTo':
-        this.contextRef.current.lineTo(offsetX, offsetY)
-        this.contextRef.current.stroke();
+        canvas.lineTo(offsetX, offsetY)
+        canvas.stroke();
         break
 
       case 'closePath':
-        this.contextRef.current.closePath()
-        let saveVal = this.contextRef.current.save();
+        canvas.closePath()
+        let saveVal = canvas.save();
         this.setState({ isDrawing: false })
+        break
+
+      case 'clearCanvas':
+        canvas.fillStyle = this.state.bgColor
+        canvas.fillRect(0, 0, this.state.canvasWidth, this.state.canvasHeight)
         break
 
       default:
         return
     }
+  }
+
+  handleClearClick = (event) => {
+    this.handlePostFetch(
+    {   action: 'clearCanvas',
+        room_id: this.state.roomId
+    })
   }
 
   render() {
@@ -178,7 +192,7 @@ class Canvas extends React.Component {
         <canvas ref={this.canvasRef}
         />
         }
-        <ToolBox />
+        <ToolBox handleClick={this.handleClearClick} />
       </React.Fragment>
     )
   }

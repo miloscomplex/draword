@@ -152,11 +152,27 @@ input {
   text-transform: uppercase;
 }
 
-#toolbox li {
-  font-size: 1em;
+#toolbox {
+  font-size: .9em;
   background-color: #ddd;
   margin: 0;
-  padding: .5em;
+  padding: .5em 1em;
+  text-align: left;
+}
+
+#toolbox li {
+  color: white;
+  background-color: #000;
+  display: inline-block;
+  padding: .25em .5em .2em .5em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 700;
+  border-radius: .3em;
+}
+
+#toolbox li:hover {
+  background-color: #333;
 }
 
 .score {
