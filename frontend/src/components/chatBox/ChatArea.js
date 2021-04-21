@@ -5,6 +5,7 @@ import ChatMessage from './ChatMessage';
 import cable from '../../services/Cable'
 import { connect } from 'react-redux'
 import { loadChats, addChat } from '../../redux/actions'
+import ChatBoxBot from './ChatBoxBot'
 
 class ChatsArea extends React.Component {
 
@@ -64,6 +65,7 @@ class ChatsArea extends React.Component {
         </div>
 
         <ChatBoxInput roomId={this.roomURL}/>
+
       </div>
     )
   }
