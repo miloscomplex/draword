@@ -87,19 +87,13 @@ export function editRoom(roomObj) {
   }
 }
 
-fetch(`${API_ROOT}/rooms`, {
-  method: 'POST',
-  headers: HEADERS,
-  body: JSON.stringify(this.state)
-});
-
-export function createUser() {
+export function createUser(userId) {
   //console.log('editUser roomObj= ', roomObj);
   return (dispatch) => {
     fetch(`${API_ROOT}/users`, {
       method: 'POST',
       headers: HEADERS,
-      body: JSON.stringify(''),
+      body: JSON.stringify(userId),
     }).then(PARSE_JSON)
     .then(data => dispatch({ type: 'UPDATE_USER', payload: data }))
   }
@@ -123,7 +117,7 @@ export function removeUser(userObj) {
     fetch(`${API_ROOT}/users/${userObj.user_id}`, {
       method: 'DELETE',
       headers: HEADERS,
-      body: JSON.stringify(USERObj),
+      body: JSON.stringify(userObj),
     }).then(PARSE_JSON)
     .then(data => dispatch({ type: 'REMOVE_USER', payload: data }))
   }

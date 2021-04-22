@@ -4,7 +4,7 @@ import GamePlayGuesser from './GamePlayGuesser'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
 import { API_ROOT, PARSE_JSON, HEADERS } from '../constants'
-import { getRoom, setPhrase, editRoom } from '../redux/actions'
+import { getRoom, setPhrase, editRoom, createUser } from '../redux/actions'
 
 
 class GameContainer extends React.Component {
@@ -16,19 +16,11 @@ class GameContainer extends React.Component {
   // dispatch will update state good for direct link
   componentDidMount = () => {
     this.props.getRoom(this.props.match.params.id)
+    this.props.createUser({user_id: this.props.currentUser ? this.props.currentUser.id : null, is_drawing: false})
   }
 
   componentDidUpdate() {
     console.log('GameContainer didUpdate')
-    this.handlePostFetch()
-  }
-
-  handlePostFetch = () => {
-    fetch(`${API_ROOT}/sessions`, {
-      method: 'POST',
-      headers: HEADERS,
-      body: JSON.stringify({selectedRoom: this.props.selectedRoom})
-    });
   }
 
 
@@ -70,7 +62,8 @@ class GameContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     selectedRoom: state.rooms.selectedRoom,
-    selectedPhrase: state.selectedPhrase.phrase
+    selectedPhrase: state.selectedPhrase.phrase,
+    currentUser: state.users.user,
   }
 }
 
@@ -79,7 +72,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getRoom: roomId => { dispatch(getRoom(roomId)) },
     setRoom: phraseObj => { dispatch(editRoom(phraseObj)) },
-    setPhrase: phraseId => { dispatch(setPhrase(phraseId)) }
+    setPhrase: phraseId => { dispatch(setPhrase(phraseId)) },
+    createUser: userObj => { dispatch(createUser(userObj)) },
   }
 }
 

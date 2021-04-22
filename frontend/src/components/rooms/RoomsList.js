@@ -4,13 +4,14 @@ import Room from './Room'
 import cable from '../../services/Cable'
 
 import { connect } from 'react-redux'
-import { loadRooms, editRoom } from '../../redux/actions'
+import { loadRooms, editRoom, createUser } from '../../redux/actions'
 
 class RoomsList extends React.Component {
 
   componentDidMount = () => {
     this.props.loadRooms()
     this.roomsChannel()
+    this.props.createUser({user_id: this.props.currentUser ? this.props.currentUser.id : null, is_drawing: false})
   }
 
   componentWillUnmount = () => {
@@ -71,14 +72,16 @@ class RoomsList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    rooms: state.rooms.roomsList
+    rooms: state.rooms.roomsList,
+    currentUser: state.users.user,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     loadRooms: () => { dispatch(loadRooms()) },
-    setRoom: (roomObj) => { dispatch(editRoom(roomObj)) }
+    setRoom: (roomObj) => { dispatch(editRoom(roomObj)) },
+    createUser: userObj => { dispatch(createUser(userObj)) },
   }
 }
 
