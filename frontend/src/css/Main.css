@@ -175,6 +175,10 @@ input {
   background-color: #333;
 }
 
+.strong {
+  font-weight: 900;
+}
+
 .score {
   display: inline-block;
   position: absolute;
@@ -201,11 +205,23 @@ input {
 }
 
 .chat-messages p {
-  background-color: #cdeff7;
+  /* background-color: #cdeff7; */
   padding: .75em;
   border-radius: .6em;
   font-weight: 500;
   overflow-wrap: break-word;
+}
+
+.admin {
+  background-color: #b9d959;
+}
+
+.guesser {
+  background-color: #cdeff7;
+}
+
+.drawer {
+  background-color: #d9d259;
 }
 
 .how-to-play {
@@ -237,7 +253,9 @@ input {
 
 .landing-page p {
   width: 80%;
-  margin: 0 auto;
+  max-width: 700px;
+  margin: 20px auto 0 auto;
+
 }
 
 .leaderboard li, .phrases li {

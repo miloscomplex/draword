@@ -9,7 +9,13 @@ class HowToPlay extends React.Component {
       <div className='wrapper'>
         <div className='landing-page'>
           <h1>Landing Page</h1>
-          <p>I'm baby tote bag photo booth chia listicle. Activated charcoal selfies quinoa raclette offal mustache. Hexagon taxidermy kitsch godard raw denim meh knausgaard listicle next level PBR&B lyft fingerstache normcore. Chambray wolf meggings health goth. Kogi poutine kickstarter master cleanse artisan edison bulb gochujang viral tbh biodiesel etsy keffiyeh yuccie schlitz waistcoat. Waistcoat mixtape brunch tacos, drinking vinegar plaid literally. Everyday carry tote bag palo santo, messenger bag cornhole leggings vegan artisan retro iceland listicle slow-carb hoodie fam mixtape.</p>
+          <p>The current theme for the game is Popular Karaoke Song. So try to think of songs that you'd chose to slay the microphone, if your guessing. The title is only necessary, not the artist, to win the round. If you decide to draw, draw your heart out and keep a 'Never Gonna Give You Up' attitude until either time expires or the word is correctly guessed.</p>
+
+          <p>If you like to draw, either choose a room that is marked 'You can draw' or make your own room. Then share the URL with your friends to start the game.</p>
+
+          <p>If you want to guess, select a room that is marked 'be a guesser.' You'll receive updates via the chat box in regards to the gameplay.</p>
+
+          <p className='strong'>Good Luck!</p>
         </div>
         <RoomsList />
       </div>

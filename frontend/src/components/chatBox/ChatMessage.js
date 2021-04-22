@@ -4,7 +4,7 @@ class ChatMessage extends React.Component {
 
   render() {
     return (
-      <p>{ this.props.text }</p>
+      <p className='admin'>{ this.props.text }</p>
     )
   }
 }
