@@ -6,13 +6,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    user = User.find_by_id(session[:current_user_id])
+    user = User.find_by_id(params[:id])
     render json: user
   end
 
   def create
-    @user = User.create(name: SecureRandom.hex)
+    @user = User.find_or_create_by(id: params[:user_id]) do |user|
+      user.name = SecureRandom.hex
+    end
     if @user.valid?
+      @user.is_drawing = params[:is_drawing]
       session[:current_user_id] = @user.id
       session[:is_drawing] = @user.is_drawing
       render json: @user
@@ -22,7 +25,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find_by_params(params[:user_id])
+    user = User.find_by_params(id: params[:user_id])
     user.is_drawing = params[:is_drawing]
     if user.save
       render json: user
