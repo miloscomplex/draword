@@ -6,7 +6,7 @@ class ChatsController < ApplicationController
   end
 
   def show
-    # display by room_id 
+    # display by room_id
     room = Room.find_by(id: params[:id])
     render json: room.chats
   end
@@ -29,6 +29,6 @@ class ChatsController < ApplicationController
   private
 
   def chat_params
-    params.require(:chat).permit(:text, :room_id)
+    params.require(:chat).permit(:text, :room_id, :role)
   end
 end
