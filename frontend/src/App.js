@@ -10,11 +10,11 @@ import Footer from './components/ui/Footer'
 import RoomsList from './components/rooms/RoomsList'
 
 function App() {
+
   return (
     <div className='App'>
       <Router>
         <Header />
-
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/new' component={RoomsList} />
         <Route exact path='/leaderboard' component={LeaderboardContainer} />

@@ -1,9 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Navigation from './Navigation'
+import { connect } from 'react-redux'
+import { removeUser, createUser } from '../../redux/actions'
 
 class Header extends React.Component {
+
+  componentDidMount = () => {
+    this.props.createUser({is_drawing: false})
+  }
+
+  componentWillUnmount = () => {
+    this.props.removeUser( {user_id: this.props.currentUser.id } )
+  }
+
   render() {
+
     return (
       <div id='header'>
         <h1><Link to='/'>draword</Link></h1>
@@ -13,4 +25,17 @@ class Header extends React.Component {
   }
 }
 
-export default Header
+const mapStateToProps = state => {
+  return {
+    currentUser: state.users.user,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    removeUser: userObj => { dispatch(removeUser(userObj)) },
+    createUser: userObj => { dispatch(createUser(userObj)) }
+  }
+}
+
+export default  connect(mapStateToProps, mapDispatchToProps)(Header)

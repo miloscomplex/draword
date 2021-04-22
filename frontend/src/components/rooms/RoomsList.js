@@ -4,15 +4,21 @@ import Room from './Room'
 import cable from '../../services/Cable'
 
 import { connect } from 'react-redux'
-import { loadRooms, editRoom, createUser, editUser } from '../../redux/actions'
+import { loadRooms, editRoom, createUser, editUser, removeUser } from '../../redux/actions'
 
 class RoomsList extends React.Component {
 
   componentDidMount = () => {
     this.props.loadRooms()
     this.roomsChannel()
-    this.props.createUser({user_id: this.props.currentUser ? this.props.currentUser.id : null, is_drawing: false})
+    console.log('this.props.currentUser= ', this.props.currentUser);
   }
+
+  componentDidUpdate() {
+    console.log('RoomList didUpdate')
+  }
+
+
 
   componentWillUnmount = () => {
     console.log('RoomsList unmounted');
@@ -54,8 +60,9 @@ class RoomsList extends React.Component {
   handleClick = (event, roomId, hasDrawer) => {
     console.log('I was clicked', roomId, event);
     // set is drawing to true here
-    this.props.setRoom({room_id: roomId, has_drawer: hasDrawer})
-    this.props.editUser({user_id: this.props.currentUser.id, room_id: roomId, is_drawing: false })
+    this.props.editRoom({room_id: roomId, has_drawer: hasDrawer})
+    this.props.editUser({user_id: this.props.currentUser.id, room_id: roomId, is_drawing: true })
+
   }
 
   render = () => {
@@ -81,9 +88,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadRooms: () => { dispatch(loadRooms()) },
-    setRoom: (roomObj) => { dispatch(editRoom(roomObj)) },
+    editRoom: (roomObj) => { dispatch(editRoom(roomObj)) },
     createUser: userObj => { dispatch(createUser(userObj)) },
-    editUser: userObj => { dispatch(editUser(userObj)) }
+    editUser: userObj => { dispatch(editUser(userObj)) },
+    removeUser: userObj => { dispatch(removeUser(userObj)) }
   }
 }
 

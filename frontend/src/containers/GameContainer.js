@@ -4,7 +4,7 @@ import GamePlayGuesser from './GamePlayGuesser'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
 import { API_ROOT, PARSE_JSON, HEADERS } from '../constants'
-import { getRoom, setPhrase, editRoom, createUser } from '../redux/actions'
+import { getRoom, setPhrase, editRoom } from '../redux/actions'
 
 
 class GameContainer extends React.Component {
@@ -15,8 +15,8 @@ class GameContainer extends React.Component {
   // make a call to the server for updated Room
   // dispatch will update state good for direct link
   componentDidMount = () => {
+    console.log('GameContainer didMount!')
     this.props.getRoom(this.props.match.params.id)
-    this.props.createUser({user_id: this.props.currentUser ? this.props.currentUser.id : null, is_drawing: false})
   }
 
   componentDidUpdate() {
@@ -47,7 +47,7 @@ class GameContainer extends React.Component {
           (
           this.props.selectedRoom.selected_phrase_id
               ?
-              <GamePlayGuesser match={this.props.match} />
+              <GamePlay match={this.props.match} />
               :
               <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} handleClick={this.handleClick} />
           )
@@ -73,7 +73,6 @@ const mapDispatchToProps = dispatch => {
     getRoom: roomId => { dispatch(getRoom(roomId)) },
     setRoom: phraseObj => { dispatch(editRoom(phraseObj)) },
     setPhrase: phraseId => { dispatch(setPhrase(phraseId)) },
-    createUser: userObj => { dispatch(createUser(userObj)) },
   }
 }
 

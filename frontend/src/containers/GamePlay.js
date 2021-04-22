@@ -8,7 +8,7 @@ import ChatArea from '../components/chatBox/ChatArea'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import cable from '../services/Cable'
 import { connect } from 'react-redux'
-import { getPhrase, editRoom, removeUser } from '../redux/actions'
+import { getPhrase, editRoom } from '../redux/actions'
 
 class GamePlay extends React.Component {
 
@@ -24,7 +24,6 @@ class GamePlay extends React.Component {
     })
     cable.disconnect()
     this.props.releasePhrase( {room_id: this.props.selectedRoom.id, phrase_id: null} )
-    this.props.removeUser( {user_id: this.props.currentUser.id} )
   }
 
   componentDidMount = () => {
@@ -80,7 +79,6 @@ const mapDispatchToProps = dispatch => {
     //releasePhrase: () => dispatch({ type: 'RELEASE_PHRASE' }),
     getPhrase: phraseId => { dispatch(getPhrase(phraseId)) },
     releasePhrase: phraseObj => { dispatch(editRoom(phraseObj)) },
-    removeUser: userObj => { dispatch(removeUser(userObj)) }
   }
 }
 

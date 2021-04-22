@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       user.name = SecureRandom.hex
     end
     if @user.valid?
-      @user.is_drawing = params[:is_drawing]
+      params[:is_drawing] ? @user.is_drawing = params[:is_drawing] : @user.is_drawing = false
       new_room = Room.find_by_id(params[:room_id])
       @user.room = new_room
       session[:current_user_id] = @user.id
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find_by_id(params[:user_id])
+    user = User.find_or_create_by(id: params[:user_id])
     new_room = Room.find_by_id(params[:room_id])
     user.room = new_room
     user.is_drawing = params[:is_drawing]
