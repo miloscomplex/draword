@@ -23,7 +23,7 @@ class GamePlay extends React.Component {
       subscription.unsubscribe()
     })
     cable.disconnect()
-    this.props.removeUser(this.props.currentUser)
+    this.props.removeUser( {user_id: this.props.currentUser.id} )
   }
 
   componentDidMount = () => {

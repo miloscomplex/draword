@@ -4,7 +4,7 @@ import Room from './Room'
 import cable from '../../services/Cable'
 
 import { connect } from 'react-redux'
-import { loadRooms, editRoom, createUser } from '../../redux/actions'
+import { loadRooms, editRoom, createUser, editUser } from '../../redux/actions'
 
 class RoomsList extends React.Component {
 
@@ -55,6 +55,7 @@ class RoomsList extends React.Component {
     console.log('I was clicked', roomId, event);
     // set is drawing to true here
     this.props.setRoom({room_id: roomId, has_drawer: hasDrawer})
+    this.props.editUser({user_id: this.props.currentUser.id, room_id: roomId, is_drawing: false })
   }
 
   render = () => {
@@ -82,6 +83,7 @@ const mapDispatchToProps = dispatch => {
     loadRooms: () => { dispatch(loadRooms()) },
     setRoom: (roomObj) => { dispatch(editRoom(roomObj)) },
     createUser: userObj => { dispatch(createUser(userObj)) },
+    editUser: userObj => { dispatch(editUser(userObj)) }
   }
 }
 

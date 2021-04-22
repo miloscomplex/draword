@@ -16,6 +16,8 @@ class UsersController < ApplicationController
     end
     if @user.valid?
       @user.is_drawing = params[:is_drawing]
+      new_room = Room.find_by_id(params[:room_id])
+      @user.room = new_room
       session[:current_user_id] = @user.id
       session[:is_drawing] = @user.is_drawing
       render json: @user
@@ -25,8 +27,16 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find_by_params(id: params[:user_id])
+    user = User.find_by_id(params[:user_id])
+    new_room = Room.find_by_id(params[:room_id])
+    user.room = new_room
     user.is_drawing = params[:is_drawing]
+    puts user
+    puts user
+    puts user
+    puts user
+    puts user
+    puts user
     if user.save
       render json: user
     else
@@ -36,6 +46,7 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find_by_id(params[:user_id])
+    user.destroy
     render json: user
   end
 
@@ -46,7 +57,9 @@ private
   end
 
   def user_params
-    params.require(:user).permit(:name, :initials, :is_drawing)
+    params.permit(:name, :initials, :is_drawing, :room_id)
   end
+
+
 
 end

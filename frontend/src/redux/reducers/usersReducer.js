@@ -10,7 +10,7 @@ function usersReducer(state = defaultStore, action) {
     case 'UPDATE_USER':
       return {...state, user: action.payload }
     case 'REMOVE_USER':
-      return {...state, user: action.payload }
+      return {...state, user: null }
     default:
       return state
   }

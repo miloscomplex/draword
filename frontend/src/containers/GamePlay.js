@@ -24,7 +24,7 @@ class GamePlay extends React.Component {
     })
     cable.disconnect()
     this.props.releasePhrase( {room_id: this.props.selectedRoom.id, phrase_id: null} )
-    this.props.removeUser(this.props.currentUser)
+    this.props.removeUser( {user_id: this.props.currentUser.id} )
   }
 
   componentDidMount = () => {
