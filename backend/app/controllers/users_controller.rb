@@ -6,24 +6,34 @@ class UsersController < ApplicationController
   end
 
   def show
-      user = User.find_by_id(params[:id])
-      render json: user
-    end
+    user = User.find_by_id(session[:current_user_id])
+    render json: user
+  end
 
-    def create
-      user = User.find_or_create_by(user_params)
-      user = user.scores.build(score_params)
-      if user.valid? && user.save
-        render json: score
-      else
-        render json: { errors: user.errors }, status: 422
-      end
+  def create
+    @user = User.create(name: SecureRandom.hex)
+    if @user.valid?
+      session[:current_user_id] = @user.id
+      session[:is_drawing] = @user.is_drawing
+      render json: @user
+    else
+      render json: { error: 'Could not create the user'}, status: 422
     end
+  end
+
+  def update
+    user = User.find_by_params(params[:user_id])
+    user.is_drawing = params[:is_drawing]
+    if user.save
+      render json: user
+    else
+      render json: { error: 'Could not update the user'}, status: 422
+    end
+  end
 
   def destroy
-    user = User.find_by_id(params[:id])
-    score.destroy
-    render json: score
+    user = User.find_by_id(params[:user_id])
+    render json: user
   end
 
 private
@@ -33,7 +43,7 @@ private
   end
 
   def user_params
-    params.require(:user).permit(:name, :initials)
+    params.require(:user).permit(:name, :initials, :is_drawing)
   end
 
 end

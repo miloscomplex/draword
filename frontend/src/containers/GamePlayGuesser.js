@@ -3,66 +3,63 @@ import ToolBox from '../components/canvas/ToolBox'
 import Timer from '../components/ui/Timer'
 import Score from '../components/ui/Score'
 import Canvas from '../components/canvas/Canvas'
+import CanvasContainer from '../components/canvas/CanvasContainer'
 import ChatArea from '../components/chatBox/ChatArea'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import cable from '../services/Cable'
 import { connect } from 'react-redux'
-import { editRoomPhrase, getRoom } from '../redux/actions'
+import { getPhrase, editRoom } from '../redux/actions'
 
 class GamePlay extends React.Component {
 
   state = {
-    playing: false
-  }
-
-  componentDidMount = () => {
-    this.props.getRoom(this.props.match.params.id)
+    playing: false,
   }
 
   componentWillUnmount = () => {
 
-    console.log('GamePlay unmounted');
+    console.log('GamePlay unmounted')
     cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()
     })
     cable.disconnect()
-    this.props.releasePhrase( {room_id: this.props.match.params.id, selected_phrase_id: null, has_drawer: false } )
+  }
+
+  componentDidMount = () => {
+    //this.props.getPhrase(this.props.phrase.id)
   }
 
   handleClick = () => {
     this.setState({ playing: true })
   }
 
-
   render() {
     /* this.props.match.params ==> what's the url for the room */
-    const roomURL = this.props.match.params
+    const roomURL = this.props.match
+    console.log('roomURL= ', roomURL);
 
     return (
-      <div> 
-            this.props.selectedRoom.phrase ?
-            {
+      <div>
+          {
             this.state.playing ?
               <React.Fragment>
-                <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedPhrase.phrase }</strong></div>
+                <div className='phraseReminder'> <strong>Remember think of karaoke songs</strong></div>
                 <div id='wrapper'>
                   <div id='canvas'>
-                    <Canvas  params={roomURL} />
+                    <Canvas  match={roomURL} />
                     <Timer />
                     <Score />
                   </div>
-                  <ChatArea params={roomURL} />
+                  <ChatArea match={roomURL} />
                 </div>
               </React.Fragment>
             :
               <React.Fragment>
-                <h2>Reminder:</h2>
-                <p>Your Word/Phrase is {this.props.selectedPhrase.phrase}</p>
+                <h2>Your are a Guesser:</h2>
+                <p>Click to start the timer will begin when the drawer initializes the round</p>
                 <button onClick={this.handleClick}>Click to start!</button>
               </React.Fragment>
-            }
-            :
-            <PhraseContainer />
+          }
       </div>
     )
   }
@@ -70,14 +67,15 @@ class GamePlay extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    selectedRoom: state.rooms.selectedRoom
+    selectedRoom: state.rooms.selectedRoom,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    releasePhrase: phraseObj => { dispatch(editRoomPhrase(phraseObj)) },
-    getRoom: roomId => { dispatch(getRoom(roomId)) }
+    //releasePhrase: () => dispatch({ type: 'RELEASE_PHRASE' }),
+    getPhrase: phraseId => { dispatch(getPhrase(phraseId)) },
+    releasePhrase: phraseObj => { dispatch(editRoom(phraseObj)) },
   }
 }
 

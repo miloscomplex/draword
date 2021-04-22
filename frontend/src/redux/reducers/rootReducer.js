@@ -4,6 +4,7 @@ import phrasesReducer from './phrasesReducer'
 import roomsReducer from './roomsReducer'
 import busyReducer from './busyReducer'
 import selectedPhraseReducer from './selectedPhraseReducer'
+import usersReducer from './usersReducer'
 
 const rootReducer = combineReducers({
   canvas: canvasReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   busySignal: busyReducer,
   rooms: roomsReducer,
   selectedPhrase: selectedPhraseReducer,
+  users: usersReducer,
 })
 
 export default rootReducer

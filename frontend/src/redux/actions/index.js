@@ -86,3 +86,45 @@ export function editRoom(roomObj) {
     .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data }))
   }
 }
+
+fetch(`${API_ROOT}/rooms`, {
+  method: 'POST',
+  headers: HEADERS,
+  body: JSON.stringify(this.state)
+});
+
+export function createUser() {
+  //console.log('editUser roomObj= ', roomObj);
+  return (dispatch) => {
+    fetch(`${API_ROOT}/users`, {
+      method: 'POST',
+      headers: HEADERS,
+      body: JSON.stringify(''),
+    }).then(PARSE_JSON)
+    .then(data => dispatch({ type: 'UPDATE_USER', payload: data }))
+  }
+}
+
+export function editUser(userObj) {
+  //console.log('editUser roomObj= ', roomObj);
+  return (dispatch) => {
+    fetch(`${API_ROOT}/users/${userObj.user_id}`, {
+      method: 'PUT',
+      headers: HEADERS,
+      body: JSON.stringify(userObj),
+    }).then(PARSE_JSON)
+    .then(data => dispatch({ type: 'UPDATE_USER', payload: data }))
+  }
+}
+
+export function removeUser(userObj) {
+  //console.log('editUser roomObj= ', roomObj);
+  return (dispatch) => {
+    fetch(`${API_ROOT}/users/${userObj.user_id}`, {
+      method: 'DELETE',
+      headers: HEADERS,
+      body: JSON.stringify(USERObj),
+    }).then(PARSE_JSON)
+    .then(data => dispatch({ type: 'REMOVE_USER', payload: data }))
+  }
+}

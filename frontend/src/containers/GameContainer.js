@@ -1,8 +1,9 @@
 import React from 'react'
 import GamePlay from './GamePlay'
+import GamePlayGuesser from './GamePlayGuesser'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
-import { API_ROOT, PARSE_JSON } from '../constants'
+import { API_ROOT, PARSE_JSON, HEADERS } from '../constants'
 import { getRoom, setPhrase, editRoom } from '../redux/actions'
 
 
@@ -19,6 +20,15 @@ class GameContainer extends React.Component {
 
   componentDidUpdate() {
     console.log('GameContainer didUpdate')
+    this.handlePostFetch()
+  }
+
+  handlePostFetch = () => {
+    fetch(`${API_ROOT}/sessions`, {
+      method: 'POST',
+      headers: HEADERS,
+      body: JSON.stringify({selectedRoom: this.props.selectedRoom})
+    });
   }
 
 
@@ -45,7 +55,7 @@ class GameContainer extends React.Component {
           (
           this.props.selectedRoom.selected_phrase_id
               ?
-              <GamePlay match={this.props.match} />
+              <GamePlayGuesser match={this.props.match} />
               :
               <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} handleClick={this.handleClick} />
           )
