@@ -64,8 +64,8 @@ class ChatsArea extends React.Component {
           </div>
         </div>
 
-        <ChatBoxInput roomId={this.roomURL}/>
-
+        <ChatBoxInput roomId={this.roomURL} />
+        <ChatBoxBot roomId={this.roomURL} />
       </div>
     )
   }
@@ -95,7 +95,7 @@ const orderedChats = chats => {
     (a, b) => new Date(a.created_at) - new Date(b.created_at)
   )
   return sortedChats.map(chat => {
-    return <ChatMessage key={chat.id} text={chat.text} />
+    return <ChatMessage key={chat.id} text={chat.text} role={chat.role} />
   })
 }
 

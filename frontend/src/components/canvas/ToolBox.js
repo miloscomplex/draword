@@ -4,7 +4,7 @@ class ToolBox extends React.Component {
   render() {
     return (
       <div id='toolbox'>
-       <li onClick={event => this.props.handleClick(event)}>clear</li>
+       <li onClick={event => this.props.handleClearClick(event)}>clear</li>
       </div>
     )
   }

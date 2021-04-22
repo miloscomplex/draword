@@ -1,10 +1,13 @@
 import React from 'react'
 
 class ChatMessage extends React.Component {
+  guesser = 'guesser'
 
   render() {
     return (
-      <p className='admin'>{ this.props.text }</p>
+      <p className={ this.props.role ? this.props.role : this.guesser }>
+        { this.props.text }
+      </p>
     )
   }
 }

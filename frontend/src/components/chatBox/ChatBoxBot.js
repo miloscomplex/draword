@@ -5,8 +5,9 @@ import { API_ROOT, HEADERS } from '../../constants'
 class ChatBoxBot extends React.Component {
 
   state = {
-    text: 'Good Luck!',
-    room_id: this.props.roomId
+    text: 'Admin: Good Luck!',
+    room_id: this.props.roomId,
+    role: 'admin'
   }
 
   // intervalID = () => window.setInterval(this.myCallback, 2000)
@@ -23,7 +24,13 @@ class ChatBoxBot extends React.Component {
   }
 
   componentDidMount = () => {
-    this.myCallback()
+    // this.myCallback()
+  }
+
+  render = () => {
+    return (
+      ''
+    )
   }
 }
 

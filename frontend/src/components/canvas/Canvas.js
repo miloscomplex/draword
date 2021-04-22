@@ -192,7 +192,7 @@ class Canvas extends React.Component {
         <canvas ref={this.canvasRef}
         />
         }
-        <ToolBox handleClick={this.handleClearClick} />
+        <ToolBox handleClearClick={this.handleClearClick} />
       </React.Fragment>
     )
   }

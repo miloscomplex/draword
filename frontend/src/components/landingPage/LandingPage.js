@@ -8,8 +8,10 @@ class HowToPlay extends React.Component {
     return (
       <div className='wrapper'>
         <div className='landing-page'>
-          <h1>Landing Page</h1>
-          <p>The current theme for the game is Popular Karaoke Song. So try to think of songs that you'd chose to slay the microphone, if your guessing. The title is only necessary, not the artist, to win the round. If you decide to draw, draw your heart out and keep a 'Never Gonna Give You Up' attitude until either time expires or the word is correctly guessed.</p>
+          <h1>Hey There, welcome to Draword.</h1>
+          <h3>The current theme for the game is Popular Karaoke Song.</h3>
+
+          <p>So try to think of songs that you'd chose to slay the microphone, if your guessing. The title is only necessary, not the artist, to win the round. If you decide to draw, draw your heart out and keep a 'Never Gonna Give You Up' attitude until either time expires or the word is correctly guessed.</p>
 
           <p>If you like to draw, either choose a room that is marked 'You can draw' or make your own room. Then share the URL with your friends to start the game.</p>
 
