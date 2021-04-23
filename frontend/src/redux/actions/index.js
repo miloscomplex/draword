@@ -74,7 +74,7 @@ export function getRoom(roomId) {
   }
 }
 
-export function editRoom(roomObj) {
+export function editSelectedRoom(roomObj) {
   //console.log('editRoom roomObj= ', roomObj);
   return (dispatch) => {
     dispatch({ type: 'FETCHING' })

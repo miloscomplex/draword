@@ -29,7 +29,7 @@ function roomsReducer(state = defaultStore, action) {
         selectedRoom: {
           ...state.selectedRoom,
             selected_phrase_id: null,
-            selectedPhrase: null 
+            selectedPhrase: null
         }
       }
     default:

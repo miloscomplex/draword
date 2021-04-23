@@ -1,10 +1,9 @@
 import React from 'react'
 import GamePlay from './GamePlay'
-import GamePlayGuesser from './GamePlayGuesser'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
 import { API_ROOT, PARSE_JSON, HEADERS } from '../constants'
-import { getRoom, setPhrase, editRoom } from '../redux/actions'
+import { getRoom, setPhrase, editSelectedRoom } from '../redux/actions'
 
 
 class GameContainer extends React.Component {
@@ -15,30 +14,26 @@ class GameContainer extends React.Component {
   // make a call to the server for updated Room
   // dispatch will update state good for direct link
   componentDidMount = () => {
-    console.log('GameContainer didMount!')
+    //console.log('GameContainer didMount!')
+    // get the room and set it to selectedRoom in state 
     this.props.getRoom(this.props.match.params.id)
   }
 
   componentDidUpdate() {
-    console.log('GameContainer didUpdate')
+    //console.log('GameContainer didUpdate')
   }
 
-
-  handleClick = (matchObjId, phraseObjId) => {
-    //console.log(matchObjId, phraseObjId)
-    this.props.setRoom( {room_id: matchObjId, phrase_id: phraseObjId} )
-    // do not get why this works and below throws an error
-
-    //this.props.setPhrase( {room_id: matchObjId, phrase_id: phraseObjId} )
+  componentWillUnmount = () => {
+    // change this to a rails call to set to active?: true and allow drawee rights to the room.s
+    console.log('GameContainer umounted!');
+    this.props.editSelectedRoom({room_id: this.matchObj.params.id, })
   }
 
   render() {
-    //console.log('this.props.selectedRoom= ', this.props.selectedRoom);
 
     // match is browser props
     // console.log('this.props.match= ', this.props.match);
     const uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchObj.url}</code> isn't a valid room</h2>
-    //const phrase = this.props.selectedRoom.selected_phrase_id
     return (
       <div>
         {
@@ -62,7 +57,6 @@ class GameContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     selectedRoom: state.rooms.selectedRoom,
-    selectedPhrase: state.selectedPhrase.phrase,
     currentUser: state.users.user,
   }
 }
@@ -71,7 +65,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getRoom: roomId => { dispatch(getRoom(roomId)) },
-    setRoom: phraseObj => { dispatch(editRoom(phraseObj)) },
+    editSelectedRoom: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
     setPhrase: phraseId => { dispatch(setPhrase(phraseId)) },
   }
 }

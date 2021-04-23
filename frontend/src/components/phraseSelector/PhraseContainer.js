@@ -1,7 +1,7 @@
 import React from 'react'
 import PhraseList from './PhraseList'
 import { connect } from 'react-redux'
-import { editRoom, loadPhrases, setPhrase } from '../../redux/actions'
+import { editSelectedRoom, loadPhrases, setPhrase } from '../../redux/actions'
 
 class PhraseContainer extends React.Component {
 
@@ -16,13 +16,19 @@ class PhraseContainer extends React.Component {
     this.props.getRoom(this.props.match.params.id)
   }
 
+  // passed down to PhraseList
+  handleClick = (matchObjId, phraseObjId) => {
+    //console.log(matchObjId, phraseObjId)
+    this.props.editSelectedRoom( {room_id: matchObjId, phrase_id: phraseObjId} )
+  }
+
   render() {
     return (
       <div className='wrapper'>
         <div className='phrase-selector'>
           <h2>Phrase Selector</h2>
           <p className='description'>Select One of the phrases/words below to draw.</p>
-          <PhraseList phrases={this.props.phrases} handleClick={this.props.handleClick} match={this.props.match} />
+          <PhraseList phrases={this.props.phrases} handleClick={this.handleClick} match={this.props.match} />
         </div>
       </div>
     )
@@ -39,7 +45,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadPhrases: () => { dispatch(loadPhrases()) },
-    setRoom: phraseObj => { dispatch(editRoom(phraseObj)) },
+    editSelectedRoom: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
     setPhrase: phraseObj => { dispatch(setPhrase(phraseObj)) }
   }
 }

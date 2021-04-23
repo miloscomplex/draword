@@ -7,7 +7,7 @@ import { removeUser, createUser } from '../../redux/actions'
 class Header extends React.Component {
 
   componentDidMount = () => {
-    this.props.createUser({is_drawing: false})
+    this.props.createUser({id: this.props.currentUser.id, is_drawing: false})
   }
 
   componentWillUnmount = () => {

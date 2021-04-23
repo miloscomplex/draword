@@ -8,7 +8,7 @@ import ChatArea from '../components/chatBox/ChatArea'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import cable from '../services/Cable'
 import { connect } from 'react-redux'
-import { getPhrase, editRoom } from '../redux/actions'
+import { getPhrase, editSelectedRoom } from '../redux/actions'
 
 class GamePlay extends React.Component {
 
@@ -78,7 +78,7 @@ const mapDispatchToProps = dispatch => {
   return {
     //releasePhrase: () => dispatch({ type: 'RELEASE_PHRASE' }),
     getPhrase: phraseId => { dispatch(getPhrase(phraseId)) },
-    releasePhrase: phraseObj => { dispatch(editRoom(phraseObj)) },
+    releasePhrase: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
   }
 }
 
