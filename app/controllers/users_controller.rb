@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    # consider doing user_session if live. 
     @user = User.find_or_create_by(id: params[:user_id]) do |user|
       user.name = SecureRandom.hex
     end
@@ -46,6 +47,7 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find_by_id(params[:user_id])
+    session.delete :current_user_id
     user.destroy
     render json: user
   end
