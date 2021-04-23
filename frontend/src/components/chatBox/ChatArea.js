@@ -48,7 +48,17 @@ class ChatsArea extends React.Component {
     this.props.addChat(chat)
   }
 
+  checkForPhrase = (phraseObj, chatArrayObj) => {
+    let winner = false
+    chatArrayObj.forEach ( chatObj =>
+      chatObj.props.text.toLowerCase() === phraseObj.phrase.toLowerCase() ?
+        winner = true : winner = false
+    )
+    return winner
+  }
+
   render = () => {
+    console.log('orderedChats= ', orderedChats(this.props.chats));
     console.log(cable);
     const { chats, roomId } = this.props.state
     //console.log('chats= ', chats);
@@ -74,7 +84,8 @@ class ChatsArea extends React.Component {
 const mapStateToProps = state => {
   return {
     chats: state.rooms.selectedRoom.chats,
-    state: state.rooms.selectedRoom
+    state: state.rooms.selectedRoom,
+    selectedPhrase: state.rooms.selectedRoom.phrase
   }
 }
 

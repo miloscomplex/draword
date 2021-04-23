@@ -44,10 +44,10 @@ class GamePlay extends React.Component {
           {
             this.state.playing ?
               <React.Fragment>
-                {/*} <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedRoom.phrase.phrase }</strong></div> */ }
+                // <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedRoom.phrase.phrase }</strong></div>
                 <div id='wrapper'>
                   <div id='canvas'>
-                    <Canvas  match={roomURL} />
+                    <Canvas match={roomURL} />
                     <Timer />
                     <Score />
                   </div>
@@ -57,7 +57,7 @@ class GamePlay extends React.Component {
             :
               <React.Fragment>
                 <h2>Reminder:</h2>
-                <p>Click to start the timer will begin when the drawer initializes the round</p>
+                <p>Your Word/Phrase is <strong>{this.props.selectedRoom.phrase.phrase}</strong></p>
                 <button onClick={this.handleClick}>Click to start!</button>
               </React.Fragment>
           }
