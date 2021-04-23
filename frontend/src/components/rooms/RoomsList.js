@@ -56,12 +56,10 @@ class RoomsList extends React.Component {
   }
 
   handleClick = (event, roomId, hasDrawer) => {
-    console.log('I was clicked', roomId, event);
-    // set is drawing to true here
-    // TODO: Not sure if these are necessary ?? 
-    //this.props.editSelectedRoom({room_id: roomId, has_drawer: hasDrawer})
-    this.props.editUser({user_id: this.props.currentUser.id, room_id: roomId, is_drawing: true })
-
+    console.log('I was clicked', roomId, event)
+    // handle setting the drawer here!
+    // TODO: handle setting the drawer here!
+    this.props.editUser({ user_id: this.props.currentUser.id, is_drawing: true, room_id: roomId })
   }
 
   render = () => {

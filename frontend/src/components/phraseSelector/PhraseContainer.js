@@ -6,7 +6,6 @@ import { editSelectedRoom, loadPhrases, setPhrase } from '../../redux/actions'
 class PhraseContainer extends React.Component {
 
   componentWillUnmount = () => {
-    // change this to a rails call to set to active?: true and allow drawee rights to the room.
     console.log('PhraseSelector umounted!');
   }
 

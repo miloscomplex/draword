@@ -19,8 +19,6 @@ function roomsReducer(state = defaultStore, action) {
       }
     case 'ADD_ROOMS':
       return {...state, roomsList: action.payload }
-    case 'SET_ROOM':
-      return {...state, selectedRoom: action.payload }
     case 'UPDATE_ROOM':
       return {...state, selectedRoom: action.payload }
     case 'RELEASE_PHRASE':

@@ -69,7 +69,7 @@ export function getRoom(roomId) {
     dispatch({ type: 'FETCHING' })
     fetch(`${API_ROOT}/rooms/${roomId}`)
     .then(PARSE_JSON)
-    .then(data => dispatch({ type: 'SET_ROOM', payload: data}) )
+    .then(data => dispatch({ type: 'UPDATE_ROOM', payload: data}) )
     .catch( err =>  console.log('err= ', err))
   }
 }

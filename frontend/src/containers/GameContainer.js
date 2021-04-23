@@ -11,11 +11,10 @@ class GameContainer extends React.Component {
   // match is this browser props
   matchObj = this.props.match
 
-  // make a call to the server for updated Room
-  // dispatch will update state good for direct link
+
   componentDidMount = () => {
-    //console.log('GameContainer didMount!')
-    // get the room and set it to selectedRoom in state 
+    // dispatch will update state for direct link viewers
+    // get the room and set it to selectedRoom in state
     this.props.getRoom(this.props.match.params.id)
   }
 
@@ -24,16 +23,16 @@ class GameContainer extends React.Component {
   }
 
   componentWillUnmount = () => {
-    // change this to a rails call to set to active?: true and allow drawee rights to the room.s
     console.log('GameContainer umounted!');
+
+    // TODO: add a remove selected_room here
     this.props.editSelectedRoom({room_id: this.matchObj.params.id, })
   }
 
+  uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchObj.url}</code> isn't a valid room</h2>
+
   render() {
 
-    // match is browser props
-    // console.log('this.props.match= ', this.props.match);
-    const uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchObj.url}</code> isn't a valid room</h2>
     return (
       <div>
         {
@@ -47,7 +46,7 @@ class GameContainer extends React.Component {
               <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} handleClick={this.handleClick} />
           )
           :
-          (uhOh)
+          (this.uhOh)
         }
       </div>
     )
