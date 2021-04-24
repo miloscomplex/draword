@@ -3,7 +3,6 @@ import canvasReducer from './canvasReducer'
 import phrasesReducer from './phrasesReducer'
 import roomsReducer from './roomsReducer'
 import busyReducer from './busyReducer'
-import selectedPhraseReducer from './selectedPhraseReducer'
 import usersReducer from './usersReducer'
 
 const rootReducer = combineReducers({
@@ -11,7 +10,6 @@ const rootReducer = combineReducers({
   phrases: phrasesReducer,
   busySignal: busyReducer,
   rooms: roomsReducer,
-  selectedPhrase: selectedPhraseReducer,
   users: usersReducer,
 })
 

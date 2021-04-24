@@ -1,11 +1,8 @@
 import React from 'react'
-import ToolBox from '../components/canvas/ToolBox'
 import Timer from '../components/ui/Timer'
 import Score from '../components/ui/Score'
 import Canvas from '../components/canvas/Canvas'
-import CanvasContainer from '../components/canvas/CanvasContainer'
 import ChatArea from '../components/chatBox/ChatArea'
-import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import cable from '../services/Cable'
 import { connect } from 'react-redux'
 import { getPhrase, editSelectedRoom } from '../redux/actions'
@@ -44,7 +41,7 @@ class GamePlay extends React.Component {
           {
             this.state.playing ?
               <React.Fragment>
-                {/*} <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedRoom.phrase.phrase }</strong></div> */ }
+                <div className='phraseReminder'> Your phrase/word is <strong>{ this.props.selectedRoom.phrase.phrase }</strong></div>
                 <div id='wrapper'>
                   <div id='canvas'>
                     <Canvas  match={roomURL} />

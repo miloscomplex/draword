@@ -1,6 +1,5 @@
 import React from 'react';
 import ChatBoxInput from '../chatBox/ChatBoxInput';
-import { API_ROOT } from '../../constants';
 import ChatMessage from './ChatMessage';
 import cable from '../../services/Cable'
 import { connect } from 'react-redux'
@@ -60,7 +59,7 @@ class ChatsArea extends React.Component {
   render = () => {
     console.log('orderedChats= ', orderedChats(this.props.chats));
     console.log(cable);
-    const { chats, roomId } = this.props.state
+    //const { chats, roomId } = this.props.state
     //console.log('chats= ', chats);
 
     return (

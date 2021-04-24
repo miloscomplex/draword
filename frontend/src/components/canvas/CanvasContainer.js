@@ -1,22 +1,14 @@
 import React from 'react'
-import ToolBox from './ToolBox'
 import Timer from '../ui/Timer'
 import Score from '../ui/Score'
 import Canvas from './Canvas'
 import ChatArea from '../chatBox/ChatArea'
-import PhraseContainer from '../phraseSelector/PhraseContainer'
-import cable from '../../services/Cable'
 import { connect } from 'react-redux'
-import { editRoomPhrase, getRoom } from '../../redux/actions'
 
-class GamePlay extends React.Component {
+class CanvasContainer extends React.Component {
 
   state = {
     playing: false
-  }
-
-  componentDidMount = () => {
-    this.props.getRoom(this.props.match.params.id)
   }
 
   render() {
@@ -27,7 +19,8 @@ class GamePlay extends React.Component {
     return (
       <div>
             {
-            this.state.playing ?
+            this.state.playing
+            ?
               <React.Fragment>
                 <div className='phraseReminder'> Your phrase/word is <strong>{ selectedPhrase }</strong></div>
                 <div id='wrapper'>
@@ -58,12 +51,6 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getRoom: roomId => { dispatch(getRoom(roomId)) }
-  }
-}
 
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(GamePlay)
+export default connect(mapStateToProps)(CanvasContainer)

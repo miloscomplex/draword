@@ -18,7 +18,9 @@ class HowToPlay extends React.Component {
 
           <p className='strong'>Good Luck!</p>
         </div>
+
         <RoomsList />
+        
       </div>
     )
   }

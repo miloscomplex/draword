@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import GamePlay from '../../containers/GamePlay'
 
 class Room extends React.Component {
 

@@ -2,8 +2,7 @@ import React from 'react'
 import GamePlay from './GamePlay'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
-import { API_ROOT, PARSE_JSON, HEADERS } from '../constants'
-import { getRoom, setPhrase, editSelectedRoom } from '../redux/actions'
+import { setSelectedRoom, editSelectedRoom } from '../redux/actions'
 
 
 class GameContainer extends React.Component {
@@ -15,7 +14,7 @@ class GameContainer extends React.Component {
   componentDidMount = () => {
     // dispatch will update state for direct link viewers
     // get the room and set it to selectedRoom in state
-    this.props.getRoom(this.props.match.params.id)
+    this.props.setSelectedRoom(this.props.match.params.id)
   }
 
   componentDidUpdate() {
@@ -26,7 +25,8 @@ class GameContainer extends React.Component {
     console.log('GameContainer umounted!');
 
     // TODO: add a remove selected_room here
-    this.props.editSelectedRoom({room_id: this.matchObj.params.id, })
+    // in case they goto somewhere other than newGame
+    this.props.removeSelectedRoom()
   }
 
   uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchObj.url}</code> isn't a valid room</h2>
@@ -39,6 +39,7 @@ class GameContainer extends React.Component {
           this.props.selectedRoom
           ?
           (
+          {/* need somehting like current_user = is_drawer & currentRoom.id === user.room_id */},
           this.props.selectedRoom.selected_phrase_id
               ?
               <GamePlay match={this.props.match} />
@@ -63,9 +64,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getRoom: roomId => { dispatch(getRoom(roomId)) },
+    setSelectedRoom: roomId => { dispatch(setSelectedRoom(roomId)) },
     editSelectedRoom: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
-    setPhrase: phraseId => { dispatch(setPhrase(phraseId)) },
+    removeSelectedRoom: () => dispatch({type: 'REMOVE_SELECTED_ROOM',})
   }
 }
 

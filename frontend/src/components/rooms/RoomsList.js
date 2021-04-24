@@ -4,22 +4,21 @@ import Room from './Room'
 import cable from '../../services/Cable'
 
 import { connect } from 'react-redux'
-import { loadRooms, editSelectedRoom, createUser, editUser, removeUser } from '../../redux/actions'
+import { loadRooms, editUser } from '../../redux/actions'
 
 class RoomsList extends React.Component {
 
   componentDidMount = () => {
     this.props.loadRooms()
+    // --- ACTION CABLE --- //
     this.roomsChannel()
-    //console.log('this.props.currentUser= ', this.props.currentUser);
-  }
-
-  componentDidUpdate() {
-    //console.log('RoomList didUpdate')
+    // clear state of selectedRoom
+    this.props.removeSelectedRoom()
   }
 
   componentWillUnmount = () => {
     //console.log('RoomsList unmounted');
+    // --- ACTION CABLE --- //
     cable.disconnect()
     cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()
@@ -35,7 +34,7 @@ class RoomsList extends React.Component {
   }
 
   roomsChannel = () => {
-    const subscribe = cable.subscriptions.create({
+    cable.subscriptions.create({
     channel: `RoomsChannel`,
     },
       {connected: () => {
@@ -57,7 +56,7 @@ class RoomsList extends React.Component {
 
   handleClick = (event, roomId, hasDrawer) => {
     console.log('I was clicked', roomId, event)
-    // handle setting the drawer here!
+
     // TODO: handle setting the drawer here!
     this.props.editUser({ user_id: this.props.currentUser.id, is_drawing: true, room_id: roomId })
   }
@@ -70,6 +69,7 @@ class RoomsList extends React.Component {
         <ul>{ this.mapRooms(this.props.rooms) }</ul>
 
         <NewRoomForm />
+
       </div>
     )
   }
@@ -85,10 +85,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadRooms: () => { dispatch(loadRooms()) },
-    editSelectedRoom: (roomObj) => { dispatch(editSelectedRoom(roomObj)) },
-    createUser: userObj => { dispatch(createUser(userObj)) },
     editUser: userObj => { dispatch(editUser(userObj)) },
-    removeUser: userObj => { dispatch(removeUser(userObj)) }
+    removeSelectedRoom: () => dispatch({type: 'REMOVE_SELECTED_ROOM',})
   }
 }
 
