@@ -75,7 +75,7 @@ class ChatsArea extends React.Component {
         </div>
 
         <ChatBoxInput roomId={this.roomURL} currentUser={this.props.currentUser} />
-        <ChatBoxBot roomId={this.roomURL} />
+        <ChatBoxBot roomId={this.roomURL} currentUser={this.props.currentUser} />
       </div>
     )
   }

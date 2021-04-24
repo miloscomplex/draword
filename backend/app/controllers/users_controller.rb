@@ -11,9 +11,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    # consider doing user_session if live. 
+    # consider doing user_session if live.
     @user = User.find_or_create_by(id: params[:user_id]) do |user|
-      user.name = SecureRandom.hex
+      # user.name = SecureRandom.hex
+      user.name = Faker::Music.band
     end
     if @user.valid?
       params[:is_drawing] ? @user.is_drawing = params[:is_drawing] : @user.is_drawing = false

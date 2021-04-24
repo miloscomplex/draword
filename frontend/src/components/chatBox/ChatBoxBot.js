@@ -5,7 +5,7 @@ import { API_ROOT, HEADERS } from '../../constants'
 class ChatBoxBot extends React.Component {
 
   state = {
-    text: 'Admin: Good Luck!',
+    text: `${this.props.currentUser.name}: has joined the game`,
     room_id: this.props.roomId,
     role: 'admin'
   }
@@ -24,7 +24,7 @@ class ChatBoxBot extends React.Component {
   }
 
   componentDidMount = () => {
-    // this.myCallback()
+    this.myCallback()
   }
 
   render = () => {

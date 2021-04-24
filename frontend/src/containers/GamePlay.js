@@ -26,7 +26,7 @@ class GamePlay extends React.Component {
 
   componentDidMount = () => {
     //this.props.getPhrase(this.props.phrase.id)
-    // set room if user was directly linked here 
+    // set room if user was directly linked here
     !this.props.currentUser.room_id && this.props.editUser({ user_id: this.props.currentUser.id, is_drawing: false, room_id: this.props.selectedRoom.id })
   }
 
@@ -56,7 +56,7 @@ class GamePlay extends React.Component {
                 }
                 <div id='wrapper'>
                   <div id='canvas'>
-                    <Canvas  match={roomURL} />
+                    <Canvas  match={roomURL} isDrawing={this.props.currentUser.isDrawing}  />
                     <Timer />
                     <Score />
                   </div>
