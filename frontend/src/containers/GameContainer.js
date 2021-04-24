@@ -26,7 +26,7 @@ class GameContainer extends React.Component {
 
     // TODO: add a remove selected_room here
     // in case they goto somewhere other than newGame
-    this.props.removeSelectedRoom()
+    //this.props.removeSelectedRoom()
   }
 
   uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchObj.url}</code> isn't a valid room</h2>
@@ -44,7 +44,7 @@ class GameContainer extends React.Component {
               ?
               <GamePlay match={this.props.match} />
               :
-              <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} handleClick={this.handleClick} />
+              <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} />
           )
           :
           (this.uhOh)

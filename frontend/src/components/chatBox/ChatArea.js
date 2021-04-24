@@ -43,7 +43,7 @@ class ChatsArea extends React.Component {
 
   handleReceivedChat = response => {
     const { chat } = response
-    console.log('chat= ', chat)
+    //console.log('chat= ', chat)
     this.props.addChat(chat)
   }
 
@@ -57,9 +57,9 @@ class ChatsArea extends React.Component {
   }
 
   render = () => {
-    console.log('orderedChats= ', orderedChats(this.props.chats));
-    console.log(cable);
-    //const { chats, roomId } = this.props.state
+    //console.log('orderedChats= ', orderedChats(this.props.chats));
+    //console.log(cable);
+    const { chats } = this.props.selectedRoom
     //console.log('chats= ', chats);
 
     return (
@@ -67,7 +67,7 @@ class ChatsArea extends React.Component {
         <h2>Chat Window</h2>
         { /* you can't pass down objects via props */ }
         <div ref={this.chatContainer} className='chat-messages'>
-          { orderedChats(this.props.chats) ? orderedChats(this.props.chats) : suchEmpty }
+          { orderedChats(chats) ? orderedChats(chats) : suchEmpty }
           <div className='scroll-fix'
             ref={(el) => { this.messagesEnd = el }}>
           </div>
@@ -82,15 +82,12 @@ class ChatsArea extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    chats: state.rooms.selectedRoom.chats,
-    state: state.rooms.selectedRoom,
-    selectedPhrase: state.rooms.selectedRoom.phrase
+    selectedRoom: state.rooms.selectedRoom,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    //loadPhrases: () => { dispatch(loadPhrases()) },
     loadChats: roomId => { dispatch(loadChats(roomId)) },
     addChat: chatObj => { dispatch(addChat(chatObj)) }
   }
