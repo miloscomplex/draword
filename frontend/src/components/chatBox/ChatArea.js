@@ -104,7 +104,7 @@ const orderedChats = chats => {
     (a, b) => new Date(a.created_at) - new Date(b.created_at)
   )
   return sortedChats.map(chat => {
-    return <ChatMessage key={chat.id} text={chat.text} role={chat.role} />
+    return <ChatMessage key={chat.id} text={chat.text} role={chat.role} name={chat.name} />
   })
 }
 

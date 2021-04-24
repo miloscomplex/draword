@@ -5,7 +5,7 @@ import { API_ROOT, HEADERS } from '../../constants'
 class ChatBoxBot extends React.Component {
 
   state = {
-    text: `${this.props.currentUser.name}: has joined the game`,
+    text: `${this.props.currentUser.name} has joined the game`,
     room_id: this.props.roomId,
     role: 'admin'
   }

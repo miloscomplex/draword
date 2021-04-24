@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_22_084641) do
+ActiveRecord::Schema.define(version: 2021_04_24_205352) do
 
   create_table "canvas", force: :cascade do |t|
     t.string "action"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_084641) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "role"
+    t.string "name"
     t.index ["room_id"], name: "index_chats_on_room_id"
   end
 

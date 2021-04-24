@@ -6,7 +6,7 @@ class ChatMessage extends React.Component {
   render() {
     return (
       <p className={this.props.role}>
-        { this.props.text }
+        <strong>{ this.props.name }</strong> { this.props.text }
       </p>
     )
   }
