@@ -19,7 +19,8 @@ class ChatsController < ApplicationController
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
         ChatSerializer.new(chat)
       ).serializable_hash
-      ActionCable.server.broadcast 'chats_channel', serialized_data
+      ActionCable.server.broadcast "chats_channel_#{chat_params[:room_id]}",
+       serialized_data
       head :ok
     else
       render json: { error: 'Could not create the chat_message'}, status: 422
