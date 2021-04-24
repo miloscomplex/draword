@@ -27,7 +27,7 @@ class ChatsArea extends React.Component {
   chatsChannel = () => {
     cable.subscriptions.create({
     channel: `ChatsChannel`,
-    id: this.props.selectedRoom.id, 
+    id: this.props.selectedRoom.id,
     },
       {connected: () => {
         console.log('ChatsChannel connected!')
@@ -74,7 +74,7 @@ class ChatsArea extends React.Component {
           </div>
         </div>
 
-        <ChatBoxInput roomId={this.roomURL} />
+        <ChatBoxInput roomId={this.roomURL} currentUser={this.props.currentUser} />
         <ChatBoxBot roomId={this.roomURL} />
       </div>
     )
@@ -84,6 +84,7 @@ class ChatsArea extends React.Component {
 const mapStateToProps = state => {
   return {
     selectedRoom: state.rooms.selectedRoom,
+    currentUser: state.users.user,
   }
 }
 
