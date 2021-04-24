@@ -2,7 +2,7 @@ import React from 'react'
 import GamePlay from './GamePlay'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
-import { setSelectedRoom, editSelectedRoom } from '../redux/actions'
+import { setSelectedRoom, editSelectedRoom, editUser } from '../redux/actions'
 
 
 class GameContainer extends React.Component {
@@ -15,6 +15,8 @@ class GameContainer extends React.Component {
     // dispatch will update state for direct link viewers
     // get the room and set it to selectedRoom in state
     this.props.setSelectedRoom(this.props.match.params.id)
+    // set if directly linked
+    //this.props.currentUser.room_id === null && this.props.editUser({ user_id: this.props.currentUser.id, is_drawing: false, room_id: this.matchObj.params.id })
   }
 
   componentDidUpdate() {
@@ -66,7 +68,8 @@ const mapDispatchToProps = dispatch => {
   return {
     setSelectedRoom: roomId => { dispatch(setSelectedRoom(roomId)) },
     editSelectedRoom: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
-    removeSelectedRoom: () => dispatch({type: 'REMOVE_SELECTED_ROOM',})
+    removeSelectedRoom: () => dispatch({type: 'REMOVE_SELECTED_ROOM',}),
+    editUser: userObj => { dispatch(editUser(userObj)) },
   }
 }
 

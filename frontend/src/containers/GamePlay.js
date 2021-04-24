@@ -5,7 +5,7 @@ import Canvas from '../components/canvas/Canvas'
 import ChatArea from '../components/chatBox/ChatArea'
 import cable from '../services/Cable'
 import { connect } from 'react-redux'
-import { getPhrase, editSelectedRoom } from '../redux/actions'
+import { getPhrase, editSelectedRoom, editUser } from '../redux/actions'
 
 class GamePlay extends React.Component {
 
@@ -20,11 +20,14 @@ class GamePlay extends React.Component {
       subscription.unsubscribe()
     })
     cable.disconnect()
-    this.props.releasePhrase( {room_id: this.props.selectedRoom.id, phrase_id: null} )
+    this.props.releasePhrase({ room_id: this.props.selectedRoom.id, phrase_id: null })
+    this.props.editUser({ user_id: this.props.currentUser.id, room_id: null, is_drawing: false })
   }
 
   componentDidMount = () => {
     //this.props.getPhrase(this.props.phrase.id)
+    // set room if user was directly linked here 
+    !this.props.currentUser.room_id && this.props.editUser({ user_id: this.props.currentUser.id, is_drawing: false, room_id: this.props.selectedRoom.id })
   }
 
   handleClick = () => {
@@ -85,6 +88,7 @@ const mapDispatchToProps = dispatch => {
     //releasePhrase: () => dispatch({ type: 'RELEASE_PHRASE' }),
     getPhrase: phraseId => { dispatch(getPhrase(phraseId)) },
     releasePhrase: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
+    editUser: userObj => { dispatch(editUser(userObj)) }
   }
 }
 
