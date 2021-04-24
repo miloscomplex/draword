@@ -27,6 +27,7 @@ class ChatsArea extends React.Component {
   chatsChannel = () => {
     cable.subscriptions.create({
     channel: `ChatsChannel`,
+    id: this.props.selectedRoom.id, 
     },
       {connected: () => {
         console.log('ChatsChannel connected!')
