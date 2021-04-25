@@ -11,7 +11,10 @@ class Header extends React.Component {
   }
 
   componentWillUnmount = () => {
-    this.props.removeUser( {user_id: this.props.currentUser.id } )
+    return (
+      window.addEventListener('beforeunload', (e) => {
+      this.props.removeUser({ user_id: this.props.currentUser.id })
+    }))
   }
 
   render() {

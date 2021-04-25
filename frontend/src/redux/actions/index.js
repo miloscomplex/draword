@@ -118,6 +118,7 @@ export function editUser(userObj) {
       body: JSON.stringify(userObj),
     }).then(PARSE_JSON)
     .then(data => dispatch({ type: 'UPDATE_USER', payload: data }))
+    .then(data => { dispatch(loadRooms()) })
   }
 }
 

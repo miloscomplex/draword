@@ -2,7 +2,7 @@ import React from 'react'
 import GamePlay from './GamePlay'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
-import { setSelectedRoom, editSelectedRoom, editUser } from '../redux/actions'
+import { setSelectedRoom, editSelectedRoom, editUser, removeUser } from '../redux/actions'
 
 
 class GameContainer extends React.Component {
@@ -15,7 +15,8 @@ class GameContainer extends React.Component {
   componentDidMount = () => {
     // dispatch will update state for direct link viewers
     // get the room and set it to selectedRoom in state
-    this.props.setSelectedRoom(this.props.match.params.id)
+    const { match, currentUser } = this.props
+    this.props.setSelectedRoom(match.params.id)
   }
 
   componentDidUpdate() {
@@ -24,6 +25,8 @@ class GameContainer extends React.Component {
 
   componentWillUnmount = () => {
     console.log('GameContainer umounted!');
+    const { match, currentUser } = this.props
+    this.props.removeUserFromRoom({ user_id: currentUser.id, room_id: null, is_drawing: currentUser.is_drawing })
 
     // TODO: add a remove selected_room here
     // in case they goto somewhere other than newGame
@@ -62,6 +65,9 @@ const mapDispatchToProps = dispatch => {
     editSelectedRoom: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
     removeSelectedRoom: () => dispatch({type: 'REMOVE_SELECTED_ROOM',}),
     editUser: userObj => { dispatch(editUser(userObj)) },
+    addUserToRoom: userObj => { dispatch(editUser(userObj)) },
+    removeUserFromRoom: userObj => { dispatch(editUser(userObj)) },
+    removeUser: userObj => { dispatch(removeUser(userObj)) }
   }
 }
 

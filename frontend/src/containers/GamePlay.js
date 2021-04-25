@@ -25,15 +25,15 @@ class GamePlay extends React.Component {
     cable.disconnect()
     this.props.releasePhrase({ room_id: this.props.selectedRoom.id, phrase_id: null })
     this.props.editUser({ user_id: this.props.currentUser.id, room_id: null, is_drawing: false })
-
   }
 
   componentDidMount = () => {
     //this.props.getPhrase(this.props.phrase.id)
     // set room if user was directly linked here
     // ADD FOREIGN key user
-    this.props.editUser({ user_id: this.props.currentUser.id, is_drawing: false, room_id: this.props.selectedRoom.id })
-    this.props.loadRooms()
+    const { match, currentUser } = this.props
+
+    this.props.addUserToRoom({ user_id: currentUser.id, room_id: match.params.id, is_drawing: currentUser.is_drawing })
   }
 
   handleClick = () => {
@@ -90,6 +90,7 @@ const mapDispatchToProps = dispatch => {
     getPhrase: phraseId => { dispatch(getPhrase(phraseId)) },
     releasePhrase: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
     editUser: userObj => { dispatch(editUser(userObj)) },
+    addUserToRoom: userObj => { dispatch(editUser(userObj)) },
     loadRooms: () => { dispatch(loadRooms()) },
   }
 }
