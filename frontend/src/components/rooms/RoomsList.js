@@ -47,24 +47,10 @@ class RoomsList extends React.Component {
     this.props.loadRooms()
   }
 
-  handleDrawerClick = (roomId, hasDrawer) => {
-
-    // TODO: handle setting the drawer here!
-    this.props.editUser({ user_id: this.props.currentUser.id, is_drawing: true, room_id: roomId })
-    this.props.editSelectedRoom({ room_id: roomId, has_drawer: true })
-  }
-
-  handleClick = (event, roomId, hasDrawer) => {
-    // TODO: handle setting the drawer here!
-    this.props.editUser({ user_id: this.props.currentUser.id, is_drawing: false, room_id: roomId })
-    this.props.editSelectedRoom({ room_id: roomId, has_drawer: true })
-  }
-
   mapRooms = rooms => {
     return rooms.map(room => {
       return (
-        <Room
-          key={room.id} id={room.id} title={room.title} isPhraseSelected={room.selected_phrase_id} handleDrawerClick={this.handleDrawerClick} handleClick={this.handleClick} />
+        <Room key={room.id} id={room.id} title={room.title} />
       )
     })
   }

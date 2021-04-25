@@ -180,7 +180,6 @@ class Canvas extends React.Component {
     //console.log('this.canvasChannel', this.canvasChannel());
     return (
       <React.Fragment>
-        { this.props.isDrawing ?
         <canvas
           onMouseDown={event => this.startDrawing(event)}
           onMouseUp={event => this.stopDrawing(event)}
@@ -188,10 +187,6 @@ class Canvas extends React.Component {
           onMouseLeave={event => this.stopDrawing(event)}
           ref={this.canvasRef}
         />
-        :
-        <canvas ref={this.canvasRef}
-        />
-        }
         <ToolBox handleClearClick={this.handleClearClick} />
       </React.Fragment>
     )

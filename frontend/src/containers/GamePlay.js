@@ -22,12 +22,13 @@ class GamePlay extends React.Component {
     cable.disconnect()
     this.props.releasePhrase({ room_id: this.props.selectedRoom.id, phrase_id: null })
     this.props.editUser({ user_id: this.props.currentUser.id, room_id: null, is_drawing: false })
+
   }
 
   componentDidMount = () => {
     //this.props.getPhrase(this.props.phrase.id)
     // set room if user was directly linked here
-    this.props.currentUser.room_id && this.props.editUser({ user_id: this.props.currentUser.id, is_drawing: false, room_id: this.props.selectedRoom.id })
+    this.props.editUser({ user_id: this.props.currentUser.id, is_drawing: false, room_id: this.props.selectedRoom.id })
   }
 
   handleClick = () => {
@@ -37,7 +38,7 @@ class GamePlay extends React.Component {
   render() {
     /* this.props.match.params ==> what's the url for the room */
     const roomURL = this.props.match
-    console.log('roomURL= ', roomURL);
+    //console.log('roomURL= ', roomURL);
 
     return (
       <div>
@@ -66,7 +67,7 @@ class GamePlay extends React.Component {
             :
               <React.Fragment>
                 <h2>Reminder:</h2>
-                <p>Click to start the timer will begin when the drawer initializes the round</p>
+                <p>Click to start. The timer will begin when the drawer initializes the round</p>
                 <button onClick={this.handleClick}>Click to start!</button>
               </React.Fragment>
           }

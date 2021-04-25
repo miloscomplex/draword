@@ -38,14 +38,7 @@ class GameContainer extends React.Component {
         {
           this.props.selectedRoom
           ?
-          (
-          {/* need somehting like current_user = is_drawer & currentRoom.id === user.room_id */},
-          this.props.selectedRoom.selected_phrase_id
-              ?
-              <GamePlay match={this.props.match} />
-              :
-              <PhraseContainer match={this.props.match} getRoom={this.props.getRoom} />
-          )
+          <GamePlay match={this.props.match} />
           :
           (this.uhOh)
         }
