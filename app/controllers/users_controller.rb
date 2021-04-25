@@ -30,9 +30,7 @@ class UsersController < ApplicationController
     user = User.find_or_create_by(id: params[:user_id]) do |user|
       user.name = Faker::Music.band
     end
-    new_room = Room.find_by_id(params[:room_id])
-    user.room = new_room
-    user.is_drawing = params[:is_drawing]
+    user.update(user_params)
     if user.save
       render json: user
     else
@@ -54,7 +52,7 @@ private
   end
 
   def user_params
-    params.permit(:name, :initials, :is_drawing, :room_id)
+    params.require(:user).permit(:id, :user_id, :initials, :is_drawing, :room_id)
   end
 
 
