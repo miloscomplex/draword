@@ -17,6 +17,7 @@ class GameContainer extends React.Component {
     // get the room and set it to selectedRoom in state
     const { match, currentUser } = this.props
     this.props.setSelectedRoom(match.params.id)
+    this.props.addUserToRoom({ user_id: currentUser.id, room_id: match.params.id, is_drawing: currentUser.is_drawing })
   }
 
   componentDidUpdate() {
@@ -26,7 +27,7 @@ class GameContainer extends React.Component {
   componentWillUnmount = () => {
     console.log('GameContainer umounted!');
     const { match, currentUser } = this.props
-    this.props.removeUserFromRoom({ user_id: currentUser.id, room_id: null, is_drawing: currentUser.is_drawing })
+    // this.props.removeUserFromRoom({ user_id: currentUser.id, room_id: null, is_drawing: currentUser.is_drawing })
 
     // TODO: add a remove selected_room here
     // in case they goto somewhere other than newGame

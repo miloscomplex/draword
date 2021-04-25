@@ -32,8 +32,6 @@ class GamePlay extends React.Component {
     // set room if user was directly linked here
     // ADD FOREIGN key user
     const { match, currentUser } = this.props
-
-    this.props.addUserToRoom({ user_id: currentUser.id, room_id: match.params.id, is_drawing: currentUser.is_drawing })
   }
 
   handleClick = () => {
