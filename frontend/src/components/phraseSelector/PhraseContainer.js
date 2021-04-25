@@ -18,6 +18,7 @@ class PhraseContainer extends React.Component {
     //console.log(matchObjId, phraseObjId)
     // set the phrase
     this.props.editSelectedRoom( {room_id: matchObjId, phrase_id: phraseObjId} )
+    
   }
 
   render() {

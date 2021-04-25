@@ -27,7 +27,7 @@ class GamePlay extends React.Component {
   componentDidMount = () => {
     //this.props.getPhrase(this.props.phrase.id)
     // set room if user was directly linked here
-    !this.props.currentUser.room_id && this.props.editUser({ user_id: this.props.currentUser.id, is_drawing: false, room_id: this.props.selectedRoom.id })
+    this.props.currentUser.room_id && this.props.editUser({ user_id: this.props.currentUser.id, is_drawing: false, room_id: this.props.selectedRoom.id })
   }
 
   handleClick = () => {

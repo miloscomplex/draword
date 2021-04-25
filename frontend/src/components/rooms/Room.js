@@ -5,9 +5,9 @@ class Room extends React.Component {
 
   canYouDraw = selectedPhrase => {
     return (
-      selectedPhrase ? <a className='disabled' disabled>Be a guesser</a>
+      selectedPhrase ? <a className='disabled' disabled>You can only guess</a>
       :
-      <Link to={`/rooms/${this.props.id}`} onClick={ event => this.props.handleClick(event, this.props.id, true) }>you can draw</Link>
+      <Link to={`/rooms/${this.props.id}`} onClick={ event => this.props.handleDrawerClick(this.props.id, true) }>click to draw</Link>
     )
   }
 
