@@ -16,15 +16,23 @@ class GamePlay extends React.Component {
     selectPhrase: false,
   }
 
-  componentWillUnmount = () => {
-
-    console.log('GamePlay unmounted')
-    cable.subscriptions.subscriptions.forEach( subscription => {
-      subscription.unsubscribe()
+  // need to add action cable to have overlays and announcements broadcasted
+  gamePlayChannel = () => {
+    cable.subscriptions.create({
+    channel: `GamePlaysChannel`,
+    id: this.props.selectedRoom.id,
+    },
+      {connected: () => {
+        console.log('GamePlaysChannel connected!')
+      },
+        disconnected: () => {
+          console.log('GamePlaysChannel disconnected!')
+        },
+        received: data => {
+          this.handleReceivedChat(data)
+          console.log('GamePlaysChannel data received')
+        }
     })
-    cable.disconnect()
-    this.props.releasePhrase({ room_id: this.props.selectedRoom.id, phrase_id: null })
-    this.props.editUser({ user_id: this.props.currentUser.id, room_id: null, is_drawing: false })
   }
 
   componentDidMount = () => {
@@ -32,10 +40,25 @@ class GamePlay extends React.Component {
     // set room if user was directly linked here
     // ADD FOREIGN key user
     const { match, currentUser } = this.props
+    this.gamePlayChannel()
+  }
+
+  handleReceivedData = data => {
+    // maybe have switch statements here to handle game flow
   }
 
   handleClick = () => {
     this.setState({ playing: true })
+  }
+
+  componentWillUnmount = () => {
+    console.log('GamePlay unmounted')
+    cable.subscriptions.subscriptions.forEach( subscription => {
+      subscription.unsubscribe()
+    })
+    cable.disconnect()
+    this.props.releasePhrase({ room_id: this.props.selectedRoom.id, phrase_id: null })
+    this.props.editUser({ user_id: this.props.currentUser.id, room_id: null, is_drawing: false })
   }
 
   render() {

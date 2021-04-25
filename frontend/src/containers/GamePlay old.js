@@ -12,9 +12,10 @@ class GamePlay extends React.Component {
   state = {
     playing: false,
   }
+  // need to add action cable to have overlays and announcements broadcasted
+
 
   componentWillUnmount = () => {
-
     console.log('GamePlay unmounted')
     cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()
@@ -22,7 +23,6 @@ class GamePlay extends React.Component {
     cable.disconnect()
     this.props.releasePhrase({ room_id: this.props.selectedRoom.id, phrase_id: null })
     this.props.editUser({ user_id: this.props.currentUser.id, room_id: null, is_drawing: false })
-
   }
 
   componentDidMount = () => {

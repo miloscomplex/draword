@@ -48,7 +48,7 @@ class Canvas extends React.Component {
         received: data => {
           this.dataCache = data
           this.drawOnCanvas(data)
-          console.log('CanvasChannel data received', data)
+          //console.log('CanvasChannel data received', data)
         },
         send: data => {
           console.log('CanvasChannel sent data', data)
@@ -136,7 +136,7 @@ class Canvas extends React.Component {
   }
 
   drawOnCanvas = (drawingObj) => {
-    console.log('hello', drawingObj);
+    //console.log('hello', drawingObj);
     const {offsetX, offsetY} = drawingObj
     const canvas = this.contextRef.current
     switch (drawingObj.action) {
