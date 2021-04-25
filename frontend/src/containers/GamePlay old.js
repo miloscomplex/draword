@@ -3,17 +3,14 @@ import Timer from '../components/ui/Timer'
 import Score from '../components/ui/Score'
 import Canvas from '../components/canvas/Canvas'
 import ChatArea from '../components/chatBox/ChatArea'
-import Callout from '../components/ui/Callout'
 import cable from '../services/Cable'
-import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
-import { getPhrase, editSelectedRoom, editUser, loadRooms } from '../redux/actions'
+import { getPhrase, editSelectedRoom, editUser } from '../redux/actions'
 
 class GamePlay extends React.Component {
 
   state = {
     playing: false,
-    selectPhrase: false,
   }
 
   componentWillUnmount = () => {
@@ -31,9 +28,7 @@ class GamePlay extends React.Component {
   componentDidMount = () => {
     //this.props.getPhrase(this.props.phrase.id)
     // set room if user was directly linked here
-    // ADD FOREIGN key user
     this.props.editUser({ user_id: this.props.currentUser.id, is_drawing: false, room_id: this.props.selectedRoom.id })
-    this.props.loadRooms()
   }
 
   handleClick = () => {
@@ -50,11 +45,16 @@ class GamePlay extends React.Component {
           {
             this.state.playing ?
               <React.Fragment>
-
-                <Callout selectedRoom={this.props.selectedRoom} currentUser={this.props.currentUser} />
-
-                { !this.state.selectPhrase && <PhraseContainer match={this.props.match} /> }
-
+                { this.props.currentUser.is_drawing
+                  ?
+                (<div className='phraseReminder'>
+                  Your phrase/word is <strong>{ this.props.selectedRoom.phrase.phrase }</strong>
+                </div>)
+                :
+                (<div className='phraseReminder'>
+                  Remember to think of popular Karaoke songs
+                </div>)
+                }
                 <div id='wrapper'>
                   <div id='canvas'>
                     <Canvas  match={roomURL} isDrawing={this.props.currentUser.isDrawing}  />
@@ -89,8 +89,7 @@ const mapDispatchToProps = dispatch => {
     //releasePhrase: () => dispatch({ type: 'RELEASE_PHRASE' }),
     getPhrase: phraseId => { dispatch(getPhrase(phraseId)) },
     releasePhrase: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
-    editUser: userObj => { dispatch(editUser(userObj)) },
-    loadRooms: () => { dispatch(loadRooms()) },
+    editUser: userObj => { dispatch(editUser(userObj)) }
   }
 }
 

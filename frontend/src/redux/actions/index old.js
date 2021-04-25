@@ -74,16 +74,6 @@ export function setSelectedRoom(roomId) {
   }
 }
 
-export function loadRoom(roomObj) {
-  return (dispatch) => {
-    dispatch({ type: 'FETCHING' })
-    fetch(`${API_ROOT}/rooms/${roomObj.room_id}`)
-    .then(PARSE_JSON)
-    .then(data => dispatch({ type: 'LOAD_ROOM', payload: data}) )
-    .catch( err =>  console.log('err= ', err))
-  }
-}
-
 export function editSelectedRoom(roomObj) {
   //console.log('editRoom roomObj= ', roomObj);
   return (dispatch) => {

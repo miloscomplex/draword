@@ -9,6 +9,7 @@ class GameContainer extends React.Component {
 
   // match is this browser props
   matchObj = this.props.match
+  matchId = this.props.match.params.id
 
 
   componentDidMount = () => {
