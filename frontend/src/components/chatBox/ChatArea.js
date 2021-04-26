@@ -3,7 +3,7 @@ import ChatBoxInput from '../chatBox/ChatBoxInput';
 import ChatMessage from './ChatMessage';
 import cable from '../../services/Cable'
 import { connect } from 'react-redux'
-import { loadChats, addChat } from '../../redux/actions'
+import { loadChats, addChat, gamePlayMsg } from '../../redux/actions'
 import ChatBoxBot from './ChatBoxBot'
 
 class ChatsArea extends React.Component {
@@ -54,16 +54,18 @@ class ChatsArea extends React.Component {
   handleReceivedChat = response => {
     const { chat } = response
     //console.log('chat= ', chat)
+    this.checkForPhrase( chat, this.props.selectedRoom.phrase )
+    //console.log('chat= ', chat);
     this.props.addChat(chat)
   }
 
-  checkForPhrase = (phraseObj, chatArrayObj) => {
+  checkForPhrase = (chatObj, phraseObj) => {
+    console.log('checkForPhrase= ', phraseObj)
     let winner = false
-    chatArrayObj.forEach ( chatObj =>
-      chatObj.props.text.toLowerCase() === phraseObj.phrase.toLowerCase() ?
-        winner = true : winner = false
-    )
-    return winner
+    const end = 'end'
+    phraseObj && chatObj.text.toLowerCase().includes(phraseObj.phrase.toLowerCase()) &&
+    alert(`Hot Dang you got it: ${phraseObj.phrase}`)
+    //this.props.gamePlayMsg( { action: end, room_id: this.props.selectedRoom.id } )
   }
 
   render = () => {
@@ -100,7 +102,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadChats: roomId => { dispatch(loadChats(roomId)) },
-    addChat: chatObj => { dispatch(addChat(chatObj)) }
+    addChat: chatObj => { dispatch(addChat(chatObj)) },
+    gamePlayMsg: gamePlayObj => { dispatch(gamePlayMsg(gamePlayObj)) }
   }
 }
 

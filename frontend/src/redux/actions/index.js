@@ -143,3 +143,13 @@ export function gamePlayMsg(gamePlayObj) {
     })
   }
 }
+
+export function loadGamePlayMsg(roomId) {
+  return (dispatch) => {
+    dispatch({ type: 'FETCHING' })
+    fetch(`${API_ROOT}/game_plays/${roomId}`)
+    .then(PARSE_JSON)
+    .then(data => console.log('loadChats= ', data.chats ))
+    //.then(data => dispatch({type: 'LOAD_CHATS', payload: data}))
+  }
+}

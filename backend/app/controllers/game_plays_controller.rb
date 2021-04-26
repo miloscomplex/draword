@@ -5,13 +5,16 @@ class GamePlaysController < ApplicationController
   end
 
   def show
-    game_play = GamePlay.find_by(id: params[:id])
+    game_play = GamePlay.find_by(room_id: params[:room_id])
     render json: game_play
   end
 
   def create
     # just broadcast don't write to the server
-    game_play = GamePlay.create(game_play_params)
+    game_play = GamePlay.create(room_id: game_play_params[:room_id]) do |room|
+      room.action = game_play_params[:action]
+    end
+
     if game_play.save
       serialized_data = game_play_params
       ActionCable.server.broadcast "game_plays_channel_#{game_play_params[:room_id]}", game_play_params

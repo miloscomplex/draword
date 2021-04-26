@@ -3,7 +3,7 @@ import PrePlay from '../components/gamePlay/PrePlay'
 import GamePlay from './GamePlay'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
-import { setSelectedRoom, editSelectedRoom, editUser, removeUser } from '../redux/actions'
+import { setSelectedRoom, editSelectedRoom, editUser, removeUser, gamePlayMsg } from '../redux/actions'
 
 
 class GameContainer extends React.Component {
@@ -33,6 +33,7 @@ class GameContainer extends React.Component {
     this.props.editUser({ user_id: currentUser.id, is_drawing: true, room_id: match.params.id })
     this.props.editSelectedRoom({room_id: match.params.id, has_drawer: true})
     this.setState({ displayPrePlay: false })
+    this.props.gamePlayMsg({room_id: this.props.selectedRoom, action: 'start'})
   }
 
   handleGuessClick = userObj => {
@@ -85,7 +86,8 @@ const mapDispatchToProps = dispatch => {
     editUser: userObj => { dispatch(editUser(userObj)) },
     addUserToRoom: userObj => { dispatch(editUser(userObj)) },
     removeUserFromRoom: userObj => { dispatch(editUser(userObj)) },
-    removeUser: userObj => { dispatch(removeUser(userObj)) }
+    removeUser: userObj => { dispatch(removeUser(userObj)) },
+    gamePlayMsg: game_play => { dispatch(gamePlayMsg(game_play)) },
   }
 }
 

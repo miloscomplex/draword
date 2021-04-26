@@ -182,10 +182,6 @@ class Canvas extends React.Component {
     //console.log('this.canvasChannel', this.canvasChannel());
     return (
       <React.Fragment>
-      {
-      this.props.currentUser.is_drawing
-      ?
-      <React.Fragment>
         <canvas
           onMouseDown={event => this.startDrawing(event)}
           onMouseUp={event => this.stopDrawing(event)}
@@ -195,13 +191,6 @@ class Canvas extends React.Component {
         />
         <ToolBox handleClearClick={this.handleClearClick} />
       </React.Fragment>
-      :
-      <React.Fragment>
-        <canvas ref={this.canvasRef} />
-        <ToolBox handleClearClick={this.handleClearClick} />
-      </React.Fragment>
-      }
-    </React.Fragment>
     )
   }
 }
