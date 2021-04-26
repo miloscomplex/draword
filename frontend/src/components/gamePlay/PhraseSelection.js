@@ -14,7 +14,7 @@ class PhraseSelection extends React.Component {
           </React.Fragment>
           :
           <React.Fragment>
-            <h2>The drawer is selecting a phrase</h2>
+            <h2>The drawee is selecting a phrase</h2>
             <p className='description'>The game will appear once they have decided on a clue</p>
           </React.Fragment>
         }

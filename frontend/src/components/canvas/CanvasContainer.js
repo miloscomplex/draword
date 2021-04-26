@@ -27,7 +27,6 @@ class CanvasContainer extends React.Component {
                   <div id='canvas'>
                     <Canvas  params={roomURL} />
                     <Timer />
-                    <Score />
                   </div>
                   <ChatArea params={roomURL} />
                 </div>

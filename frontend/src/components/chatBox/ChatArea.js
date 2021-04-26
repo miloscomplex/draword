@@ -42,6 +42,15 @@ class ChatsArea extends React.Component {
     })
   }
 
+  componentWillUnmount = () => {
+    console.log('Chat unmounted')
+    cable.subscriptions.subscriptions.forEach( subscription => {
+      subscription.unsubscribe()
+    })
+    cable.disconnect()
+    // now null-ing is executed by unsubscribe of action_cable for gamePlay
+  }
+
   handleReceivedChat = response => {
     const { chat } = response
     //console.log('chat= ', chat)

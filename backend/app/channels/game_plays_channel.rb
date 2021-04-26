@@ -7,11 +7,15 @@ class GamePlaysChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    @room.has_drawer = false
-    @room.save
-    @user.is_drawing = false
-    @user.room_id = nil
-    @user.save
+    if @room
+      @room.has_drawer = false
+      @room.save
+    end
+    if @user
+      @user.is_drawing = false
+      @user.room_id = nil
+      @user.save
+    end
     # Any cleanup needed when channel is unsubscribed
   end
 end

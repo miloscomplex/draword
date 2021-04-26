@@ -1,7 +1,7 @@
 import React from 'react'
 import PhraseList from './PhraseList'
 import { connect } from 'react-redux'
-import { editSelectedRoom, loadPhrases } from '../../redux/actions'
+import { editSelectedRoom, loadPhrases, gamePlayMsg } from '../../redux/actions'
 
 class PhraseContainer extends React.Component {
 
@@ -18,7 +18,7 @@ class PhraseContainer extends React.Component {
     //console.log(matchObjId, phraseObjId)
     // set the phrase
     this.props.editSelectedRoom( {room_id: matchObjId, phrase_id: phraseObjId} )
-    
+    this.props.gamePlayMsg( { game_state: 'main', user_id: this.props.currentUser.id, room_id: this.props.match.params.id} )
   }
 
   render() {
@@ -39,7 +39,8 @@ class PhraseContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     phrases: state.phrases.phrasesList,
-    busySignal: state.busySignal
+    busySignal: state.busySignal,
+    currentUser: state.users.user
   }
 }
 
@@ -47,6 +48,7 @@ const mapDispatchToProps = dispatch => {
   return {
     loadPhrases: () => { dispatch(loadPhrases()) },
     editSelectedRoom: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
+    gamePlayMsg: gamePlayObj => { dispatch(gamePlayMsg(gamePlayObj)) }
   }
 }
 

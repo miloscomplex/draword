@@ -36,7 +36,6 @@ class GameContainer extends React.Component {
   }
 
   handleGuessClick = userObj => {
-    console.log('I was clicked')
     this.props.editUser({ user_id: this.props.currentUser.id, is_drawing: false, room_id: this.props.match.params.id })
     this.setState({ displayPrePlay: false })
   }

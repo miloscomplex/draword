@@ -132,3 +132,15 @@ export function removeUser(userObj) {
     .then(data => dispatch({ type: 'REMOVE_USER', payload: data }))
   }
 }
+
+export function gamePlayMsg(gamePlayObj) {
+  //console.log('editUser roomObj= ', roomObj);
+  return (dispatch) => {
+    fetch(`${API_ROOT}/game_plays`, {
+      method: 'POST',
+      headers: HEADERS,
+      body: JSON.stringify(gamePlayObj),
+    }).then(PARSE_JSON)
+    .then(data => dispatch({ type: 'GAME_PLAY_MSG', payload: data }))
+  }
+}

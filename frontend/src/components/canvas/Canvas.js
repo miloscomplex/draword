@@ -2,6 +2,7 @@ import React from 'react'
 import { API_ROOT, HEADERS } from '../../constants';
 import cable from '../../services/Cable'
 import ToolBox from './ToolBox'
+import { connect } from 'react-redux'
 
 class Canvas extends React.Component {
 
@@ -27,6 +28,7 @@ class Canvas extends React.Component {
     this.configCanvas()
     this.handleGetFetch()
     this.canvasChannel()
+    console.log('isDrawing? ', this.props.isDrawing)
   }
 
   handleGetFetch = () => {
@@ -180,6 +182,10 @@ class Canvas extends React.Component {
     //console.log('this.canvasChannel', this.canvasChannel());
     return (
       <React.Fragment>
+      {
+      this.props.currentUser.is_drawing
+      ?
+      <React.Fragment>
         <canvas
           onMouseDown={event => this.startDrawing(event)}
           onMouseUp={event => this.stopDrawing(event)}
@@ -189,8 +195,22 @@ class Canvas extends React.Component {
         />
         <ToolBox handleClearClick={this.handleClearClick} />
       </React.Fragment>
+      :
+      <React.Fragment>
+        <canvas ref={this.canvasRef} />
+        <ToolBox handleClearClick={this.handleClearClick} />
+      </React.Fragment>
+      }
+    </React.Fragment>
     )
   }
 }
 
-export default Canvas
+const mapStateToProps = state => {
+  return {
+    selectedRoom: state.rooms.selectedRoom,
+    currentUser: state.users.user,
+  }
+}
+
+export default connect(mapStateToProps)(Canvas)

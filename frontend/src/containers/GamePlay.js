@@ -1,9 +1,8 @@
 import React from 'react'
-import Timer from '../components/ui/Timer'
-import Score from '../components/ui/Score'
-import Canvas from '../components/canvas/Canvas'
-import ChatArea from '../components/chatBox/ChatArea'
-import Callout from '../components/ui/Callout'
+import PhraseSelection from '../components/gamePlay/PhraseSelection'
+import MainGamePlay from '../components/gamePlay/MainGamePlay'
+import EndOfGame from '../components/gamePlay/EndOfGame'
+
 import cable from '../services/Cable'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
@@ -39,6 +38,7 @@ class GamePlay extends React.Component {
   componentDidMount = () => {
     // init cable
     this.gamePlayChannel()
+    this.setState({ gameState: 'start' })
   }
 
   handleReceivedData = data => {
@@ -47,7 +47,7 @@ class GamePlay extends React.Component {
   }
 
   handleClick = () => {
-    this.setState({ playing: true })
+    this.setState( state => ({playing: true }))
   }
 
   componentWillUnmount = () => {
@@ -56,41 +56,19 @@ class GamePlay extends React.Component {
       subscription.unsubscribe()
     })
     cable.disconnect()
-    // executed by unsubscribe of action_cable for gamePlay
-    // this.props.editUser({ user_id: this.props.currentUser.id, room_id: null, is_drawing: false })
+    // now null-ing is executed by unsubscribe of action_cable for gamePlay
   }
 
   render() {
     /* this.props.match.params ==> what's the url for the room */
     const roomURL = this.props.match
     //console.log('roomURL= ', roomURL);
-
+    const { gameState } = this.props
     return (
       <div>
-          {
-            this.state.playing ?
-              <React.Fragment>
-
-                <Callout selectedRoom={this.props.selectedRoom} currentUser={this.props.currentUser} />
-
-                { !this.state.selectPhrase && <PhraseContainer match={this.props.match} /> }
-
-                <div id='wrapper'>
-                  <div id='canvas'>
-                    <Canvas  match={roomURL} isDrawing={this.props.currentUser.isDrawing}  />
-                    <Timer />
-                    <Score />
-                  </div>
-                  <ChatArea match={roomURL} />
-                </div>
-              </React.Fragment>
-            :
-              <React.Fragment>
-                <h2>Reminder:</h2>
-                <p>Click to start. The timer will begin when the drawer initializes the round</p>
-                <button onClick={this.handleClick}>Click to start!</button>
-              </React.Fragment>
-          }
+          { gameState === 'start' && <PhraseSelection match={this.props.match} currentUser={this.props.currentUser} /> }
+          { gameState === 'main' && <MainGamePlay match={this.props.match} /> }
+          { gameState === 'end' && <EndOfGame match={this.props.match} /> }
       </div>
     )
   }
@@ -101,6 +79,7 @@ const mapStateToProps = state => {
     selectedRoom: state.rooms.selectedRoom,
     selectedPhrase: state.selectedPhrase,
     currentUser: state.users.user,
+    gameState: state.gamePlay.gameState,
   }
 }
 
