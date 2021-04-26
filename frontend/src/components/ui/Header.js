@@ -10,13 +10,6 @@ class Header extends React.Component {
     this.props.createUser({id: this.props.currentUser.id, is_drawing: false})
   }
 
-  componentWillUnmount = () => {
-    return (
-      window.addEventListener('beforeunload', (e) => {
-      this.props.removeUser({ user_id: this.props.currentUser.id })
-    }))
-  }
-
   render() {
 
     return (

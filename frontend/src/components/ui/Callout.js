@@ -4,7 +4,7 @@ class Callout extends React.Component {
 
   render() {
     return (
-      this.props.currentUser.is_drawing
+      this.props.currentUser.is_drawing && this.props.selectedRoom.phrase 
         ?
       (<div className='phraseReminder'>
         Your phrase/word is <strong>{ this.props.selectedRoom.phrase.phrase }</strong>

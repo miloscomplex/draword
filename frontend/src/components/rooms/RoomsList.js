@@ -14,7 +14,6 @@ class RoomsList extends React.Component {
     this.roomsChannel()
     // clear state of selectedRoom
     this.props.removeSelectedRoom()
-    this.props.editUser({user_id: this.props.currentUser, is_drawing: false, room_id: null })
   }
 
   componentWillUnmount = () => {

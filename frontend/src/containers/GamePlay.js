@@ -20,8 +20,8 @@ class GamePlay extends React.Component {
   gamePlayChannel = () => {
     cable.subscriptions.create({
     channel: `GamePlaysChannel`,
-    id: this.props.selectedRoom.id,
-    user_id: this.props.currentUser.id 
+    room_id: this.props.selectedRoom.id,
+    user_id: this.props.currentUser.id
     },
       {connected: () => {
         console.log('GamePlaysChannel connected!')
@@ -37,15 +37,13 @@ class GamePlay extends React.Component {
   }
 
   componentDidMount = () => {
-    //this.props.getPhrase(this.props.phrase.id)
-    // set room if user was directly linked here
-    // ADD FOREIGN key user
-    const { match, currentUser } = this.props
+    // init cable
     this.gamePlayChannel()
   }
 
   handleReceivedData = data => {
     // maybe have switch statements here to handle game flow
+
   }
 
   handleClick = () => {
@@ -58,8 +56,8 @@ class GamePlay extends React.Component {
       subscription.unsubscribe()
     })
     cable.disconnect()
-    this.props.releasePhrase({ room_id: this.props.selectedRoom.id, phrase_id: null })
-    this.props.editUser({ user_id: this.props.currentUser.id, room_id: null, is_drawing: false })
+    // executed by unsubscribe of action_cable for gamePlay
+    // this.props.editUser({ user_id: this.props.currentUser.id, room_id: null, is_drawing: false })
   }
 
   render() {

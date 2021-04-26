@@ -24,22 +24,20 @@ class GameContainer extends React.Component {
     this.props.addUserToRoom({ user_id: currentUser.id, room_id: match.params.id, is_drawing: currentUser.is_drawing })
   }
 
-  componentDidUpdate() {
-    //console.log('GameContainer didUpdate')
-  }
-
   componentWillUnmount = () => {
-    console.log('GameContainer umounted!');
-    const { match, currentUser } = this.props
-    // this.props.removeUserFromRoom({ user_id: currentUser.id, room_id: null, is_drawing: currentUser.is_drawing })
-
-    // TODO: add a remove selected_room here
-    // in case they goto somewhere other than newGame
-    //this.props.removeSelectedRoom()
+    console.log('GameContainer umounted!')
   }
 
-  handleClick = userObj => {
+  handleDrawClick = userObj => {
+    const { match, currentUser } = this.props
+    this.props.editUser({ user_id: currentUser.id, is_drawing: true, room_id: match.params.id })
+    this.props.editSelectedRoom({room_id: match.params.id, has_drawer: true})
+    this.setState({ displayPrePlay: false })
+  }
+
+  handleGuessClick = userObj => {
     console.log('I was clicked')
+    this.props.editUser({ user_id: this.props.currentUser.id, is_drawing: false, room_id: this.props.match.params.id })
     this.setState({ displayPrePlay: false })
   }
 
@@ -47,14 +45,20 @@ class GameContainer extends React.Component {
 
   render() {
 
+    const { selectedRoom, currentUser } = this.props
+
     return (
       <div>
         {
-          this.props.selectedRoom
+          selectedRoom
           ?
           (
             this.state.displayPrePlay ?
-              <PrePlay currentUser={this.props.currentUser} handleClick={this.handleClick}/>
+              <PrePlay
+                hasDrawer={selectedRoom.has_drawer}
+                currentUser={currentUser}
+                handleDrawClick={this.handleDrawClick} handleGuessClick={this.handleGuessClick}
+              />
             :
               <GamePlay match={this.props.match} />
           )

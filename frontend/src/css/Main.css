@@ -135,6 +135,7 @@ input {
 .wrapper {
   margin: auto;
   width: 80%;
+  max-width: 900px;
 }
 
 #canvas {
@@ -181,7 +182,6 @@ input {
 #toolbox li:hover {
   background-color: #333;
 }
-
 
 .strong {
   font-weight: 900;
