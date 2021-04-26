@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :rooms, only: [:index, :show, :create, :update]
   resources :chats, only: [:show, :create]
   resources :canvas, only: [:index, :show, :create]
-  resources :game_plays, only: [:index, :show, :create]
+  resources :game_plays, only: [:create]
   resources :sessions
 
   get '/random-phrases', to: 'phrases#show_random', as: 'random-phrases'

@@ -140,7 +140,6 @@ export function gamePlayMsg(gamePlayObj) {
       method: 'POST',
       headers: HEADERS,
       body: JSON.stringify(gamePlayObj),
-    }).then(PARSE_JSON)
-    .then(data => dispatch({ type: 'GAME_PLAY_MSG', payload: data }))
+    })
   }
 }

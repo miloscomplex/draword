@@ -5,15 +5,19 @@ class GamePlaysController < ApplicationController
   end
 
   def show
-    game_play = Room.find_by(id: params[:id])
-    render json: room.game_play
+    game_play = GamePlay.find_by(id: params[:id])
+    render json: game_play
   end
 
   def create
     # just broadcast don't write to the server
-    ActionCable.server.broadcast "game_plays_channel_#{game_play_params[:room_id]}", game_play_params
-      # stream_for and broadcast_to to be useful for transmitting data along non-universal channels, such as for members of a particular conversation or specific users
-      head :ok
+    game_play = GamePlay.create(game_play_params)
+    if game_play.save
+      serialized_data = game_play_params
+      ActionCable.server.broadcast "game_plays_channel_#{game_play_params[:room_id]}", game_play_params
+        # stream_for and broadcast_to to be useful for transmitting data along non-universal channels, such as for members of a particular conversation or specific users
+        head :ok
+    end
   end
 
   def receive(data)
@@ -23,6 +27,6 @@ class GamePlaysController < ApplicationController
   private
 
   def game_play_params
-    params.permit(:game_state, :user_id, :room_id, :game_play )
+    params.require(:game_play).permit(:action, :room_id)
   end
 end

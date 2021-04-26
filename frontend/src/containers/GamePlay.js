@@ -7,6 +7,8 @@ import cable from '../services/Cable'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
 import { getPhrase, editSelectedRoom, editUser, loadRooms } from '../redux/actions'
+import rootReducer from '../redux/reducers/rootReducer'
+
 
 class GamePlay extends React.Component {
 
@@ -42,6 +44,7 @@ class GamePlay extends React.Component {
   }
 
   handleReceivedData = data => {
+    this.props.sendGamePlayMsg(data)
     // maybe have switch statements here to handle game flow
 
   }
@@ -91,6 +94,7 @@ const mapDispatchToProps = dispatch => {
     editUser: userObj => { dispatch(editUser(userObj)) },
     addUserToRoom: userObj => { dispatch(editUser(userObj)) },
     loadRooms: () => { dispatch(loadRooms()) },
+    sendGamePlayMsg: playObj => dispatch({ type: 'UPDATE_GAME_STATE', payload: playObj })
   }
 }
 

@@ -6,7 +6,7 @@ const defaultStore = {
 function gamePlayReducer(state = defaultStore, action) {
   switch (action.type) {
     case 'UPDATE_GAME_STATE':
-      return {...state, gameState: action.payload.game_state }
+      return {...state, gameState: action.payload.action }
     default:
       return state
   }
