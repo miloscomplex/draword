@@ -67,8 +67,9 @@ button, .button a {
   font-size: .8em;
 }
 
-button:hover {
+button:hover, .button a:hover {
   cursor: pointer;
+  background-color: #5e7d6f;
 }
 
 .newRoomForm button {
@@ -130,6 +131,12 @@ input {
   width: 70%;
 }
 
+/* Non-flex version */
+.wrapper {
+  margin: auto;
+  width: 80%;
+}
+
 #canvas {
   position: relative;
   width: 500px;
@@ -174,6 +181,7 @@ input {
 #toolbox li:hover {
   background-color: #333;
 }
+
 
 .strong {
   font-weight: 900;
@@ -298,4 +306,8 @@ input {
   font-weight: 600;
   font-size: 1em;
   margin-top: .5em;
+}
+
+.smaller {
+  max-width: 200px;
 }

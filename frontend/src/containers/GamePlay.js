@@ -21,6 +21,7 @@ class GamePlay extends React.Component {
     cable.subscriptions.create({
     channel: `GamePlaysChannel`,
     id: this.props.selectedRoom.id,
+    user_id: this.props.currentUser.id 
     },
       {connected: () => {
         console.log('GamePlaysChannel connected!')
@@ -29,7 +30,7 @@ class GamePlay extends React.Component {
           console.log('GamePlaysChannel disconnected!')
         },
         received: data => {
-          this.handleReceivedChat(data)
+          this.handleReceivedData(data)
           console.log('GamePlaysChannel data received')
         }
     })

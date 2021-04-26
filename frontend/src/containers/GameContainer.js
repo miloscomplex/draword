@@ -1,4 +1,5 @@
 import React from 'react'
+import PrePlay from '../components/gamePlay/PrePlay'
 import GamePlay from './GamePlay'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
@@ -11,6 +12,9 @@ class GameContainer extends React.Component {
   matchObj = this.props.match
   matchId = this.props.match.params.id
 
+  state = {
+    displayPrePlay: true,
+  }
 
   componentDidMount = () => {
     // dispatch will update state for direct link viewers
@@ -34,6 +38,11 @@ class GameContainer extends React.Component {
     //this.props.removeSelectedRoom()
   }
 
+  handleClick = userObj => {
+    console.log('I was clicked')
+    this.setState({ displayPrePlay: false })
+  }
+
   uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchObj.url}</code> isn't a valid room</h2>
 
   render() {
@@ -43,7 +52,12 @@ class GameContainer extends React.Component {
         {
           this.props.selectedRoom
           ?
-          <GamePlay match={this.props.match} />
+          (
+            this.state.displayPrePlay ?
+              <PrePlay currentUser={this.props.currentUser} handleClick={this.handleClick}/>
+            :
+              <GamePlay match={this.props.match} />
+          )
           :
           (this.uhOh)
         }
