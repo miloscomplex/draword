@@ -1,6 +1,6 @@
 
 const defaultStore = {
-  gameState: 'start'
+  gameState: 'main'
 }
 
 function gamePlayReducer(state = defaultStore, action) {
