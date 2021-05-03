@@ -4,6 +4,14 @@ REFERENCE https://codepen.io/yananas/pen/rwvZvY
 
 ### MVP
 
+- [ ] Implement a server-side user tracker
+
+- [ ] Broadcast to users if drawer leaves or enters the room
+
+- [ ] Refactor code to and include checks and reloads of server data
+
+- [ ] Implement the waiting state for Thunk 
+
 - [x] Build out the Rails backend
 
 - [x] Create Landing Page component
@@ -20,7 +28,7 @@ REFERENCE https://codepen.io/yananas/pen/rwvZvY
 
 - [x] Build PhraseSelector component
 
-- [ ] Integrate API check/setter for selected_phrase_id
+- [x] Integrate API check/setter for selected_phrase_id
 
 - [ ] Build Leaderboard component
 
