@@ -42,7 +42,7 @@ npm start
 start the react server
 
 The webpage should automatically open in your web-browser. If not goto ```http://localhost:3001/```
-or the preselected port number when prompted when npm said something is already running on Port 3000
+or the preselected port number when prompted when npm said something is already running on Port 3000.
 You are now able to open multiple browser windows and either enter rooms as a drawer or guesser.
 
 ## Contributing
