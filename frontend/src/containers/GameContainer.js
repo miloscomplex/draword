@@ -16,13 +16,16 @@ class GameContainer extends React.Component {
   }
 
   componentDidMount = () => {
-    this.props.createUser({id: this.props.currentUser.id, is_drawing: false})
   }
 
   componentDidMount = () => {
     // dispatch will update state for direct link viewers
     // get the room and set it to selectedRoom in state
     const { match, currentUser } = this.props
+    
+    // create user if one doesn't exist
+    !currentUser && this.props.createUser({id: this.props.currentUser.id, is_drawing: false})
+
     this.props.setSelectedRoom(match.params.id)
     debugger
     this.props.addUserToRoom({ user_id: currentUser.id, room_id: match.params.id, is_drawing: currentUser.is_drawing })
@@ -84,10 +87,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createUser: userObj => { dispatch(createUser(userObj)) }
     setSelectedRoom: roomId => { dispatch(setSelectedRoom(roomId)) },
     editSelectedRoom: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
     removeSelectedRoom: () => dispatch({type: 'REMOVE_SELECTED_ROOM',}),
+    createUser: userObj => { dispatch(createUser(userObj)) },
     editUser: userObj => { dispatch(editUser(userObj)) },
     addUserToRoom: userObj => { dispatch(editUser(userObj)) },
     removeUserFromRoom: userObj => { dispatch(editUser(userObj)) },

@@ -40,7 +40,6 @@ class GamePlay extends React.Component {
   componentDidMount = () => {
     // init cable
     this.props.loadGamePlayMsg(this.props.selectedRoom.id)
-    //this.props.loadGamePlayMsg(this.props.selectedRoom.id)
   }
 
   handleReceivedData = data => {
