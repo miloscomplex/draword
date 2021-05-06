@@ -2,13 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Navigation from './Navigation'
 import { connect } from 'react-redux'
-import { removeUser, createUser } from '../../redux/actions'
 
 class Header extends React.Component {
-
-  componentDidMount = () => {
-    this.props.createUser({id: this.props.currentUser.id, is_drawing: false})
-  }
 
   render() {
 
@@ -21,17 +16,4 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    currentUser: state.users.user,
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    removeUser: userObj => { dispatch(removeUser(userObj)) },
-    createUser: userObj => { dispatch(createUser(userObj)) }
-  }
-}
-
-export default  connect(mapStateToProps, mapDispatchToProps)(Header)
+export default  Header

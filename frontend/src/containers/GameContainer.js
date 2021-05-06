@@ -3,8 +3,7 @@ import PrePlay from '../components/gamePlay/PrePlay'
 import GamePlay from './GamePlay'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
-import { setSelectedRoom, editSelectedRoom, editUser, removeUser, gamePlayMsg } from '../redux/actions'
-
+import { setSelectedRoom, editSelectedRoom, editUser, createUser, removeUser, gamePlayMsg } from '../redux/actions'
 
 class GameContainer extends React.Component {
 
@@ -17,10 +16,15 @@ class GameContainer extends React.Component {
   }
 
   componentDidMount = () => {
+    this.props.createUser({id: this.props.currentUser.id, is_drawing: false})
+  }
+
+  componentDidMount = () => {
     // dispatch will update state for direct link viewers
     // get the room and set it to selectedRoom in state
     const { match, currentUser } = this.props
     this.props.setSelectedRoom(match.params.id)
+    debugger
     this.props.addUserToRoom({ user_id: currentUser.id, room_id: match.params.id, is_drawing: currentUser.is_drawing })
   }
 
@@ -80,6 +84,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    createUser: userObj => { dispatch(createUser(userObj)) }
     setSelectedRoom: roomId => { dispatch(setSelectedRoom(roomId)) },
     editSelectedRoom: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
     removeSelectedRoom: () => dispatch({type: 'REMOVE_SELECTED_ROOM',}),
