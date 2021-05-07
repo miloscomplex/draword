@@ -22,12 +22,13 @@ class GameContainer extends React.Component {
     // dispatch will update state for direct link viewers
     // get the room and set it to selectedRoom in state
     const { match, currentUser } = this.props
-    
+
     // create user if one doesn't exist
+
+    // TODO: Create a busy state so it waits to continue to set other attributes after user creation
     !currentUser && this.props.createUser({id: this.props.currentUser.id, is_drawing: false})
 
     this.props.setSelectedRoom(match.params.id)
-    debugger
     this.props.addUserToRoom({ user_id: currentUser.id, room_id: match.params.id, is_drawing: currentUser.is_drawing })
   }
 
