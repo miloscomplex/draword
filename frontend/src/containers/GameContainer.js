@@ -16,9 +16,6 @@ class GameContainer extends React.Component {
   }
 
   componentDidMount = () => {
-  }
-
-  componentDidMount = () => {
     // dispatch will update state for direct link viewers
     // get the room and set it to selectedRoom in state
     const { match, currentUser } = this.props
@@ -28,8 +25,8 @@ class GameContainer extends React.Component {
     // TODO: Create a busy state so it waits to continue to set other attributes after user creation
     !currentUser && this.props.createUser({id: this.props.currentUser.id, is_drawing: false})
 
+    // is this necssary to have selected room?
     this.props.setSelectedRoom(match.params.id)
-    this.props.addUserToRoom({ user_id: currentUser.id, room_id: match.params.id, is_drawing: currentUser.is_drawing })
   }
 
   componentWillUnmount = () => {
@@ -53,7 +50,7 @@ class GameContainer extends React.Component {
 
   render() {
 
-    const { selectedRoom, currentUser } = this.props
+    const { selectedRoom, currentUser, busySignal } = this.props
 
     return (
       <div>
@@ -82,6 +79,7 @@ const mapStateToProps = state => {
   return {
     selectedRoom: state.rooms.selectedRoom,
     currentUser: state.users.user,
+    busySignal: state.busySignal,
   }
 }
 

@@ -8,6 +8,8 @@ function busyReducer(state = false, action) {
       return false
     case 'ADD_ROOMS':
       return false
+    case 'UPDATE_USER':
+      return false
     default:
       return state
   }
