@@ -95,6 +95,10 @@ input {
   box-sizing: border-box;
 }
 
+ul {
+  padding: 0;
+}
+
 #footer {
   border-top: solid 1px #ccc;
   margin-top: 1.5em;
@@ -316,10 +320,12 @@ input {
   font-weight: 900;
   margin: .5em 0;
   font-size: 2em;
-  background-image: url('./images/loading.gif');
+  background-image: url('./images/loading_smaller.gif');
+  background-repeat: no-repeat;
+  background-position: center;
   display: block;
   width: 150px;
-  height: 152px;
+  height: 140px;
   margin: auto;
 
 }

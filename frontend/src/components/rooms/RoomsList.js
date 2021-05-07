@@ -55,7 +55,7 @@ class RoomsList extends React.Component {
     })
   }
 
-  loading = () => <span className='loading-message'>loading..</span>
+  loading = () => <span className='loading-message'> </span>
 
   render = () => {
     const { rooms, busy } = this.props
