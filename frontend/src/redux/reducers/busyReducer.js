@@ -4,6 +4,10 @@ function busyReducer(state = false, action) {
       return true
     case 'ADD_PHRASES':
       return false
+    case 'LOAD_ROOMS':
+      return false
+    case 'ADD_ROOMS':
+      return false
     default:
       return state
   }

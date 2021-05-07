@@ -110,7 +110,6 @@ export function createUser(userId) {
 }
 
 export function editUser(userObj) {
-  //console.log('editUser roomObj= ', roomObj);
   return (dispatch) => {
     fetch(`${API_ROOT}/users/${userObj.user_id}`, {
       method: 'PUT',
@@ -122,7 +121,6 @@ export function editUser(userObj) {
 }
 
 export function removeUser(userObj) {
-  //console.log('editUser roomObj= ', roomObj);
   return (dispatch) => {
     fetch(`${API_ROOT}/users/${userObj.user_id}`, {
       method: 'DELETE',
@@ -134,7 +132,6 @@ export function removeUser(userObj) {
 }
 
 export function gamePlayMsg(gamePlayObj) {
-  //console.log('editUser roomObj= ', roomObj);
   return (dispatch) => {
     fetch(`${API_ROOT}/game_plays`, {
       method: 'POST',

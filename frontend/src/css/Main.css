@@ -311,3 +311,15 @@ input {
 .smaller {
   max-width: 200px;
 }
+
+.loading-message {
+  font-weight: 900;
+  margin: .5em 0;
+  font-size: 2em;
+  background-image: url('./images/loading.gif');
+  display: block;
+  width: 150px;
+  height: 152px;
+  margin: auto;
+
+}
