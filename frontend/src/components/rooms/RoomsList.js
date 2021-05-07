@@ -4,7 +4,7 @@ import Room from './Room'
 import cable from '../../services/Cable'
 
 import { connect } from 'react-redux'
-import { loadRooms, editUser, editSelectedRoom } from '../../redux/actions'
+import { loadRooms } from '../../redux/actions'
 
 class RoomsList extends React.Component {
 
@@ -63,7 +63,9 @@ class RoomsList extends React.Component {
       <div className="roomsList">
         <h1>Rooms</h1>
         <p>Select a room or create a new one</p>
-        <ul>{ busy ? this.mapRooms(this.props.rooms) : this.loading() }</ul>
+        <ul>
+          { busy ? this.loading() : this.mapRooms(this.props.rooms) }
+        </ul>
 
         <NewRoomForm />
 
@@ -75,7 +77,6 @@ class RoomsList extends React.Component {
 const mapStateToProps = state => {
   return {
     rooms: state.rooms.roomsList,
-    currentUser: state.users.user,
     busy: state.busySignal,
   }
 }
@@ -83,12 +84,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadRooms: () => { dispatch(loadRooms()) },
-    editUser: userObj => { dispatch(editUser(userObj)) },
     removeSelectedRoom: () => dispatch({type: 'REMOVE_SELECTED_ROOM',}),
-    editSelectedRoom: roomObj => { dispatch(editSelectedRoom(roomObj)) }
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomsList)
-
-// helpers
