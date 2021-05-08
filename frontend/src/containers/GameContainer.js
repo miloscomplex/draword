@@ -27,6 +27,7 @@ class GameContainer extends React.Component {
 
     // is this necssary to have selected room?
     this.props.setSelectedRoom(match.params.id)
+    this.props.addUserToRoom({ user_id: currentUser.id, room_id: match.params.id, is_drawing: currentUser.is_drawing })
   }
 
   componentWillUnmount = () => {
