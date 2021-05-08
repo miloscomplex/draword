@@ -3,7 +3,7 @@ import PrePlay from '../components/gamePlay/PrePlay'
 import GamePlay from './GamePlay'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
-import { setSelectedRoom, editSelectedRoom, editUser, createOrFindUser, removeUser, gamePlayMsg } from '../redux/actions'
+import { setSelectedRoom, editSelectedRoom, createOrFindUser } from '../redux/actions'
 
 class GameContainer extends React.Component {
 
@@ -16,14 +16,12 @@ class GameContainer extends React.Component {
   }
 
   componentDidMount = () => {
+
+    const { currentUser } = this.props
+
     // get the room and set it to selectedRoom in state
-    const { match, currentUser } = this.props
-
-    // TODO: Create a busy state so it waits to continue to set other attributes after user creation
-
-    // is this necssary to have selected room?
-    this.props.setSelectedRoom(match.params.id)
-    this.props.createOrFindUser({ user_id: currentUser.id, room_id: match.params.id })
+    this.props.setSelectedRoom(this.matchId)
+    this.props.createOrFindUser({ user_id: currentUser.id, room_id: this.matchId })
   }
 
   componentWillUnmount = () => {
@@ -31,18 +29,17 @@ class GameContainer extends React.Component {
   }
 
   handleDrawClick = userObj => {
-    const { match, currentUser } = this.props
+    const { currentUser } = this.props
     const statusStr = 'start'
-    
-    this.props.editSelectedRoom({room_id: match.params.id, drawer_id: currentUser.id, status: statusStr })
+
+    this.props.editSelectedRoom({room_id: this.matchId, drawer_id: currentUser.id, status: statusStr })
     this.setState({ displayPrePlay: false })
   }
 
   handleGuessClick = userObj => {
-    const { match } = this.props
     const statusStr = 'start'
     // don't forget to pass room_id elsewise sets it to null
-    this.props.editSelectedRoom({ room_id: match.params.id, status: statusStr })
+    this.props.editSelectedRoom({ room_id: this.matchId, status: statusStr })
     this.setState({ displayPrePlay: false })
   }
 
@@ -60,12 +57,12 @@ class GameContainer extends React.Component {
           (
             this.state.displayPrePlay ?
               <PrePlay
-                hasDrawer={selectedRoom.has_drawer}
+                drawer_id={selectedRoom.drawer_id}
                 currentUser={currentUser}
                 handleDrawClick={this.handleDrawClick} handleGuessClick={this.handleGuessClick}
               />
             :
-              <GamePlay match={this.props.match} />
+              <GamePlay match={this.matchObj} />
           )
           :
           (this.uhOh)
@@ -83,17 +80,11 @@ const mapStateToProps = state => {
   }
 }
 
-
 const mapDispatchToProps = dispatch => {
   return {
     setSelectedRoom: roomId => { dispatch(setSelectedRoom(roomId)) },
-    editSelectedRoom: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
-    removeSelectedRoom: () => dispatch({type: 'REMOVE_SELECTED_ROOM',}),
     createOrFindUser: userObj => { dispatch(createOrFindUser(userObj)) },
-    editUser: userObj => { dispatch(editUser(userObj)) },
-    addUserToRoom: userObj => { dispatch(editUser(userObj)) },
-    removeUserFromRoom: userObj => { dispatch(editUser(userObj)) },
-    removeUser: userObj => { dispatch(removeUser(userObj)) },
+    editSelectedRoom: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
   }
 }
 
