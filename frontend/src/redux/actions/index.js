@@ -97,7 +97,7 @@ export function editSelectedRoom(roomObj) {
   }
 }
 
-export function createUser(userId) {
+export function createOrFindUser(userId) {
   //console.log('editUser roomObj= ', roomObj);
   return (dispatch) => {
     fetch(`${API_ROOT}/users`, {
