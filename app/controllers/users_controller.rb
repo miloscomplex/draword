@@ -13,16 +13,13 @@ class UsersController < ApplicationController
   def create
     # consider doing user_session if live.
     user = User.find_or_create_by(id: params[:user_id]) do |user|
-      # user.name = SecureRandom.hex
       user.name = Faker::Music.band
     end
     if user.valid?
-      params[:is_drawing] ? user.is_drawing = params[:is_drawing] : user.is_drawing = false
-      new_room = Room.find_by_id(params[:room_id])
-      user.room = new_room
+      user.update(user_params)
       render json: user
     else
-      render json: { error: 'Could not create the user'}, status: 422
+      render json: { error: 'Could not find/create the user'}, status: 422
     end
   end
 
@@ -52,7 +49,7 @@ private
   end
 
   def user_params
-    params.require(:user).permit(:id, :user_id, :initials, :is_drawing, :room_id)
+    params.require(:user).permit(:id, :user_id, :initials, :room_id)
   end
 
 
