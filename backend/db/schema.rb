@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_26_113435) do
+ActiveRecord::Schema.define(version: 2021_04_15_073156) do
 
   create_table "canvas", force: :cascade do |t|
     t.string "action"
@@ -24,19 +24,12 @@ ActiveRecord::Schema.define(version: 2021_04_26_113435) do
 
   create_table "chats", force: :cascade do |t|
     t.string "text"
+    t.string "name"
+    t.string "role"
     t.integer "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "role"
-    t.string "name"
     t.index ["room_id"], name: "index_chats_on_room_id"
-  end
-
-  create_table "game_plays", force: :cascade do |t|
-    t.string "action"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "room_id"
   end
 
   create_table "phrases", force: :cascade do |t|
@@ -48,10 +41,12 @@ ActiveRecord::Schema.define(version: 2021_04_26_113435) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "title"
+    t.string "status"
+    t.integer "drawer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "selected_phrase_id"
-    t.boolean "has_drawer", default: false
+    t.index ["drawer_id"], name: "index_rooms_on_drawer_id"
     t.index ["selected_phrase_id"], name: "index_rooms_on_selected_phrase_id"
   end
 
@@ -68,15 +63,15 @@ ActiveRecord::Schema.define(version: 2021_04_26_113435) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "initials"
+    t.integer "room_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "is_drawing", default: false, null: false
-    t.integer "room_id"
     t.index ["room_id"], name: "index_users_on_room_id"
   end
 
   add_foreign_key "canvas", "rooms"
   add_foreign_key "chats", "rooms"
+  add_foreign_key "rooms", "users", column: "drawer_id"
   add_foreign_key "scores", "users"
   add_foreign_key "users", "rooms"
 end
