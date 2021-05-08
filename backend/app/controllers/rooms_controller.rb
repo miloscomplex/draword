@@ -31,7 +31,7 @@ class RoomsController < ApplicationController
     room = Room.find_by_id(params[:room_id])
     new_phrase = Phrase.find_by_id(params[:phrase_id])
     room.phrase = new_phrase
-    params[:has_drawer] ? room.has_drawer = params[:has_drawer] : ''
+    params[:drawer_id] ? room.drawer_id = params[:drawer_id] : ''
     if room.save
       render json: room
     else
