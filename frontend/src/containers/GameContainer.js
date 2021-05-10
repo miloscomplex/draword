@@ -1,7 +1,6 @@
 import React from 'react'
 import PrePlay from '../components/gamePlay/PrePlay'
 import GamePlay from './GamePlay'
-import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
 import { setSelectedRoom, editSelectedRoom, createOrFindUser } from '../redux/actions'
 

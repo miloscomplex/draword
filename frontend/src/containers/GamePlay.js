@@ -14,7 +14,6 @@ class GamePlay extends React.Component {
 
   state = {
     playing: false,
-    selectPhrase: false,
   }
 
   // need to add action cable to have overlays and announcements broadcasted
@@ -62,7 +61,7 @@ class GamePlay extends React.Component {
   render() {
     /* this.props.match.params ==> what's the url for the room */
     const roomURL = this.props.match
-    //console.log('roomURL= ', roomURL);
+
     const { gameState } = this.props
     return (
       <div>
