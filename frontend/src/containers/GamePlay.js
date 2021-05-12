@@ -51,24 +51,37 @@ class GamePlay extends React.Component {
 
   componentWillUnmount = () => {
     console.log('GamePlay unmounted')
-    cable.subscriptions.subscriptions.forEach( subscription => {
-      subscription.unsubscribe()
-    })
+    // removing for now seems redundant 
+    // cable.subscriptions.subscriptions.forEach( subscription => {
+    //   subscription.unsubscribe()
+    // })
     cable.disconnect()
 
     // now null-ing is executed by unsubscribe of action_cable for gamePlay
+  }
+
+  renderContent = () => {
+    switch (this.props.gameStatus) {
+      case 'start':
+        return <PhraseSelection match={this.props.match} currentUser={this.props.currentUser} />
+      case 'main':
+        return <MainGamePlay match={this.props.match} />
+      case 'end':
+        return <EndOfGame match={this.props.match} />
+      default:
+        return <h2>Something isn't quite right</h2>
+    }
   }
 
   render() {
     /* this.props.match.params ==> what's the url for the room */
     const roomURL = this.props.match
 
-    const { gameState } = this.props
+    const { gameStatus } = this.props.gameStatus
     return (
       <div>
-          { gameState === 'start' && <PhraseSelection match={this.props.match} currentUser={this.props.currentUser} /> }
-          { gameState === 'main' && <MainGamePlay match={this.props.match} /> }
-          { gameState === 'end' && <EndOfGame match={this.props.match} /> }
+          Anything to display?
+          { this.renderContent() }
       </div>
     )
   }
@@ -77,9 +90,9 @@ class GamePlay extends React.Component {
 const mapStateToProps = state => {
   return {
     selectedRoom: state.rooms.selectedRoom,
+    gameStatus: state.rooms.selectedRoom.status,
     selectedPhrase: state.selectedPhrase,
     currentUser: state.users.user,
-    gameState: state.gamePlay.gameState,
   }
 }
 

@@ -7,7 +7,7 @@ class PhraseSelection extends React.Component {
     return (
       <div className='wrapper'>
         {
-          this.props.currentUser.is_drawing
+          this.props.currentUser
           ?
           <React.Fragment>
             <PhraseContainer match={this.props.match} />

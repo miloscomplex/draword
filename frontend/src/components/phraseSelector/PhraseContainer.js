@@ -19,7 +19,7 @@ class PhraseContainer extends React.Component {
     //console.log(matchObjId, phraseObjId)
     // set the phrase
     const main = 'main'
-    this.props.editSelectedRoom( {room_id: matchObjId, phrase_id: phraseObjId} )
+    this.props.editSelectedRoom( {room_id: matchObjId, phrase_id: phraseObjId, status: main } )
     // this.props.gamePlayMsg( { action: main, room_id: matchObjId } )
   }
 
