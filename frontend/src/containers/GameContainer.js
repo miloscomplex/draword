@@ -15,12 +15,10 @@ class GameContainer extends React.Component {
   }
 
   componentDidMount = () => {
-
     const { currentUser } = this.props
 
-    // get the room and set it to selectedRoom in state
-    this.props.setSelectedRoom(this.matchId)
     this.props.createOrFindUser({ user_id: currentUser.id, room_id: this.matchId })
+    this.props.setSelectedRoom(this.matchId)
   }
 
   componentWillUnmount = () => {
@@ -28,44 +26,29 @@ class GameContainer extends React.Component {
     // channel removes user from room on disconnect FAIL SAFE for closed window
   }
 
-  handleDrawClick = userObj => {
-    const { currentUser } = this.props
-    const statusStr = 'start'
-
-    this.props.editSelectedRoom({room_id: this.matchId, drawer_id: currentUser.id, status: statusStr })
-    this.setState({ displayPrePlay: false })
+  renderBusy = () => {
+    return <span className='loading-message'> </span>
   }
 
-  handleGuessClick = userObj => {
-    const statusStr = 'start'
-    // don't forget to pass room_id elsewise sets it to null
-    this.props.editSelectedRoom({ room_id: this.matchId, status: statusStr })
-    this.setState({ displayPrePlay: false })
+  uhOh = () => {
+    return <h2>Whoops! something went wrong maybe <code>{this.matchObj.url}</code> isn't a valid room</h2>
   }
 
-  uhOh = <h2>Whoops! something went wrong maybe <code>{this.matchObj.url}</code> isn't a valid room</h2>
+  renderGamePlay = () => {
+    return this.props.busySignal ? this.renderBusy() : <GamePlay match={this.matchObj} />
+  }
 
   render() {
-
-    const { selectedRoom, currentUser, busySignal } = this.props
+    const { selectedRoom } = this.props
 
     return (
       <div>
         {
           selectedRoom
           ?
-          (
-            this.state.displayPrePlay ?
-              <PrePlay
-                drawer_id={selectedRoom.drawer_id}
-                currentUser={currentUser}
-                handleDrawClick={this.handleDrawClick} handleGuessClick={this.handleGuessClick}
-              />
-            :
-              <GamePlay match={this.matchObj} />
-          )
+          this.renderGamePlay()
           :
-          (this.uhOh)
+          this.uhOh()
         }
       </div>
     )
@@ -83,8 +66,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setSelectedRoom: roomId => { dispatch(setSelectedRoom(roomId)) },
-    createOrFindUser: userObj => { dispatch(createOrFindUser(userObj)) },
     editSelectedRoom: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
+    createOrFindUser: userObj => { dispatch(createOrFindUser(userObj)) },
   }
 }
 

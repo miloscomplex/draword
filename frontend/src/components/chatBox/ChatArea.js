@@ -11,9 +11,10 @@ class ChatsArea extends React.Component {
   roomURL = this.props.match.params.id
 
   componentDidMount = () => {
-    this.chatsChannel()
+    console.log('chatArea mounted!');
     this.scrollToBottom()
     this.props.loadChats(this.roomURL)
+    this.chatsChannel()
   }
 
   componentDidUpdate = () => {
@@ -44,17 +45,11 @@ class ChatsArea extends React.Component {
 
   componentWillUnmount = () => {
     console.log('Chat unmounted')
-    cable.subscriptions.subscriptions.forEach( subscription => {
-      subscription.unsubscribe()
-    })
-    cable.disconnect()
-    // now null-ing is executed by unsubscribe of action_cable for gamePlay
   }
 
   handleReceivedChat = response => {
     const { chat } = response
     this.checkForPhrase( chat, this.props.selectedRoom.phrase )
-    //console.log('chat= ', chat);
     this.props.addChat(chat)
   }
 
@@ -70,7 +65,7 @@ class ChatsArea extends React.Component {
     //console.log('orderedChats= ', orderedChats(this.props.chats));
     //console.log(cable);
     const { chats } = this.props.selectedRoom
-    //console.log('chats= ', chats);
+    console.log('chats= ', chats);
 
     return (
       <div id='chatWindow'>
@@ -84,6 +79,7 @@ class ChatsArea extends React.Component {
         </div>
 
         <ChatBoxInput roomId={this.roomURL} currentUser={this.props.currentUser} />
+
         <ChatBoxBot roomId={this.roomURL} currentUser={this.props.currentUser} />
       </div>
     )
@@ -93,7 +89,7 @@ class ChatsArea extends React.Component {
 const mapStateToProps = state => {
   return {
     selectedRoom: state.rooms.selectedRoom,
-    currentUser: state.users.user,
+    busySignal: state.busySignal,
   }
 }
 

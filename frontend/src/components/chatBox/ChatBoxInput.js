@@ -8,7 +8,7 @@ class ChatBoxInput extends React.Component {
     text: '',
     room_id: this.props.roomId,
     role: this.props.currentUser.is_drawing ? 'drawer' : 'guesser',
-    name: this.props.currentUser.name, 
+    name: this.props.currentUser.name,
   }
 
   handleOnChange = event => {

@@ -100,6 +100,7 @@ export function editSelectedRoom(roomObj) {
 export function createOrFindUser(userId) {
   //console.log('editUser roomObj= ', roomObj);
   return (dispatch) => {
+    dispatch({ type: 'FETCHING' })
     fetch(`${API_ROOT}/users`, {
       method: 'POST',
       headers: HEADERS,
@@ -111,6 +112,7 @@ export function createOrFindUser(userId) {
 
 export function editUser(userObj) {
   return (dispatch) => {
+    dispatch({ type: 'FETCHING' })
     fetch(`${API_ROOT}/users/${userObj.user_id}`, {
       method: 'PUT',
       headers: HEADERS,

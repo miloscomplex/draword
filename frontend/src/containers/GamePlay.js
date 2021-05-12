@@ -1,4 +1,5 @@
 import React from 'react'
+import PrePlay from '../components/gamePlay/PrePlay'
 import PhraseSelection from '../components/gamePlay/PhraseSelection'
 import MainGamePlay from '../components/gamePlay/MainGamePlay'
 import EndOfGame from '../components/gamePlay/EndOfGame'
@@ -6,11 +7,15 @@ import EndOfGame from '../components/gamePlay/EndOfGame'
 import cable from '../services/Cable'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
-import { getPhrase, editSelectedRoom, editUser, loadRooms } from '../redux/actions'
+import { getPhrase, editSelectedRoom, editUser, loadRooms, createOrFindUser } from '../redux/actions'
 import rootReducer from '../redux/reducers/rootReducer'
 
 
 class GamePlay extends React.Component {
+
+  // match is this browser props
+  matchObj = this.props.match
+  matchId = this.props.match.params.id
 
   state = {
     playing: false,
@@ -39,37 +44,57 @@ class GamePlay extends React.Component {
   componentDidMount = () => {
     // init cable
     this.gamePlayChannel()
-    //this.props.loadGamePlayMsg(this.props.selectedRoom.id)
-  }
-
-  handleReceivedData = data => {
-    this.props.sendGamePlayMsg(data)
-    //this.props.loadGamePlayMsg(this.props.selectedRoom.id)
-    // maybe have switch statements here to handle game flow
-
   }
 
   componentWillUnmount = () => {
     console.log('GamePlay unmounted')
-    // removing for now seems redundant 
+    // removing for now seems redundant
     // cable.subscriptions.subscriptions.forEach( subscription => {
     //   subscription.unsubscribe()
     // })
-    cable.disconnect()
+    //cable.disconnect()
 
     // now null-ing is executed by unsubscribe of action_cable for gamePlay
   }
 
+  handleDrawClick = userObj => {
+    const { currentUser } = this.props
+    const statusStr = 'start'
+
+    this.props.editSelectedRoom({room_id: this.matchId, drawer_id: currentUser.id, status: statusStr })
+    this.setState({ displayPrePlay: false })
+  }
+
+  handleGuessClick = userObj => {
+    const statusStr = 'start'
+    // don't forget to pass room_id elsewise sets it to null
+    this.props.editSelectedRoom({ room_id: this.matchId, status: statusStr })
+    this.setState({ displayPrePlay: false })
+  }
+
+  renderBusy = () => {
+    return <span className='loading-message'> </span>
+  }
+
+
   renderContent = () => {
+    const { selectedRoom, currentUser, match, busySignal } = this.props
+
     switch (this.props.gameStatus) {
+      case 'preplay':
+        return <PrePlay
+                  drawer_id={selectedRoom.drawer_id}
+                  currentUser={currentUser}
+                  handleDrawClick={this.handleDrawClick} handleGuessClick={this.handleGuessClick}
+                />
       case 'start':
-        return <PhraseSelection match={this.props.match} currentUser={this.props.currentUser} />
+        return <PhraseSelection match={match} currentUser={this.props.currentUser} />
       case 'main':
-        return <MainGamePlay match={this.props.match} />
+        return <MainGamePlay match={match} />
       case 'end':
-        return <EndOfGame match={this.props.match} />
+        return <EndOfGame match={match} />
       default:
-        return <h2>Something isn't quite right</h2>
+        return <h2>Something isn't quite right...</h2>
     }
   }
 
@@ -77,10 +102,9 @@ class GamePlay extends React.Component {
     /* this.props.match.params ==> what's the url for the room */
     const roomURL = this.props.match
 
-    const { gameStatus } = this.props.gameStatus
+    const { gameStatus, busySignal } = this.props
     return (
       <div>
-          Anything to display?
           { this.renderContent() }
       </div>
     )
@@ -93,6 +117,7 @@ const mapStateToProps = state => {
     gameStatus: state.rooms.selectedRoom.status,
     selectedPhrase: state.selectedPhrase,
     currentUser: state.users.user,
+    busySignal: state.busySignal,
   }
 }
 
@@ -104,7 +129,7 @@ const mapDispatchToProps = dispatch => {
     editUser: userObj => { dispatch(editUser(userObj)) },
     addUserToRoom: userObj => { dispatch(editUser(userObj)) },
     loadRooms: () => { dispatch(loadRooms()) },
-    sendGamePlayMsg: playObj => dispatch({ type: 'UPDATE_GAME_STATE', payload: playObj }),
+    editSelectedRoom: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
   }
 }
 

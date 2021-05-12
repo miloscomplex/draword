@@ -10,6 +10,10 @@ function busyReducer(state = false, action) {
       return false
     case 'UPDATE_USER':
       return false
+    case 'LOAD_CHATS':
+      return false
+    case 'UPDATE_SELECTED_ROOM':
+      return false 
     default:
       return state
   }

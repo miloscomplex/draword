@@ -15,10 +15,10 @@ class MainGamePlay extends React.Component {
 
         <div id='wrapper'>
           <div id='canvas'>
-            <Canvas match={this.props.match} isDrawing={this.props.currentUser.isDrawing}  />
+            <Canvas match={this.props.match} />
             <Timer />
           </div>
-          <ChatArea match={this.props.match} />
+          <ChatArea match={this.props.match} currentUser={this.props.currentUser} />
         </div>
       </React.Fragment>
     )
