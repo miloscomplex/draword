@@ -37,7 +37,6 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find_by_id(params[:user_id])
-    session.delete :current_user_id
     user.destroy
     render json: user
   end
