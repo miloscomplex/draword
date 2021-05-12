@@ -25,8 +25,7 @@ class GameContainer extends React.Component {
 
   componentWillUnmount = () => {
     console.log('GameContainer umounted!')
-    const { currentUser } = this.props
-    // channel removes user from room on disconnect FAIL safe for closed window
+    // channel removes user from room on disconnect FAIL SAFE for closed window
   }
 
   handleDrawClick = userObj => {

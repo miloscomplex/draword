@@ -29,9 +29,7 @@ class RoomsController < ApplicationController
 
   def update
     room = Room.find_by_id(params[:room_id])
-    new_phrase = Phrase.find_by_id(params[:phrase_id])
-    room.phrase = new_phrase
-    params[:drawer_id] ? room.drawer_id = params[:drawer_id] : ''
+    room.update(room_params)
     if room.save
       render json: room
     else
@@ -42,12 +40,12 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params.require(:room).permit(:title)
+    params.require(:room).permit(:title, :room_id, :status, :drawer_id, :selected_phrase_id)
   end
 
 end
 
-#  REF FOR GAME_PLAY CONTROLLER 
+#  REF FOR GAME_PLAY CONTROLLER
 # def show
 #   game_play = GamePlay.find_by(room_id: params[:room_id])
 #   render json: game_play
