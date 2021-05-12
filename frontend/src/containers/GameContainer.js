@@ -3,6 +3,7 @@ import PrePlay from '../components/gamePlay/PrePlay'
 import GamePlay from './GamePlay'
 import { connect } from 'react-redux'
 import { setSelectedRoom, editSelectedRoom, createOrFindUser } from '../redux/actions'
+import cable from '../services/Cable'
 
 class GameContainer extends React.Component {
 
@@ -23,6 +24,10 @@ class GameContainer extends React.Component {
 
   componentWillUnmount = () => {
     console.log('GameContainer umounted!')
+    cable.subscriptions.subscriptions.forEach( subscription => {
+      subscription.unsubscribe()
+    })
+    cable.disconnect()
     // channel removes user from room on disconnect FAIL SAFE for closed window
   }
 

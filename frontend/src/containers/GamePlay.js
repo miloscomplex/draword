@@ -17,10 +17,6 @@ class GamePlay extends React.Component {
   matchObj = this.props.match
   matchId = this.props.match.params.id
 
-  state = {
-    playing: false,
-  }
-
   // need to add action cable to have overlays and announcements broadcasted
   gamePlayChannel = () => {
     cable.subscriptions.create({
@@ -62,14 +58,12 @@ class GamePlay extends React.Component {
     const statusStr = 'start'
 
     this.props.editSelectedRoom({room_id: this.matchId, drawer_id: currentUser.id, status: statusStr })
-    this.setState({ displayPrePlay: false })
   }
 
   handleGuessClick = userObj => {
     const statusStr = 'start'
     // don't forget to pass room_id elsewise sets it to null
     this.props.editSelectedRoom({ room_id: this.matchId, status: statusStr })
-    this.setState({ displayPrePlay: false })
   }
 
   renderBusy = () => {

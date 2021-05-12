@@ -2,7 +2,6 @@ import { API_ROOT, PARSE_JSON, HEADERS } from '../../constants'
 
 export function loadPhrases() {
   return (dispatch) => {
-    dispatch({ type: 'FETCHING' })
     fetch(`${API_ROOT}/random-phrases`).then(PARSE_JSON)
     .then(data => dispatch({type: 'ADD_PHRASES', payload: data}))
   }
@@ -10,7 +9,7 @@ export function loadPhrases() {
 
 export function loadChats(roomId) {
   return (dispatch) => {
-    dispatch({ type: 'FETCHING' })
+    //dispatch({ type: 'FETCHING' })
     fetch(`${API_ROOT}/rooms/${roomId}`)
     .then(PARSE_JSON)
     //.then(data => console.log('loadChats= ', data.chats ))
@@ -26,7 +25,7 @@ export function addChat(chatObj) {
 
 export function setPhrase(phraseObj) {
   return (dispatch) => {
-    dispatch({ type: 'FETCHING' })
+    //dispatch({ type: 'FETCHING' })
     fetch(`${API_ROOT}/phrases/${phraseObj.phrase_id}`)
     .then(PARSE_JSON)
     //.then(data => console.log('setPhrase= ', data))
@@ -66,7 +65,7 @@ export function loadRooms() {
 
 export function setSelectedRoom(roomId) {
   return (dispatch) => {
-    dispatch({ type: 'FETCHING' })
+    //dispatch({ type: 'FETCHING' })
     fetch(`${API_ROOT}/rooms/${roomId}`)
     .then(PARSE_JSON)
     .then(data => dispatch({ type: 'UPDATE_SELECTED_ROOM', payload: data}) )

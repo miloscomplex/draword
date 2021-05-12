@@ -12,7 +12,6 @@ class PhraseContainer extends React.Component {
   componentDidMount = () => {
     this.props.loadPhrases()
     console.log('phrase mounted!.. in room', this.props.match.params.id)
-
   }
 
   handleClick = (matchObjId, phraseObjId) => {

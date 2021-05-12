@@ -3,7 +3,8 @@ import { API_ROOT, HEADERS } from '../../constants';
 
 class NewRoomForm extends React.Component {
   state = {
-    title: ''
+    title: '',
+    status: 'preplay'
   }
 
   handleChange = e => {
