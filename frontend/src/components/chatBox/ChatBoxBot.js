@@ -5,15 +5,17 @@ import { API_ROOT, HEADERS } from '../../constants'
 class ChatBoxBot extends React.Component {
 
   joined = {
-    text: `${this.props.currentUser.name} has joined the game`,
+    text: `has joined the game`,
     room_id: this.props.roomId,
-    role: 'admin'
+    role: 'admin',
+    name: this.props.currentUser.name
   }
 
   left = {
-    text: `${this.props.currentUser.name} has left the game`,
+    text: `has left the game`,
     room_id: this.props.roomId,
-    role: 'admin'
+    role: 'admin',
+    name: this.props.currentUser.name
   }
 
   // intervalID = () => window.setInterval(this.myCallback, 2000)
