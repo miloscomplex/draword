@@ -7,12 +7,9 @@ class GamePlaysChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    if @room
-      @room.has_drawer = false
-      @room.save
-    end
+    # handle db cleanup here
     if @user
-      @user.is_drawing = false
+      # null out room_id here to avoid any async issues 
       @user.room_id = nil
       @user.save
     end

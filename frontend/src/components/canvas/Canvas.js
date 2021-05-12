@@ -28,7 +28,6 @@ class Canvas extends React.Component {
     this.configCanvas()
     this.handleGetFetch()
     this.canvasChannel()
-    console.log('isDrawing? ', this.props.isDrawing)
   }
 
   handleGetFetch = () => {
@@ -143,6 +142,7 @@ class Canvas extends React.Component {
     const canvas = this.contextRef.current
     switch (drawingObj.action) {
       case 'beginPath':
+        //canvas.strokeStyle = 'red'
         canvas.beginPath()
         canvas.moveTo(offsetX, offsetY)
         this.setState({ isDrawing: true });

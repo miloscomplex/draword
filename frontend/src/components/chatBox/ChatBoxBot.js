@@ -22,7 +22,6 @@ class ChatBoxBot extends React.Component {
 
 
   myCallback = (chatObj) => {
-     // Your code here
      // Parameters are purely optional.
      fetch(`${API_ROOT}/chats`, {
        method: 'POST',
