@@ -6,7 +6,7 @@ import EndOfGame from '../components/gamePlay/EndOfGame'
 import cable from '../services/Cable'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
-import { getPhrase, editSelectedRoom, editUser, loadRooms, gamePlayMsg, loadGamePlayMsg } from '../redux/actions'
+import { getPhrase, editSelectedRoom, editUser, loadRooms } from '../redux/actions'
 import rootReducer from '../redux/reducers/rootReducer'
 
 
@@ -39,7 +39,7 @@ class GamePlay extends React.Component {
   componentDidMount = () => {
     // init cable
     this.gamePlayChannel()
-    this.props.loadGamePlayMsg(this.props.selectedRoom.id)
+    //this.props.loadGamePlayMsg(this.props.selectedRoom.id)
   }
 
   handleReceivedData = data => {
@@ -92,8 +92,6 @@ const mapDispatchToProps = dispatch => {
     addUserToRoom: userObj => { dispatch(editUser(userObj)) },
     loadRooms: () => { dispatch(loadRooms()) },
     sendGamePlayMsg: playObj => dispatch({ type: 'UPDATE_GAME_STATE', payload: playObj }),
-    loadGamePlayMsg: roomId => { dispatch(loadGamePlayMsg(roomId))},
-    gamePlayMsg: roomId => { dispatch(gamePlayMsg(roomId)) },
   }
 }
 

@@ -130,23 +130,3 @@ export function removeUser(userObj) {
     .then(data => dispatch({ type: 'REMOVE_USER', payload: data }))
   }
 }
-
-export function gamePlayMsg(gamePlayObj) {
-  return (dispatch) => {
-    fetch(`${API_ROOT}/game_plays`, {
-      method: 'POST',
-      headers: HEADERS,
-      body: JSON.stringify(gamePlayObj),
-    })
-  }
-}
-
-export function loadGamePlayMsg(roomId) {
-  return (dispatch) => {
-    dispatch({ type: 'FETCHING' })
-    fetch(`${API_ROOT}/game_plays/${roomId}`)
-    .then(PARSE_JSON)
-    .then(data => console.log('loadChats= ', data.chats ))
-    //.then(data => dispatch({type: 'LOAD_CHATS', payload: data}))
-  }
-}

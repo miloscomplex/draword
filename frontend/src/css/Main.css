@@ -149,7 +149,7 @@ ul {
 }
 
 #chatWindow {
-  width: 40%;
+  min-width: 200px;
   padding: 1em;
   border: solid 1px #ccc;
   margin: 2.5em .5em 2.5em .5em;
