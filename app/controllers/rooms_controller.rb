@@ -31,6 +31,10 @@ class RoomsController < ApplicationController
     room = Room.find_by_id(params[:room_id])
     room.update(room_params)
     if room.save
+      serialized_data = ActiveModelSerializers::Adapter::Json.new(
+        RoomSerializer.new(room)
+      ).serializable_hash
+      ActionCable.server.broadcast "room_channel_#{params[:room_id]}", serialized_data
       render json: room
     else
       render json: { error: 'Could not update the room'}, status: 422
