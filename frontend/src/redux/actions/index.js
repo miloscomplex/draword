@@ -57,7 +57,7 @@ export function getPhrase(phraseId) {
 
 export function loadRooms() {
   return (dispatch) => {
-    dispatch({ type: 'FETCHING' })
+    dispatch({ type: 'LOADING_ROOMS' })
     fetch(`${API_ROOT}/rooms`).then(PARSE_JSON)
     .then(data => dispatch({type: 'ADD_ROOMS', payload: data}))
   }

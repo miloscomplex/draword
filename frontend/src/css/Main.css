@@ -265,15 +265,16 @@ ul {
 }
 
 .status {
-  background-color: lightblue;
-  margin: 10px;
   padding: .5em .2em;
   font-size: .7em;
   line-height: 1em;
-  font-weight: 600;
   text-transform: uppercase;
   display: block;
-  color: white;
+  color: #c28f4c;
+}
+
+.status span {
+  font-weight: 600;
 }
 
 .landing-page p {

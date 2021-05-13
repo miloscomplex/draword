@@ -11,15 +11,14 @@ class PhraseContainer extends React.Component {
 
   componentDidMount = () => {
     this.props.loadPhrases()
-    console.log('phrase mounted!.. in room', this.props.match.params.id)
+    //console.log('phrase mounted!.. in room', this.props.match.params.id)
   }
 
   handleClick = (phraseObjId) => {
     //console.log(matchObjId, phraseObjId)
     // set the phrase
-    const main = 'main'
-    this.props.editSelectedRoom( {room_id: this.props.selectedRoom.id, selected_phrase_id: phraseObjId, status: main } )
-    // this.props.gamePlayMsg( { action: main, room_id: matchObjId } )
+    const playing = 'playing'
+    this.props.editSelectedRoom( {room_id: this.props.selectedRoom.id, selected_phrase_id: phraseObjId, status: playing } )
   }
 
   render() {

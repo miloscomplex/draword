@@ -58,13 +58,13 @@ class RoomsList extends React.Component {
   loading = () => <span className='loading-message'> </span>
 
   render = () => {
-    const { rooms, busy } = this.props
+    const { rooms, loadingRooms } = this.props
     return (
       <div className="roomsList">
         <h1>Rooms</h1>
         <p>Select a room or create a new one</p>
         <ul>
-          { busy ? this.loading() : this.mapRooms(this.props.rooms) }
+          { loadingRooms ? this.loading() : this.mapRooms(this.props.rooms) }
         </ul>
 
         <NewRoomForm />
@@ -77,7 +77,7 @@ class RoomsList extends React.Component {
 const mapStateToProps = state => {
   return {
     rooms: state.rooms.roomsList,
-    busy: state.busySignal,
+    loadingRooms: state.rooms.loading
   }
 }
 

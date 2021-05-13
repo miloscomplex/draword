@@ -18,15 +18,6 @@ class GameContainer extends React.Component {
     this.props.setSelectedRoom(this.matchId)
   }
 
-  componentWillUnmount = () => {
-    //console.log('GameContainer umounted!')
-    cable.subscriptions.subscriptions.forEach( subscription => {
-      subscription.unsubscribe()
-    })
-    cable.disconnect()
-    // channel removes user from room on disconnect FAIL SAFE for closed window
-  }
-
   renderBusy = () => {
     return <span className='loading-message'> </span>
   }

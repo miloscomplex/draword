@@ -44,7 +44,7 @@ class ChatsArea extends React.Component {
   }
 
   componentWillUnmount = () => {
-    console.log('Chat unmounted')
+    //console.log('Chat unmounted')
     cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()
     })
@@ -73,7 +73,7 @@ class ChatsArea extends React.Component {
     //console.log('orderedChats= ', orderedChats(this.props.chats));
     //console.log(cable);
     const { chats } = this.props.selectedRoom
-    console.log('chats= ', chats);
+    //console.log('chats= ', chats);
 
     return (
       <div id='chatWindow'>

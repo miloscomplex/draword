@@ -27,13 +27,13 @@ class GamePlay extends React.Component {
       {connected: () => {
         console.log('GamePlaysChannel connected!')
       },
-        disconnected: () => {
-          console.log('GamePlaysChannel disconnected!')
-        },
-        received: data => {
-          this.handleReceivedData(data)
-          console.log('GamePlaysChannel data received')
-        }
+      disconnected: () => {
+        console.log('GamePlaysChannel disconnected!')
+      },
+      received: data => {
+        this.handleReceivedData(data)
+        console.log('GamePlaysChannel data received')
+      }
     })
   }
 
@@ -45,6 +45,7 @@ class GamePlay extends React.Component {
   componentWillUnmount = () => {
     console.log('GamePlay unmounted')
     // removing for now seems redundant
+    console.log('cable.subscriptions', cable.subscriptions);
     cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()
     })
@@ -81,8 +82,8 @@ class GamePlay extends React.Component {
                   handleDrawClick={this.handleDrawClick} handleGuessClick={this.handleGuessClick}
                 />
       case 'start':
-        return <PhraseSelection match={match} currentUser={this.props.currentUser} />
-      case 'main':
+        return <PhraseSelection selectedRoom={selectedRoom} currentUser={currentUser} />
+      case 'playing':
         return <MainGamePlay match={match} />
       case 'end':
         return <EndOfGame match={match} setSelectedRoom={setSelectedRoom}/>

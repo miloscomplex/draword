@@ -1,5 +1,6 @@
 
 const defaultStore = {
+  loading: false,
   roomsList: [],
   selectedRoom: ''
 }
@@ -17,10 +18,12 @@ function roomsReducer(state = defaultStore, action) {
             chats: [ ...state.selectedRoom.chats, newChat ]
         }
       }
+    case 'LOADING_ROOMS':
+      return {...state, loading: true }
     case 'ADD_ROOMS':
-      return {...state, roomsList: action.payload }
+      return {...state, roomsList: action.payload, loading: false }
     case 'UPDATE_SELECTED_ROOM':
-      return {...state, selectedRoom: action.payload }
+      return {...state, selectedRoom: action.payload, loading: false }
     case 'REMOVE_SELECTED_ROOM':
       return {...state, selectedRoom: '' }
     case 'LOAD_ROOM':
