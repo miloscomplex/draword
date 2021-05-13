@@ -9,6 +9,7 @@ class Room extends React.Component {
         <Link className='room' to={`/rooms/${this.props.id}`} >
           { this.props.title }
         </Link>
+        <p className='status'>game status: {this.props.status}</p>
         <p className='button' >
           <Link to={`/rooms/${this.props.id}`}>enter room</Link>
         </p>

@@ -2,6 +2,14 @@ import React from 'react'
 
 class EndOfGame extends React.Component {
 
+  matchId = this.props.match.params.id
+
+  componentDidMount = () => {
+    // ping the db to update status
+    this.props.setSelectedRoom(this.matchId)
+    console.log('match= ', this.props.match)
+  }
+
   render() {
     return (
       <div className='wrapper'>

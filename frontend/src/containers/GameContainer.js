@@ -11,20 +11,15 @@ class GameContainer extends React.Component {
   matchObj = this.props.match
   matchId = this.props.match.params.id
 
-  state = {
-    displayPrePlay: true,
-  }
-
   componentDidMount = () => {
     const { currentUser } = this.props
 
     this.props.createOrFindUser({ user_id: currentUser.id, room_id: this.matchId })
-    console.log('currentUser', currentUser);
     this.props.setSelectedRoom(this.matchId)
   }
 
   componentWillUnmount = () => {
-    console.log('GameContainer umounted!')
+    //console.log('GameContainer umounted!')
     cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()
     })
@@ -45,7 +40,7 @@ class GameContainer extends React.Component {
   }
 
   render() {
-    const { selectedRoom, busySignal } = this.props
+    const { selectedRoom } = this.props
 
     return (
       <div>

@@ -7,7 +7,7 @@ import EndOfGame from '../components/gamePlay/EndOfGame'
 import cable from '../services/Cable'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
-import { getPhrase, editSelectedRoom, editUser, loadRooms, createOrFindUser } from '../redux/actions'
+import { getPhrase, editSelectedRoom, editUser, loadRooms, createOrFindUser, setSelectedRoom } from '../redux/actions'
 import rootReducer from '../redux/reducers/rootReducer'
 
 
@@ -71,7 +71,7 @@ class GamePlay extends React.Component {
 
 
   renderContent = () => {
-    const { selectedRoom, currentUser, match, busySignal } = this.props
+    const { selectedRoom, currentUser, match, busySignal, setSelectedRoom } = this.props
 
     switch (this.props.gameStatus) {
       case 'preplay':
@@ -85,7 +85,7 @@ class GamePlay extends React.Component {
       case 'main':
         return <MainGamePlay match={match} />
       case 'end':
-        return <EndOfGame match={match} />
+        return <EndOfGame match={match} setSelectedRoom={setSelectedRoom}/>
       default:
         return <h2>Something isn't quite right...</h2>
     }
@@ -123,6 +123,7 @@ const mapDispatchToProps = dispatch => {
     addUserToRoom: userObj => { dispatch(editUser(userObj)) },
     loadRooms: () => { dispatch(loadRooms()) },
     editSelectedRoom: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
+    setSelectedRoom: roomId => { dispatch(setSelectedRoom(roomId)) }
   }
 }
 

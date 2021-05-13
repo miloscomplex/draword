@@ -50,7 +50,7 @@ class RoomsList extends React.Component {
   mapRooms = rooms => {
     return rooms.map(room => {
       return (
-        <Room key={room.id} id={room.id} title={room.title} />
+        <Room key={room.id} id={room.id} title={room.title} status={room.status}/>
       )
     })
   }
