@@ -49,7 +49,6 @@ class GamePlay extends React.Component {
       subscription.unsubscribe()
     })
     cable.disconnect()
-
     // now null-ing is executed by unsubscribe of action_cable for gamePlay
   }
 

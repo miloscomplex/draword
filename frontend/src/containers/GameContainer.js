@@ -19,6 +19,7 @@ class GameContainer extends React.Component {
     const { currentUser } = this.props
 
     this.props.createOrFindUser({ user_id: currentUser.id, room_id: this.matchId })
+    console.log('currentUser', currentUser);
     this.props.setSelectedRoom(this.matchId)
   }
 
@@ -40,11 +41,11 @@ class GameContainer extends React.Component {
   }
 
   renderGamePlay = () => {
-    return this.props.busySignal ? this.renderBusy() : <GamePlay match={this.matchObj} />
+    return this.props.loadingUser ? this.renderBusy() : <GamePlay match={this.matchObj} />
   }
 
   render() {
-    const { selectedRoom } = this.props
+    const { selectedRoom, busySignal } = this.props
 
     return (
       <div>
@@ -64,7 +65,7 @@ const mapStateToProps = state => {
   return {
     selectedRoom: state.rooms.selectedRoom,
     currentUser: state.users.user,
-    busySignal: state.busySignal,
+    loadingUser: state.users.loading,
   }
 }
 

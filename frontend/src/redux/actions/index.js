@@ -99,7 +99,7 @@ export function editSelectedRoom(roomObj) {
 export function createOrFindUser(userId) {
   //console.log('editUser roomObj= ', roomObj);
   return (dispatch) => {
-    dispatch({ type: 'FETCHING' })
+    dispatch({ type: 'LOADING_USER' })
     fetch(`${API_ROOT}/users`, {
       method: 'POST',
       headers: HEADERS,
