@@ -45,10 +45,10 @@ class ChatsArea extends React.Component {
 
   componentWillUnmount = () => {
     //console.log('Chat unmounted')
-    cable.subscriptions.subscriptions.forEach( subscription => {
-      subscription.unsubscribe()
-    })
-    cable.disconnect()
+    // cable.subscriptions.subscriptions.forEach( subscription => {
+    //   subscription.unsubscribe()
+    // })
+    // cable.disconnect()
   }
 
   handleReceivedChat = response => {

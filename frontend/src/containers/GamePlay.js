@@ -7,7 +7,7 @@ import EndOfGame from '../components/gamePlay/EndOfGame'
 import cable from '../services/Cable'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
-import { getPhrase, editSelectedRoom, editUser, loadRooms, createOrFindUser, setSelectedRoom } from '../redux/actions'
+import { getPhrase, editSelectedRoom, editUser, loadRooms, createOrFindUser, setSelectedRoom, broadcastRoomStatus } from '../redux/actions'
 import rootReducer from '../redux/reducers/rootReducer'
 
 
@@ -20,19 +20,19 @@ class GamePlay extends React.Component {
   // need to add action cable to have overlays and announcements broadcasted
   gamePlayChannel = () => {
     cable.subscriptions.create({
-    channel: `GamePlaysChannel`,
+    channel: `RoomChannel`,
     room_id: this.props.selectedRoom.id,
     user_id: this.props.currentUser.id
     },
       {connected: () => {
-        console.log('GamePlaysChannel connected!')
+        console.log('RoomChannel connected!')
       },
       disconnected: () => {
-        console.log('GamePlaysChannel disconnected!')
+        console.log('RoomChannel disconnected!')
       },
       received: data => {
         this.handleReceivedData(data)
-        console.log('GamePlaysChannel data received')
+        console.log('RoomChannel data received')
       }
     })
   }
@@ -51,6 +51,11 @@ class GamePlay extends React.Component {
     })
     cable.disconnect()
     // now null-ing is executed by unsubscribe of action_cable for gamePlay
+  }
+
+  handleReceivedData = data => {
+    console.log('receivedData= ', data);
+    this.props.broadcastRoomStatus(data)
   }
 
   handleDrawClick = userObj => {
@@ -72,7 +77,7 @@ class GamePlay extends React.Component {
 
 
   renderContent = () => {
-    const { selectedRoom, currentUser, match, busySignal, setSelectedRoom } = this.props
+    const { selectedRoom, currentUser, match, busySignal, setSelectedRoom, editSelectedRoom } = this.props
 
     switch (this.props.gameStatus) {
       case 'preplay':
@@ -86,7 +91,7 @@ class GamePlay extends React.Component {
       case 'playing':
         return <MainGamePlay match={match} />
       case 'end':
-        return <EndOfGame match={match} setSelectedRoom={setSelectedRoom}/>
+        return <EndOfGame match={match} editSelectedRoom={editSelectedRoom} setSelectedRoom={setSelectedRoom} />
       default:
         return <h2>Something isn't quite right...</h2>
     }
@@ -124,7 +129,8 @@ const mapDispatchToProps = dispatch => {
     addUserToRoom: userObj => { dispatch(editUser(userObj)) },
     loadRooms: () => { dispatch(loadRooms()) },
     editSelectedRoom: phraseObj => { dispatch(editSelectedRoom(phraseObj)) },
-    setSelectedRoom: roomId => { dispatch(setSelectedRoom(roomId)) }
+    setSelectedRoom: roomId => { dispatch(setSelectedRoom(roomId)) },
+    broadcastRoomStatus: roomObj => { dispatch(broadcastRoomStatus(roomObj)) }
   }
 }
 

@@ -63,6 +63,12 @@ export function loadRooms() {
   }
 }
 
+export function broadcastRoomStatus(roomObj) {
+  return (dispatch) => {
+      dispatch({ type: 'UPDATE_SELECTED_ROOM', payload: roomObj })
+    }
+}
+
 export function setSelectedRoom(roomId) {
   return (dispatch) => {
     //dispatch({ type: 'FETCHING' })

@@ -50,10 +50,6 @@ class Canvas extends React.Component {
           this.dataCache = data
           this.drawOnCanvas(data)
           //console.log('CanvasChannel data received', data)
-        },
-        send: data => {
-          console.log('CanvasChannel sent data', data)
-          //this.handlePostFetch(data)
         }
     })
 
