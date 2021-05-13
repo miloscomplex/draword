@@ -22,7 +22,7 @@ class EndOfGame extends React.Component {
         <p>
           Dang better luck next time !
         </p>
-         <button onClick={event => this.props.editSelectedRoom({room_id: this.props.match.params.id, status: 'preplay', phrase: null, users: null }) }>start over
+         <button onClick={event => this.props.editSelectedRoom({room_id: this.props.match.params.id, status: 'preplay', selected_phrase_id: null, users: [], drawer_id: null }) }>start over
          </button>
       </div>
     )
