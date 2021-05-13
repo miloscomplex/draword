@@ -45,10 +45,10 @@ class GamePlay extends React.Component {
   componentWillUnmount = () => {
     console.log('GamePlay unmounted')
     // removing for now seems redundant
-    // cable.subscriptions.subscriptions.forEach( subscription => {
-    //   subscription.unsubscribe()
-    // })
-    //cable.disconnect()
+    cable.subscriptions.subscriptions.forEach( subscription => {
+      subscription.unsubscribe()
+    })
+    cable.disconnect()
 
     // now null-ing is executed by unsubscribe of action_cable for gamePlay
   }

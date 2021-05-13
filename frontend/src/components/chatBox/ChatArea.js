@@ -3,7 +3,7 @@ import ChatBoxInput from '../chatBox/ChatBoxInput';
 import ChatMessage from './ChatMessage';
 import cable from '../../services/Cable'
 import { connect } from 'react-redux'
-import { loadChats, addChat } from '../../redux/actions'
+import { loadChats, addChat, editSelectedRoom } from '../../redux/actions'
 import ChatBoxBot from './ChatBoxBot'
 
 class ChatsArea extends React.Component {
@@ -45,6 +45,10 @@ class ChatsArea extends React.Component {
 
   componentWillUnmount = () => {
     console.log('Chat unmounted')
+    cable.subscriptions.subscriptions.forEach( subscription => {
+      subscription.unsubscribe()
+    })
+    cable.disconnect()
   }
 
   handleReceivedChat = response => {
@@ -53,12 +57,16 @@ class ChatsArea extends React.Component {
     this.props.addChat(chat)
   }
 
+  handleWin = (phraseObj, end) => {
+    this.props.editSelectedRoom({ room_id:  this.props.selectedRoom.id, status: end })
+    alert(`Hot Dang you got it: ${phraseObj.phrase}`)
+  }
+
   checkForPhrase = (chatObj, phraseObj) => {
     console.log('checkForPhrase= ', phraseObj)
     let winner = false
     const end = 'end'
-    phraseObj && chatObj.text.toLowerCase().includes(phraseObj.phrase.toLowerCase()) &&
-    alert(`Hot Dang you got it: ${phraseObj.phrase}`)
+    phraseObj && chatObj.text.toLowerCase().includes(phraseObj.phrase.toLowerCase()) && this.handleWin(phraseObj, end)
   }
 
   render = () => {
@@ -97,7 +105,7 @@ const mapDispatchToProps = dispatch => {
   return {
     loadChats: roomId => { dispatch(loadChats(roomId)) },
     addChat: chatObj => { dispatch(addChat(chatObj)) },
-    //gamePlayMsg: gamePlayObj => { dispatch(gamePlayMsg(gamePlayObj)) }
+    editSelectedRoom: phraseObj => { dispatch(editSelectedRoom(phraseObj)) }
   }
 }
 

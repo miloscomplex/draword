@@ -36,7 +36,7 @@ export function setPhrase(phraseObj) {
 
 export function setRoom(roomId) {
   return (dispatch) => {
-    dispatch({ type: 'FETCHING' })
+    //dispatch({ type: 'FETCHING' })
     fetch(`${API_ROOT}/rooms/${roomId}`, {
       method: 'PUT',
       headers: HEADERS,

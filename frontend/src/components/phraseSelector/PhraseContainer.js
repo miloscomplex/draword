@@ -14,11 +14,11 @@ class PhraseContainer extends React.Component {
     console.log('phrase mounted!.. in room', this.props.match.params.id)
   }
 
-  handleClick = (matchObjId, phraseObjId) => {
+  handleClick = (phraseObjId) => {
     //console.log(matchObjId, phraseObjId)
     // set the phrase
     const main = 'main'
-    this.props.editSelectedRoom( {room_id: matchObjId, phrase_id: phraseObjId, status: main } )
+    this.props.editSelectedRoom( {room_id: this.props.selectedRoom.id, selected_phrase_id: phraseObjId, status: main } )
     // this.props.gamePlayMsg( { action: main, room_id: matchObjId } )
   }
 
@@ -39,6 +39,7 @@ class PhraseContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    selectedRoom: state.rooms.selectedRoom,
     phrases: state.phrases.phrasesList,
     busySignal: state.busySignal,
     currentUser: state.users.user

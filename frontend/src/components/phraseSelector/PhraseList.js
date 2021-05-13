@@ -2,10 +2,10 @@ import React from 'react'
 
 class PhraseList extends React.Component {
 
-  phraseList = (phrases, match) => {
+  phraseList = (phrases) => {
     return phrases.map( phraseObj => {
       return (
-        <li key={phraseObj.id} onClick={ event => this.props.handleClick(match, phraseObj.id)} > {phraseObj.phrase} </li>
+        <li key={phraseObj.id} onClick={ event => this.props.handleClick(phraseObj.id)} > {phraseObj.phrase} </li>
       )
     })
   }
@@ -16,7 +16,7 @@ class PhraseList extends React.Component {
     return (
       <div>
         <ul className='phrases' >
-          { this.phraseList(this.props.phrases, this.props.match.params.id) }
+          { this.phraseList(this.props.phrases) }
         </ul>
       </div>
     )
