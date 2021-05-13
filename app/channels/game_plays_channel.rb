@@ -8,8 +8,14 @@ class GamePlaysChannel < ApplicationCable::Channel
 
   def unsubscribed
     # handle db cleanup here
+    @user = User.find_by_id(params[:user_id])
+    @room = Room.find_by_id(params[:room_id])
+
     if @user.id == @room.drawer_id
-      @room.drawer_id = nil 
+      @room.drawer_id = nil
+      @room.selected_phrase_id = nil
+      @room.status = 'preplay'
+      @room.save
     end
     if @user
       # null out room_id here to avoid any async issues
