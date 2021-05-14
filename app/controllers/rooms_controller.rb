@@ -17,11 +17,12 @@ class RoomsController < ApplicationController
     room = Room.create(room_params)
     if room.valid?
       # broadcast to anyone subscribed to the FeedChannel for this specific id
-      serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        RoomSerializer.new(room)
-      ).serializable_hash
-      ActionCable.server.broadcast 'rooms_channel', serialized_data
-      head :ok
+      # serialized_data = ActiveModelSerializers::Adapter::Json.new(
+      #   RoomSerializer.new(room)
+      # ).serializable_hash
+      # ActionCable.server.broadcast 'rooms_channel', serialized_data
+      # head :ok
+      render json: room 
     else
       render json: { error: 'Could not create the room'}, status: 422
     end
@@ -34,7 +35,8 @@ class RoomsController < ApplicationController
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
         RoomSerializer.new(room)
       ).serializable_hash
-      ActionCable.server.broadcast "room_channel_#{params[:room_id]}", serialized_data
+      ActionCable.server.broadcast "room_channel_#{params[:room_id]}",
+      serialized_data
       render json: room
     else
       render json: { error: 'Could not update the room'}, status: 422
