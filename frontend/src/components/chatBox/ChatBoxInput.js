@@ -30,7 +30,7 @@ class ChatBoxInput extends React.Component {
   render() {
     return (
       <form name='chatBoxForm' onSubmit={event => this.handleOnSubmit(event)} >
-        <input type='text' value={this.state.text} onChange={this.handleOnChange}/>
+        <input type='text' minLength='2' value={this.state.text} onChange={this.handleOnChange}/>
         <button value='submit'>submit</button>
       </form>
     )

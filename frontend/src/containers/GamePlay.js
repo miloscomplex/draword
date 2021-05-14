@@ -33,6 +33,9 @@ class GamePlay extends React.Component {
       received: data => {
         this.handleReceivedData(data)
         console.log('RoomChannel data received')
+      },
+      timer: () => {
+        console.log('timer was called');
       }
     })
   }
@@ -91,7 +94,7 @@ class GamePlay extends React.Component {
       case 'playing':
         return <MainGamePlay match={match} />
       case 'end':
-        return <EndOfGame match={match} editSelectedRoom={editSelectedRoom} setSelectedRoom={setSelectedRoom} />
+        return <EndOfGame match={match} editSelectedRoom={editSelectedRoom} setSelectedRoom={setSelectedRoom} selectedRoom={selectedRoom} />
       default:
         return <h2>Something isn't quite right...</h2>
     }
@@ -99,9 +102,7 @@ class GamePlay extends React.Component {
 
   render() {
     /* this.props.match.params ==> what's the url for the room */
-    const roomURL = this.props.match
 
-    const { gameStatus, busySignal } = this.props
     return (
       <div>
           { this.renderContent() }

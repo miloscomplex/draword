@@ -11,18 +11,17 @@ class EndOfGame extends React.Component {
   }
 
   render() {
+    const { selectedRoom, editSelectedRoom, match } = this.props
+
     return (
       <div className='wrapper'>
         <h2>
-          End of Game
+          { `Good Job ${selectedRoom.title}! This is the end of Game` }
         </h2>
         <p>
-          Wow you won !
+          Wow you won ! { `The correct answer was ${selectedRoom.phrase.phrase}`}
         </p>
-        <p>
-          Dang better luck next time !
-        </p>
-         <button onClick={event => this.props.editSelectedRoom({room_id: this.props.match.params.id, status: 'preplay', selected_phrase_id: null, users: [], drawer_id: null }) }>start over
+         <button onClick={event => editSelectedRoom({room_id: match.params.id, status: 'preplay', selected_phrase_id: null, drawer_id: null }) }>start over
          </button>
       </div>
     )

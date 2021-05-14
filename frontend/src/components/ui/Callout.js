@@ -3,8 +3,9 @@ import React from 'react'
 class Callout extends React.Component {
 
   render() {
+    const { currentUser, selectedRoom } = this.props
     return (
-      this.props.currentUser.is_drawing && this.props.selectedRoom.phrase 
+      currentUser.id === selectedRoom.drawer_id
         ?
       (<div className='phraseReminder'>
         Your phrase/word is <strong>{ this.props.selectedRoom.phrase.phrase }</strong>

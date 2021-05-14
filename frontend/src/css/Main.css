@@ -95,6 +95,10 @@ input {
   box-sizing: border-box;
 }
 
+input:invalid {
+  border-color: red;
+}
+
 ul {
   padding: 0;
 }
