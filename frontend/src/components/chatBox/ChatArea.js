@@ -59,7 +59,7 @@ class ChatsArea extends React.Component {
 
   handleWin = (phraseObj, end) => {
     this.props.editSelectedRoom({ room_id:  this.props.selectedRoom.id, status: end })
-    alert(`Hot Dang you got it: ${phraseObj.phrase}`)
+    // alert(`Hot Dang you got it: ${phraseObj.phrase}`)
   }
 
   checkForPhrase = (chatObj, phraseObj) => {

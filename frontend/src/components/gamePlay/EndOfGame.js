@@ -1,4 +1,6 @@
 import React from 'react'
+import { editSelectedRoom } from '../../redux/actions'
+import { connect } from 'react-redux'
 
 class EndOfGame extends React.Component {
 
@@ -9,9 +11,10 @@ class EndOfGame extends React.Component {
     this.props.setSelectedRoom(this.matchId)
     console.log('match= ', this.props.match)
   }
-
+  // TODO: some strange behavior is casuing nesting of the selectedRoom
   render() {
     const { selectedRoom, editSelectedRoom, match } = this.props
+    const preplay = 'preplay'
 
     return (
       <div className='wrapper'>
@@ -21,7 +24,7 @@ class EndOfGame extends React.Component {
         <p>
           Wow you won ! { `The correct answer was ${selectedRoom.phrase.phrase}`}
         </p>
-         <button onClick={event => editSelectedRoom({room_id: match.params.id, status: 'preplay', selected_phrase_id: null, drawer_id: null }) }>start over
+         <button onClick={ event => editSelectedRoom({room_id: selectedRoom.id, status: preplay, selected_phrase_id: null, drawer_id: null }) }>start over
          </button>
       </div>
     )
@@ -29,4 +32,15 @@ class EndOfGame extends React.Component {
 
 }
 
-export default EndOfGame
+const mapDispatchToProps = dispatch => {
+  return {
+    editSelectedRoom: phraseObj => { dispatch(editSelectedRoom(phraseObj)) }
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    selectedRoom: state.rooms.selectedRoom
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(EndOfGame)

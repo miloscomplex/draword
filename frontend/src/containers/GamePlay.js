@@ -32,11 +32,8 @@ class GamePlay extends React.Component {
       },
       received: data => {
         this.handleReceivedData(data)
-        console.log('RoomChannel data received')
+        console.log('RoomChannel data received', data)
       },
-      timer: () => {
-        console.log('timer was called');
-      }
     })
   }
 
@@ -48,7 +45,7 @@ class GamePlay extends React.Component {
   componentWillUnmount = () => {
     console.log('GamePlay unmounted')
     // removing for now seems redundant
-    console.log('cable.subscriptions', cable.subscriptions);
+    // console.log('cable.subscriptions', cable.subscriptions);
     cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()
     })
@@ -57,15 +54,15 @@ class GamePlay extends React.Component {
   }
 
   handleReceivedData = data => {
-    console.log('receivedData= ', data);
+    //console.log('receivedData= ', data);
     this.props.broadcastRoomStatus(data)
   }
 
   handleDrawClick = userObj => {
-    const { currentUser } = this.props
+    const { currentUser, selectedRoom } = this.props
     const statusStr = 'start'
 
-    this.props.editSelectedRoom({room_id: this.matchId, drawer_id: currentUser.id, status: statusStr })
+    this.props.editSelectedRoom({room_id: selectedRoom.id, drawer_id: currentUser.id, status: statusStr })
   }
 
   handleGuessClick = userObj => {
@@ -94,7 +91,7 @@ class GamePlay extends React.Component {
       case 'playing':
         return <MainGamePlay match={match} />
       case 'end':
-        return <EndOfGame match={match} editSelectedRoom={editSelectedRoom} setSelectedRoom={setSelectedRoom} selectedRoom={selectedRoom} />
+        return <EndOfGame match={match} setSelectedRoom={setSelectedRoom} />
       default:
         return <h2>Something isn't quite right...</h2>
     }
