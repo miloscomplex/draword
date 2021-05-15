@@ -9,16 +9,19 @@ import { connect } from 'react-redux'
 class MainGamePlay extends React.Component {
 
   render() {
+
+    const { selectedRoom, currentUser, match } = this.props
+
     return (
       <React.Fragment>
-        <Callout selectedRoom={this.props.selectedRoom} currentUser={this.props.currentUser} />
+        <Callout selectedRoom={selectedRoom} currentUser={currentUser} />
 
         <div id='wrapper'>
           <div id='canvas'>
-            <Canvas match={this.props.match} />
+            <Canvas match={match} />
             <Timer />
           </div>
-          <ChatArea match={this.props.match} currentUser={this.props.currentUser} />
+          <ChatArea match={match} currentUser={currentUser} />
         </div>
       </React.Fragment>
     )

@@ -4,10 +4,12 @@ import PhraseContainer from '../phraseSelector/PhraseContainer'
 class PhraseSelection extends React.Component {
 
   render() {
+    const { selectedRoom, currentUser } = this.props
+
     return (
       <div className='wrapper'>
         {
-          this.props.currentUser.id
+          currentUser.id === selectedRoom.drawer_id
           ?
           <React.Fragment>
             <PhraseContainer match={this.props.match} />

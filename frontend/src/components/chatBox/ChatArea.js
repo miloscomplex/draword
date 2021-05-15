@@ -73,6 +73,7 @@ class ChatsArea extends React.Component {
     //console.log('orderedChats= ', orderedChats(this.props.chats));
     //console.log(cable);
     const { chats } = this.props.selectedRoom
+    const { currentUser, selectedRoom } = this.props
     //console.log('chats= ', chats);
 
     return (
@@ -86,9 +87,9 @@ class ChatsArea extends React.Component {
           </div>
         </div>
 
-        <ChatBoxInput roomId={this.roomURL} currentUser={this.props.currentUser} />
+        <ChatBoxInput roomId={this.roomURL} currentUser={currentUser} selectedRoom={selectedRoom} />
 
-        <ChatBoxBot roomId={this.roomURL} currentUser={this.props.currentUser} />
+        <ChatBoxBot roomId={this.roomURL} currentUser={currentUser} />
       </div>
     )
   }
