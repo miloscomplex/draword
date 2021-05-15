@@ -36,7 +36,8 @@ class ChatBoxBot extends React.Component {
   }
 
   componentWillUnmount = () => {
-    this.myCallback(this.left)
+    // causing 500 error 
+    // this.myCallback(this.left)
   }
 
   render = () => {

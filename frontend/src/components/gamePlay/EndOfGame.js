@@ -11,10 +11,16 @@ class EndOfGame extends React.Component {
     this.props.setSelectedRoom(this.matchId)
     console.log('match= ', this.props.match)
   }
-  // TODO: some strange behavior is casuing nesting of the selectedRoom
-  render() {
-    const { selectedRoom, editSelectedRoom, match } = this.props
+
+  handleClick = () => {
+    const { selectedRoom, editSelectedRoom } = this.props
     const preplay = 'preplay'
+
+    this.props.editSelectedRoom({room_id: this.props.selectedRoom.id, status: preplay, selected_phrase_id: null, drawer_id: null })
+  }
+
+  render() {
+    const { selectedRoom } = this.props
 
     return (
       <div className='wrapper'>
@@ -24,7 +30,8 @@ class EndOfGame extends React.Component {
         <p>
           Wow you won ! { `The correct answer was ${selectedRoom.phrase.phrase}`}
         </p>
-         <button onClick={ event => editSelectedRoom({room_id: selectedRoom.id, status: preplay, selected_phrase_id: null, drawer_id: null }) }>start over
+        { /* // FIXME: IT WON'T SEND ACTIONCABLE SIGNAL TO CHANGE STATE TO ADDITINAL PLAYERS ODD B/C CHAT AREA WORKS JUST FINE??? */ }
+         <button onClick={ event => this.handleClick() }>start over
          </button>
       </div>
     )
