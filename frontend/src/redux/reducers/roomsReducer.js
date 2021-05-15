@@ -20,6 +20,8 @@ function roomsReducer(state = defaultStore, action) {
       }
     case 'LOADING_ROOMS':
       return {...state, loading: true }
+    case 'LOADING_ROOM':
+      return {...state, loading: true }
     case 'ADD_ROOMS':
       return {...state, roomsList: action.payload, loading: false }
     case 'UPDATE_SELECTED_ROOM':

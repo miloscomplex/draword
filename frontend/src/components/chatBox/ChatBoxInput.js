@@ -4,12 +4,10 @@ import { API_ROOT, HEADERS } from '../../constants'
 
 class ChatBoxInput extends React.Component {
 
-  const { roomId, currentUser, selectedRoom } = this.props
-
   state = {
     text: '',
     room_id: this.props.roomId,
-    role: selectedRoom.drawer_id === currentUser.id ? 'drawer' : 'guesser',
+    role: this.props.selectedRoom.drawer_id === this.props.currentUser.id ? 'drawer' : 'guesser',
     name: this.props.currentUser.name,
   }
 

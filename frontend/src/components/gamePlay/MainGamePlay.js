@@ -5,8 +5,16 @@ import Canvas from '../canvas/Canvas'
 import ChatArea from '../chatBox/ChatArea'
 import Callout from '../ui/Callout'
 import { connect } from 'react-redux'
+import { setSelectedRoom } from '../../redux/actions'
 
 class MainGamePlay extends React.Component {
+
+  componentDidMount = () => {
+    const { id } = this.props.match.params
+    // ping the db to update status
+    this.props.setSelectedRoom(id)
+    console.log('match= ', this.props.match)
+  }
 
   render() {
 
@@ -37,4 +45,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(MainGamePlay)
+const mapDispatchToProps = dispatch => {
+  return {
+    setSelectedRoom: roomId => { dispatch(setSelectedRoom(roomId)) },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainGamePlay)

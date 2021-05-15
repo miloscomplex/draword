@@ -71,7 +71,7 @@ export function broadcastRoomStatus(roomObj) {
 
 export function setSelectedRoom(roomId) {
   return (dispatch) => {
-    //dispatch({ type: 'FETCHING' })
+    dispatch({ type: 'LOADING_ROOM' })
     fetch(`${API_ROOT}/rooms/${roomId}`)
     .then(PARSE_JSON)
     .then(data => dispatch({ type: 'UPDATE_SELECTED_ROOM', payload: data}) )
