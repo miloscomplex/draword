@@ -65,7 +65,8 @@ export function loadRooms() {
 
 export function broadcastRoomStatus(roomObj) {
   return (dispatch) => {
-      dispatch({ type: 'UPDATE_SELECTED_ROOM', payload: roomObj })
+      dispatch({ type: 'UPDATE_SELECTED_ROOM', payload: roomObj.room })
+      console.log('broadcastRoomStatus', roomObj.room );
     }
 }
 
@@ -75,6 +76,7 @@ export function setSelectedRoom(roomId) {
     fetch(`${API_ROOT}/rooms/${roomId}`)
     .then(PARSE_JSON)
     .then(data => dispatch({ type: 'UPDATE_SELECTED_ROOM', payload: data}) )
+    .then( data => console.log('setSelectedRoom', data) )
     .catch( err =>  console.log('err= ', err))
   }
 }
