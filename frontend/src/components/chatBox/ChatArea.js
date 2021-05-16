@@ -40,7 +40,7 @@ class ChatsArea extends React.Component {
         received: data => {
           this.handleReceivedChat(data)
           console.log('ChatsChannel data received')
-        }
+        },
     })
   }
 

@@ -223,9 +223,22 @@ ul {
 .chat-messages p {
   /* background-color: #cdeff7; */
   padding: .75em;
+  margin-top: 1.5em;
   border-radius: .6em;
   font-weight: 500;
   overflow-wrap: break-word;
+  position: relative;
+}
+
+.chat-messages span {
+  position: absolute;
+  display: inline-block;
+  top: -1.2em;
+  left: .6em;
+  text-transform: uppercase;
+  font-size: .7em;
+  color: #888;
+
 }
 
 /* need .chat-message to override above bgc */

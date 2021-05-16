@@ -3,6 +3,7 @@ import PrePlay from '../components/gamePlay/PrePlay'
 import PhraseSelection from '../components/gamePlay/PhraseSelection'
 import MainGamePlay from '../components/gamePlay/MainGamePlay'
 import EndOfGame from '../components/gamePlay/EndOfGame'
+import DrawerLeft from '../components/gamePlay/DrawerLeft'
 
 import cable from '../services/Cable'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
@@ -92,6 +93,8 @@ class GamePlay extends React.Component {
         return <MainGamePlay match={match} />
       case 'end':
         return <EndOfGame match={match} setSelectedRoom={setSelectedRoom} />
+      case 'drawerLeft':
+        return <DrawerLeft match={match} setSelectedRoom={setSelectedRoom} />
       default:
         return <h2>Something isn't quite right...</h2>
     }

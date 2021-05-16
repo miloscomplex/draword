@@ -26,6 +26,14 @@ function roomsReducer(state = defaultStore, action) {
       return {...state, roomsList: action.payload, loading: false }
     case 'UPDATE_SELECTED_ROOM':
       return {...state, selectedRoom: action.payload, loading: false }
+    case 'UPDATE_LOCAL_STATUS':
+      return {
+        ...state,
+        selectedRoom: {
+          ...state.selectedRoom,
+          status: action.payload
+        }
+    }
     case 'REMOVE_SELECTED_ROOM':
       return {...state, selectedRoom: '' }
     case 'LOAD_ROOM':

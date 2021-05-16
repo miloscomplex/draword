@@ -4,13 +4,15 @@ REFERENCE https://codepen.io/yananas/pen/rwvZvY
 
 ### MVP
 
+- [ ] Fix game flow logic to avoid stuck state in phraseSelector
+
 - [ ] Implement a server-side user tracker
 
 - [ ] Broadcast to users if drawer leaves or enters the room
 
 - [ ] Refactor code to and include checks and reloads of server data
 
-- [ ] Implement the waiting state for Thunk 
+- [ ] Implement the waiting state for Thunk
 
 - [x] Build out the Rails backend
 

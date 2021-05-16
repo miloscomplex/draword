@@ -1,5 +1,6 @@
 import React from 'react'
 import PhraseContainer from '../phraseSelector/PhraseContainer'
+import GuesserWaitingRoom from '../ui/GuesserWaitingRoom'
 
 class PhraseSelection extends React.Component {
 
@@ -11,14 +12,9 @@ class PhraseSelection extends React.Component {
         {
           currentUser.id === selectedRoom.drawer_id
           ?
-          <React.Fragment>
-            <PhraseContainer match={this.props.match} />
-          </React.Fragment>
+          <PhraseContainer match={this.props.match} />
           :
-          <React.Fragment>
-            <h2>The drawee is selecting a phrase</h2>
-            <p className='description'>The game will appear once they have decided on a clue</p>
-          </React.Fragment>
+          <GuesserWaitingRoom match={this.props.match}/>
         }
       </div>
     )

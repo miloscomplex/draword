@@ -18,6 +18,10 @@ class GameContainer extends React.Component {
     this.props.setSelectedRoom(this.matchId)
   }
 
+  componentWillUnmount = () => {
+    console.log('GameContainer unmounted!');
+  }
+
   renderBusy = () => {
     return <span className='loading-message'> </span>
   }
