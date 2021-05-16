@@ -6,6 +6,8 @@ REFERENCE https://codepen.io/yananas/pen/rwvZvY
 
 - [ ] Fix game flow logic to avoid stuck state in phraseSelector
 
+- [ ] May need to add a true/false statement b/c currently drawer_id can be false and it displays 
+
 - [ ] Implement a server-side user tracker
 
 - [ ] Broadcast to users if drawer leaves or enters the room

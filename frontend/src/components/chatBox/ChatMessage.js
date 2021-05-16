@@ -1,7 +1,6 @@
 import React from 'react'
 
 class ChatMessage extends React.Component {
-  guesser = 'guesser'
 
   render() {
     return (

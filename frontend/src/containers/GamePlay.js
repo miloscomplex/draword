@@ -94,7 +94,13 @@ class GamePlay extends React.Component {
       case 'end':
         return <EndOfGame match={match} setSelectedRoom={setSelectedRoom} />
       case 'drawerLeft':
-        return <DrawerLeft match={match} setSelectedRoom={setSelectedRoom} />
+        return <DrawerLeft
+          match={match}
+          currentUser={currentUser}
+          setSelectedRoom={setSelectedRoom}
+          drawer_id={selectedRoom.drawer_id}
+          handleDrawClick={this.handleDrawClick} handleGuessClick={this.handleGuessClick}
+        />
       default:
         return <h2>Something isn't quite right...</h2>
     }

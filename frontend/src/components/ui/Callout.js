@@ -8,11 +8,11 @@ class Callout extends React.Component {
       currentUser.id === selectedRoom.drawer_id
         ?
       (<div className='phraseReminder'>
-        Your phrase/word is <strong>{ this.props.selectedRoom.phrase.phrase }</strong>
+        Hey, <strong>{currentUser.name}</strong>! Your phrase/word is <strong>{ this.props.selectedRoom.phrase.phrase }</strong>
       </div>)
       :
       (<div className='phraseReminder'>
-        Remember to think of popular Karaoke songs
+        Hey, <strong>{currentUser.name}</strong>! Remember to think of popular Karaoke songs
       </div>)
     )
   }
