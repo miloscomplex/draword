@@ -40,7 +40,7 @@ class Timer extends React.Component {
   }
 
   componentDidMount() {
-    //this.startTimer()
+    this.startTimer()
   }
 
   render() {

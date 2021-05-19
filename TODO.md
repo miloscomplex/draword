@@ -4,9 +4,13 @@ REFERENCE https://codepen.io/yananas/pen/rwvZvY
 
 ### MVP
 
-- [ ] Fix game flow logic to avoid stuck state in phraseSelector
+- [ ] No longer going to win screen?
 
-- [ ] May need to add a true/false statement b/c currently drawer_id can be false and it displays 
+- [ ] Add timer just do web sockets to guessers 
+
+- [x] Fix game flow logic to avoid stuck state in phraseSelector
+
+- [ ] May need to add a true/false statement b/c currently drawer_id can be false and it displays
 
 - [ ] Implement a server-side user tracker
 

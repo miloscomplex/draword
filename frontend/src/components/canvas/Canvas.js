@@ -176,17 +176,26 @@ class Canvas extends React.Component {
   render() {
     //console.log('cable= ', cable)
     //console.log('this.canvasChannel', this.canvasChannel());
+    const { currentUser, selectedRoom } = this.props
+
     return (
-      <React.Fragment>
-        <canvas
-          onMouseDown={event => this.startDrawing(event)}
-          onMouseUp={event => this.stopDrawing(event)}
-          onMouseMove={event => this.drawing(event)}
-          onMouseLeave={event => this.stopDrawing(event)}
-          ref={this.canvasRef}
-        />
-        <ToolBox handleClearClick={this.handleClearClick} />
-      </React.Fragment>
+
+        currentUser.id === selectedRoom.drawer_id
+        ?
+        <React.Fragment>
+          <canvas
+            onMouseDown={event => this.startDrawing(event)}
+            onMouseUp={event => this.stopDrawing(event)}
+            onMouseMove={event => this.drawing(event)}
+            onMouseLeave={event => this.stopDrawing(event)}
+            ref={this.canvasRef}
+          />
+          <ToolBox handleClearClick={this.handleClearClick} />
+        </React.Fragment>
+        :
+        <React.Fragment>
+          <canvas ref={this.canvasRef} />
+        </React.Fragment>
     )
   }
 }
