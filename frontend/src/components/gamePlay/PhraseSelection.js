@@ -1,21 +1,31 @@
 import React from 'react'
 import PhraseContainer from '../phraseSelector/PhraseContainer'
 import GuesserWaitingRoom from '../ui/GuesserWaitingRoom'
+import Error from './Error.js'
+import NoDrawer from './NoDrawer.js'
+import { Link } from 'react-router-dom'
 
 class PhraseSelection extends React.Component {
 
-  render() {
+  renderContent = () => {
     const { selectedRoom, currentUser } = this.props
+
+    switch (selectedRoom.drawer_id) {
+      case currentUser.id:
+        return <PhraseContainer match={this.props.match} />
+      case null:
+        return <NoDrawer match={this.props.match} handleDrawClick={this.props.handleDrawClick}/>
+      default:
+        return <GuesserWaitingRoom match={this.props.match} />
+      // default same as !currentUser.id 
+    }
+  }
+
+  render() {
 
     return (
       <div className='wrapper'>
-        {
-          currentUser.id === selectedRoom.drawer_id
-          ?
-          <PhraseContainer match={this.props.match} />
-          :
-          <GuesserWaitingRoom match={this.props.match}/>
-        }
+        { this.renderContent() }
       </div>
     )
   }

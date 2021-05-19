@@ -88,7 +88,7 @@ class GamePlay extends React.Component {
                   handleDrawClick={this.handleDrawClick} handleGuessClick={this.handleGuessClick}
                 />
       case 'start':
-        return <PhraseSelection selectedRoom={selectedRoom} currentUser={currentUser} />
+        return <PhraseSelection handleDrawClick={this.handleDrawClick} selectedRoom={selectedRoom} currentUser={currentUser} drawer_id={selectedRoom.drawer_id} />
       case 'playing':
         return <MainGamePlay match={match} />
       case 'end':
