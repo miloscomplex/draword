@@ -3,7 +3,6 @@ class RoomsController < ApplicationController
   def index
     rooms = Room.all
     render json: rooms
-    # puts "current_user= #{current_user}"
   end
 
   def show

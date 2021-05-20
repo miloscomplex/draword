@@ -25,10 +25,10 @@ class EndOfGame extends React.Component {
     return (
       <div className='wrapper'>
         <h2>
-          { `Good Job ${selectedRoom.title}! This is the end of Game` }
+          Wow you won ! { `The correct answer was ${selectedRoom.phrase.phrase}`}
         </h2>
         <p>
-          Wow you won ! { `The correct answer was ${selectedRoom.phrase.phrase}`}
+          { `Good Job room: ${selectedRoom.title}! This is the end of Game` }
         </p>
         { /* // FIXME: IT WON'T SEND ACTIONCABLE SIGNAL TO CHANGE STATE TO ADDITINAL PLAYERS ODD B/C CHAT AREA WORKS JUST FINE??? */ }
          <button onClick={ event => this.handleClick() }>start over

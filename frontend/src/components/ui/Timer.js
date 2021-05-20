@@ -14,7 +14,7 @@ class Timer extends React.Component {
   }
 
   // making the server go suuupppererr slooowwww
-  
+
   // componentDidUpdate = () => {
   //   fetch(`${API_ROOT}/rooms/${this.state.room_id}/timer`, {
   //     method: 'POST',
