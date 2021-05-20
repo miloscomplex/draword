@@ -1,15 +1,28 @@
 import React from 'react'
+import { API_ROOT, HEADERS } from '../../constants';
 
 class Timer extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
+      room_id: this.props.match.params.id,
       time: 0,
       isOn: false,
       start: 0
     }
   }
+
+  // making the server go suuupppererr slooowwww
+  
+  // componentDidUpdate = () => {
+  //   fetch(`${API_ROOT}/rooms/${this.state.room_id}/timer`, {
+  //     method: 'POST',
+  //     headers: HEADERS,
+  //     body: JSON.stringify(this.state)
+  //   });
+  //   //console.log('this.state.time= ', this.state.time );
+  // }
 
   startTimer = () => {
     this.setState({
@@ -39,8 +52,9 @@ class Timer extends React.Component {
     return this.stopTime
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.startTimer()
+    console.log(this.props.match);
   }
 
   render() {

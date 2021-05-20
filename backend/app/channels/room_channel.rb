@@ -23,10 +23,6 @@ class RoomChannel < ApplicationCable::Channel
       end
     end
   end
-  #
-  # def timer
-  #   broadcast_to "room_channel_#{params[:room_id]}"
-  # end
 
   def room_params
     params.require(:room).permit(:title, :room_id, :status, :drawer_id, :selected_phrase_id, :status)

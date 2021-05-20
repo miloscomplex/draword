@@ -32,7 +32,7 @@ class GamePlay extends React.Component {
         console.log('RoomChannel disconnected!')
       },
       received: data => {
-        this.handleReceivedData(data)
+        !data.current_time && this.handleReceivedData(data)
         console.log('RoomChannel data received', data)
       },
     })
@@ -107,8 +107,6 @@ class GamePlay extends React.Component {
   }
 
   render() {
-    /* this.props.match.params ==> what's the url for the room */
-
     return (
       <div>
           { this.renderContent() }

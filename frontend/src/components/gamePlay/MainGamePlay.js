@@ -27,7 +27,7 @@ class MainGamePlay extends React.Component {
         <div id='wrapper'>
           <div id='canvas'>
             <Canvas match={match} />
-            <Timer />
+            <Timer match={match} />
           </div>
           <ChatArea match={match} currentUser={currentUser} />
         </div>

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get '/random-phrases', to: 'phrases#show_random', as: 'random-phrases'
   # Action Cable
+  post '/rooms/:room_id/timer', to: 'rooms#timer'
   mount ActionCable.server => '/cable'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -9,6 +9,10 @@ import { loadRooms } from '../../redux/actions'
 class RoomsList extends React.Component {
 
   componentDidMount = () => {
+    cable.disconnect()
+    cable.subscriptions.subscriptions.forEach( subscription => {
+      subscription.unsubscribe()
+    })
     this.props.loadRooms()
     // --- ACTION CABLE --- //
     this.roomsChannel()
