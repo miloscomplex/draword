@@ -42,6 +42,11 @@ class RoomsController < ApplicationController
     end
   end
 
+  def timer
+    time = { current_time: params[:time] }
+    ActionCable.server.broadcast "room_channel_#{params[:room_id]}", time
+  end
+
   private
 
   def room_params
