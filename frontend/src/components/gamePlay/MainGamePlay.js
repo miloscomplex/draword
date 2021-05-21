@@ -1,5 +1,6 @@
 import React from 'react'
 import Timer from '../ui/Timer'
+import TimerDisplay from '../ui/TimerDisplay'
 import Score from '../ui/Score'
 import Canvas from '../canvas/Canvas'
 import ChatArea from '../chatBox/ChatArea'
@@ -16,6 +17,12 @@ class MainGamePlay extends React.Component {
     console.log('match= ', this.props.match)
   }
 
+  whichTimer = () => {
+    const { currentUser, selectedRoom, match } = this.props
+
+    return currentUser.id === selectedRoom.drawer_id  ? <Timer match={match} /> : <TimerDisplay match={match} />
+  }
+
   render() {
 
     const { selectedRoom, currentUser, match } = this.props
@@ -27,7 +34,7 @@ class MainGamePlay extends React.Component {
         <div id='wrapper'>
           <div id='canvas'>
             <Canvas match={match} />
-            <Timer match={match} />
+            { this.whichTimer() }
           </div>
           <ChatArea match={match} currentUser={currentUser} />
         </div>

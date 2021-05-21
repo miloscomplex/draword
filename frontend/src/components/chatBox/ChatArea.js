@@ -49,7 +49,7 @@ class ChatsArea extends React.Component {
     cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()
     })
-    cable.disconnect()
+    //cable.disconnect()
   }
 
   handleReceivedChat = response => {

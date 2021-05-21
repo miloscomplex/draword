@@ -1,5 +1,5 @@
 class RoomSerializer < ActiveModel::Serializer
-  attributes :id, :title, :status, :drawer_id, :selected_phrase_id
+  attributes :id, :title, :status, :drawer_id, :selected_phrase_id, :timer
   has_many :chats
   has_many :canvas
   has_one :phrase
