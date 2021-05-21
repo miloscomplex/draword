@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
 
   def index
     rooms = Room.all
-    render json: rooms
+    render json: rooms, root: false
   end
 
   def show
