@@ -1,5 +1,6 @@
 import React from 'react'
-import { API_ROOT, HEADERS } from '../../constants';
+import { API_ROOT, HEADERS } from '../../constants'
+import cable from '../../services/Cable'
 
 class Timer extends React.Component {
 
@@ -11,6 +12,25 @@ class Timer extends React.Component {
       isOn: false,
       start: 0
     }
+    this.timerChannelRef = null
+  }
+
+  timerChannel = () => {
+    this.timerChannelRef = cable.subscriptions.create({
+    channel: `timerChannel`,
+    room_id: this.props.selectedRoom.id,
+    },
+      {connected: () => {
+        console.log('timerChannel connected!')
+      },
+      disconnected: () => {
+        console.log('timerChannel disconnected!')
+      },
+      received: data => {
+        this.handleReceivedData(data)
+        console.log('timerChannel data received', data)
+      },
+    })
   }
 
   // making the server go suuupppererr slooowwww
@@ -23,6 +43,11 @@ class Timer extends React.Component {
   //   });
   //   //console.log('this.state.time= ', this.state.time );
   // }
+
+  handleReceivedData = data => {
+    //console.log('receivedData= ', data);
+    this.props.broadcastRoomStatus(data)
+  }
 
   startTimer = () => {
     this.setState({
@@ -53,7 +78,7 @@ class Timer extends React.Component {
   }
 
   componentDidMount = () => {
-    this.startTimer()
+    //this.startTimer()
     console.log(this.props.match);
   }
 
