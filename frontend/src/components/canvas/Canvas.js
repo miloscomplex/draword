@@ -22,6 +22,7 @@ class Canvas extends React.Component {
       bgColor: '#000000'
     }
     this.dataCache = null
+    this.canvasChannelRef = null
   }
 
   componentDidMount() {
@@ -30,13 +31,18 @@ class Canvas extends React.Component {
     this.canvasChannel()
   }
 
+  componentWillUnmount = () => {
+    this.canvasChannelRef.unsubscribe()
+  }
+
   handleGetFetch = () => {
     fetch(`${API_ROOT}/canvas/${this.state.roomId}`)
       .then(res => res.json())
       .then(drawings => this.setState({ drawings }))
   }
 
-  canvasChannel = () => cable.subscriptions.create({
+  canvasChannel = () => {
+    this.canvasChannelRef = cable.subscriptions.create({
     channel: `CanvasChannel`,
     id: this.state.roomId
     },
@@ -52,6 +58,7 @@ class Canvas extends React.Component {
           //console.log('CanvasChannel data received', data)
         }
     })
+  }
 
   handlePostFetch = drawingObj => {
     if ( this.dataCache === drawingObj ) { return }

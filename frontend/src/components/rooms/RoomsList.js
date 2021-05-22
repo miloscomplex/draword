@@ -24,6 +24,7 @@ class RoomsList extends React.Component {
     //console.log('RoomsList unmounted');
     // --- ACTION CABLE --- //
     cable.disconnect()
+    // brute disconnect is okay here 
     cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()
     })

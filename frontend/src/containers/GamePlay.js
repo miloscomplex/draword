@@ -18,9 +18,11 @@ class GamePlay extends React.Component {
   matchObj = this.props.match
   matchId = this.props.match.params.id
 
+  gamePlayChannelRef = null
+
   // need to add action cable to have overlays and announcements broadcasted
   gamePlayChannel = () => {
-    cable.subscriptions.create({
+    this.gamePlayChannelRef = cable.subscriptions.create({
     channel: `RoomChannel`,
     room_id: this.props.selectedRoom.id,
     user_id: this.props.currentUser.id
@@ -41,16 +43,18 @@ class GamePlay extends React.Component {
   componentDidMount = () => {
     // init cable
     this.gamePlayChannel()
+    // // FIXME: DO I MOVE MY SERVERSIDE LOGIC HERE? THERE SEEMS TO BE ISSUES WITH THE unsubscribe ALL UTITLIZED IN VARIOUS AREAS OF THE GAME
   }
 
   componentWillUnmount = () => {
     console.log('GamePlay unmounted')
+    this.gamePlayChannelRef.unsubscribe()
     // removing for now seems redundant
     // console.log('cable.subscriptions', cable.subscriptions);
-    cable.subscriptions.subscriptions.forEach( subscription => {
-      subscription.unsubscribe()
-    })
-    cable.disconnect()
+    // cable.subscriptions.subscriptions.forEach( subscription => {
+    //   subscription.unsubscribe()
+    // })
+    // cable.disconnect()
     // now null-ing is executed by unsubscribe of action_cable for gamePlay
   }
 

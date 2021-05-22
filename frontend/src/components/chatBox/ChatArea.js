@@ -8,6 +8,7 @@ import ChatBoxBot from './ChatBoxBot'
 
 class ChatsArea extends React.Component {
 
+  chatsChannelRef = null
   roomURL = this.props.match.params.id
 
   componentDidMount = () => {
@@ -26,10 +27,10 @@ class ChatsArea extends React.Component {
   }
 
   chatsChannel = () => {
-    cable.subscriptions.create({
+    this.chatsChannelRef = cable.subscriptions.create({
     channel: `ChatsChannel`,
     id: this.props.selectedRoom.id,
-    current_user: this.props.currentUser
+    //current_user: this.props.currentUser
     },
       {connected: () => {
         console.log('ChatsChannel connected!')
@@ -45,10 +46,14 @@ class ChatsArea extends React.Component {
   }
 
   componentWillUnmount = () => {
-    console.log('Chat unmounted')
-    cable.subscriptions.subscriptions.forEach( subscription => {
-      subscription.unsubscribe()
-    })
+    this.chatsChannelRef.unsubscribe()
+    //cable.subscriptions.remove(this.subscriptionRef)
+    console.log('subscriptionRef', this.chatsChannelRef)
+    //this.subscriptionRef.unsubscribe()
+    console.log('subscriptionRef2', this.chatsChannelRef)
+    // cable.subscriptions.subscriptions.forEach( subscription => {
+    //   subscription.unsubscribe()
+    // })
     //cable.disconnect()
   }
 
