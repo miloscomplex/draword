@@ -1,6 +1,8 @@
 import React from 'react'
 import { API_ROOT, HEADERS } from '../../constants'
 import cable from '../../services/Cable'
+import { connect } from 'react-redux'
+import { editSelectedRoom } from '../../redux/actions'
 
 class Timer extends React.Component {
 
@@ -17,7 +19,7 @@ class Timer extends React.Component {
 
   timerChannel = () => {
     this.timerChannelRef = cable.subscriptions.create({
-    channel: `timerChannel`,
+    channel: `TimersChannel`,
     room_id: this.props.selectedRoom.id,
     },
       {connected: () => {
@@ -33,20 +35,12 @@ class Timer extends React.Component {
     })
   }
 
-  // making the server go suuupppererr slooowwww
-
-  // componentDidUpdate = () => {
-  //   fetch(`${API_ROOT}/rooms/${this.state.room_id}/timer`, {
-  //     method: 'POST',
-  //     headers: HEADERS,
-  //     body: JSON.stringify(this.state)
-  //   });
-  //   //console.log('this.state.time= ', this.state.time );
-  // }
-
   handleReceivedData = data => {
     //console.log('receivedData= ', data);
-    this.props.broadcastRoomStatus(data)
+    //this.props.updateSelectedRoom(data)
+    this.setState({
+      time: Math.round( (Date.now() - this.state.start) / 1000 )
+    })
   }
 
   startTimer = () => {
@@ -55,9 +49,9 @@ class Timer extends React.Component {
       time: this.state.time,
       start: Date.now() - this.state.time
     })
-    this.timer = setInterval( () => this.setState({
-      time: Math.round( (Date.now() - this.state.start) / 1000 )
-    }), 1000)
+    this.timer = setInterval( () => {
+      this.props.editSelectedRoom({ room_id: this.state.room_id, timer: Math.round( (Date.now() - this.state.start) / 1000) })
+      },  1000)
   }
 
   stopTimer = () => {
@@ -91,4 +85,10 @@ class Timer extends React.Component {
   }
 }
 
-export default Timer
+const mapDispatchToProps = dispatch => {
+  return {
+    editSelectedRoom: roomObj => { dispatch(editSelectedRoom(roomObj)) }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Timer)
