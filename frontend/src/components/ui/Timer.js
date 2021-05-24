@@ -6,6 +6,9 @@ import { editSelectedRoom } from '../../redux/actions'
 
 class Timer extends React.Component {
 
+  // TODO: MAKE USE OF REDUCER FOR TIMER AND POST/PUT THE TIME TO THE SERVER
+  // DON'T FORGET A RESET OR STOP FOR UNMOUNTING
+  
   constructor(props) {
     super(props)
     this.state = {
