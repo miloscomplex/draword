@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_063224) do
+ActiveRecord::Schema.define(version: 2021_05_24_054115) do
 
   create_table "canvas", force: :cascade do |t|
     t.string "action"
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 2021_05_20_063224) do
     t.index ["user_id"], name: "index_scores_on_user_id"
   end
 
+  create_table "timers", force: :cascade do |t|
+    t.integer "time"
+    t.boolean "is_on"
+    t.integer "start"
+    t.integer "room_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_timers_on_room_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "initials"
@@ -74,5 +84,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_063224) do
   add_foreign_key "chats", "rooms"
   add_foreign_key "rooms", "users", column: "drawer_id"
   add_foreign_key "scores", "users"
+  add_foreign_key "timers", "rooms"
   add_foreign_key "users", "rooms"
 end
