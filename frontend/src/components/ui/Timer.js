@@ -44,14 +44,11 @@ class Timer extends React.Component {
   }
 
   startTimer = () => {
-    this.setState({
-      isOn: true,
-      time: this.state.time,
-      start: Date.now() - this.state.time
-    })
-    this.timer = setInterval( () => {
-      this.props.editSelectedRoom({ room_id: this.state.room_id, timer: Math.round( (Date.now() - this.state.start) / 1000) })
-      },  1000)
+    this.timer = setInterval( () => { this.props.editSelectedRoom({ room_id: this.state.room_id, timer: this.interval() },  1000)})}
+
+  interval = () => {
+    console.log('this.stat.time', this.state.time );
+    return Math.round( (Date.now() - this.state.start) / 1000)
   }
 
   stopTimer = () => {
@@ -72,8 +69,17 @@ class Timer extends React.Component {
   }
 
   componentDidMount = () => {
+    this.setState({
+      isOn: true,
+      time: this.state.time,
+      start: Date.now() - this.state.time
+    })
     //this.startTimer()
-    console.log(this.props.match);
+
+  }
+
+  componentWillUnmount = () => {
+    this.stopTimer()
   }
 
   render() {

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :timers, only: [:show, :create, :update]
   resources :phrases, only: [:index, :show]
   resources :scores
   resources :users

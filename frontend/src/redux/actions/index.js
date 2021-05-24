@@ -114,6 +114,19 @@ export function editSelectedRoom(roomObj) {
   }
 }
 
+export function editTimer(timerObj) {
+  //console.log('editRoom timerObj= ', timerObj);
+  return (dispatch) => {
+    dispatch({ type: 'FETCHING_TIMER' })
+    fetch(`${API_ROOT}/timer/${timerObj.room_id}`, {
+      method: 'PUT',
+      headers: HEADERS,
+      body: JSON.stringify(timerObj),
+    }).then(PARSE_JSON)
+    .then(data => dispatch({ type: 'UPDATE_TIMER', payload: data }))
+  }
+}
+
 export function createOrFindUser(userId) {
   //console.log('editUser roomObj= ', roomObj);
   return (dispatch) => {
