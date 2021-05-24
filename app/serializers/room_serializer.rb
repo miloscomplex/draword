@@ -4,5 +4,6 @@ class RoomSerializer < ActiveModel::Serializer
   has_many :canvas
   has_one :phrase
   has_many :users
+  has_one :timer 
   ### React doesn't like it being a child object
 end

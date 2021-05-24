@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_24_054115) do
+ActiveRecord::Schema.define(version: 2021_05_24_061150) do
 
   create_table "canvas", force: :cascade do |t|
     t.string "action"
@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 2021_05_24_054115) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "selected_phrase_id"
-    t.integer "timer"
     t.index ["drawer_id"], name: "index_rooms_on_drawer_id"
     t.index ["selected_phrase_id"], name: "index_rooms_on_selected_phrase_id"
   end
