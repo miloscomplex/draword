@@ -4,7 +4,7 @@ class CreateScores < ActiveRecord::Migration[6.0]
       t.integer :points
       t.integer :time_in_seconds
       t.integer :guesses
-      t.references :user, null: false, foreign_key: true
+      # t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
