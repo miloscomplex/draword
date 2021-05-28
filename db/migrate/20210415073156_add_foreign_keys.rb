@@ -4,7 +4,9 @@ class AddForeignKeys < ActiveRecord::Migration[6.0]
 
     add_index :rooms, :selected_phrase_id
 
-    add_reference :rooms, :user, null: true, foreign_key: true
+    add_reference :users, :room, null: true, foreign_key: true
+
+    # add_reference :rooms, :user, null: true, foreign_key: true
 
     add_reference :scores, :user, null: false, foreign_key: true
 

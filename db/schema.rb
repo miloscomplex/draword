@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2021_05_24_061150) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "canvas", force: :cascade do |t|
     t.string "action"
     t.integer "offsetX"
     t.integer "offsetY"
-    t.integer "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "room_id", null: false
     t.index ["room_id"], name: "index_canvas_on_room_id"
   end
 
@@ -26,9 +29,9 @@ ActiveRecord::Schema.define(version: 2021_05_24_061150) do
     t.string "text"
     t.string "name"
     t.string "role"
-    t.integer "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "room_id", null: false
     t.index ["room_id"], name: "index_chats_on_room_id"
   end
 
@@ -42,10 +45,10 @@ ActiveRecord::Schema.define(version: 2021_05_24_061150) do
   create_table "rooms", force: :cascade do |t|
     t.string "title"
     t.string "status"
-    t.integer "drawer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "selected_phrase_id"
+    t.bigint "drawer_id"
     t.index ["drawer_id"], name: "index_rooms_on_drawer_id"
     t.index ["selected_phrase_id"], name: "index_rooms_on_selected_phrase_id"
   end
@@ -54,9 +57,9 @@ ActiveRecord::Schema.define(version: 2021_05_24_061150) do
     t.integer "points"
     t.integer "time_in_seconds"
     t.integer "guesses"
-    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_scores_on_user_id"
   end
 
@@ -64,7 +67,7 @@ ActiveRecord::Schema.define(version: 2021_05_24_061150) do
     t.integer "time"
     t.boolean "is_on"
     t.integer "start"
-    t.integer "room_id", null: false
+    t.bigint "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_timers_on_room_id"
@@ -73,9 +76,9 @@ ActiveRecord::Schema.define(version: 2021_05_24_061150) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "initials"
-    t.integer "room_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "room_id"
     t.index ["room_id"], name: "index_users_on_room_id"
   end
 
