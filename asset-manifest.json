@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/draword/static/css/main.cabdc602.chunk.css",
+    "main.js": "/draword/static/js/main.e095fb53.chunk.js",
+    "main.js.map": "/draword/static/js/main.e095fb53.chunk.js.map",
+    "runtime-main.js": "/draword/static/js/runtime-main.4ea5406f.js",
+    "runtime-main.js.map": "/draword/static/js/runtime-main.4ea5406f.js.map",
+    "static/js/2.63ffaa16.chunk.js": "/draword/static/js/2.63ffaa16.chunk.js",
+    "static/js/2.63ffaa16.chunk.js.map": "/draword/static/js/2.63ffaa16.chunk.js.map",
+    "index.html": "/draword/index.html",
+    "static/css/main.cabdc602.chunk.css.map": "/draword/static/css/main.cabdc602.chunk.css.map",
+    "static/js/2.63ffaa16.chunk.js.LICENSE.txt": "/draword/static/js/2.63ffaa16.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4ea5406f.js",
+    "static/js/2.63ffaa16.chunk.js",
+    "static/css/main.cabdc602.chunk.css",
+    "static/js/main.e095fb53.chunk.js"
+  ]
+}
