@@ -34,7 +34,7 @@ class ScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:score).permit(:user_id, :level, :platforms_used, :time_in_seconds)
+    params.require(:score).permit(:points, :time_in_seconds, :guesses, :user_id)
   end
 
   def user_params
