@@ -1,5 +1,5 @@
-export const API_ROOT = 'https://git.heroku.com/safe-earth-83403'
-export const API_WS_ROOT = 'https://git.heroku.com/safe-earth-83403/cable'
+export const API_ROOT = 'http://localhost:3000'
+export const API_WS_ROOT = 'ws://localhost:3000/cable'
 export const PARSE_JSON = res => res.json()
 export const HEADERS = {
   'Content-Type': 'application/json',

@@ -152,6 +152,12 @@ export function editUser(userObj) {
   }
 }
 
+export function updateTimer(timerObj) {
+  return (dispatch) => {
+    dispatch({ type: 'UPDATE_TIMER', payload: timerObj })
+  }
+}
+
 export function removeUser(userObj) {
   return (dispatch) => {
     fetch(`${API_ROOT}/users/${userObj.user_id}`, {

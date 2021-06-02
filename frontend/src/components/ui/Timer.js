@@ -2,66 +2,42 @@ import React from 'react'
 import { API_ROOT, HEADERS } from '../../constants'
 import cable from '../../services/Cable'
 import { connect } from 'react-redux'
-import { editSelectedRoom } from '../../redux/actions'
+import { updateTimer } from '../../redux/actions'
 
 class Timer extends React.Component {
 
   // TODO: MAKE USE OF REDUCER FOR TIMER AND POST/PUT THE TIME TO THE SERVER
   // DON'T FORGET A RESET OR STOP FOR UNMOUNTING
-  
-  constructor(props) {
-    super(props)
-    this.state = {
-      room_id: this.props.match.params.id,
-      time: 0,
-      isOn: false,
-      start: 0
-    }
-    this.timerChannelRef = null
-  }
-
-  timerChannel = () => {
-    this.timerChannelRef = cable.subscriptions.create({
-    channel: `TimersChannel`,
-    room_id: this.props.selectedRoom.id,
-    },
-      {connected: () => {
-        console.log('timerChannel connected!')
-      },
-      disconnected: () => {
-        console.log('timerChannel disconnected!')
-      },
-      received: data => {
-        this.handleReceivedData(data)
-        console.log('timerChannel data received', data)
-      },
-    })
-  }
-
-  handleReceivedData = data => {
-    //console.log('receivedData= ', data);
-    //this.props.updateSelectedRoom(data)
-    this.setState({
-      time: Math.round( (Date.now() - this.state.start) / 1000 )
-    })
-  }
+  timer = null
 
   startTimer = () => {
-    this.timer = setInterval( () => { this.props.editSelectedRoom({ room_id: this.state.room_id, timer: this.interval() },  1000)})}
+    const { updateTimer, timer } = this.props
+    updateTimer({
+      isOn: true,
+      time: 0,
+      start: Date.now() - timer.time
+    })
+    this.timer = setInterval( this.interval,  1000)
+  }
 
   interval = () => {
-    console.log('this.stat.time', this.state.time );
-    return Math.round( (Date.now() - this.state.start) / 1000)
+    const { timer, updateTimer } = this.props
+    let timeSpan = Math.round( (Date.now() - timer.start ) / 1000)
+    updateTimer({
+      start: timer.start,
+      time: timeSpan,
+      isOn: true
+    })
   }
 
   stopTimer = () => {
-    this.setState({isOn: false})
     clearInterval(this.timer)
   }
 
   resetTimer = () => {
     this.setState({time: 0, isOn: false})
   }
+
 
   elapsedTime = () => {
     this.endTime = new Date()
@@ -72,13 +48,7 @@ class Timer extends React.Component {
   }
 
   componentDidMount = () => {
-    this.setState({
-      isOn: true,
-      time: this.state.time,
-      start: Date.now() - this.state.time
-    })
-    //this.startTimer()
-
+    this.startTimer()
   }
 
   componentWillUnmount = () => {
@@ -88,7 +58,7 @@ class Timer extends React.Component {
   render() {
     return (
       <div className='timer'>
-        Elapsed Time: {this.state.time}
+        Elapsed Time: { this.props.timer.time }
       </div>
     )
   }
@@ -96,8 +66,14 @@ class Timer extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    editSelectedRoom: roomObj => { dispatch(editSelectedRoom(roomObj)) }
+    updateTimer: timerObj => { dispatch(updateTimer(timerObj)) }
   }
 }
 
-export default connect(null, mapDispatchToProps)(Timer)
+const mapStateToProps = state => {
+  return {
+    timer: state.timer
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timer)

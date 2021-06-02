@@ -1,6 +1,9 @@
 
 const defaultStore = {
-  loading: false,
+  room_id: null,
+  time: 0,
+  isOn: false,
+  start: 0
 }
 
 function timerReducer(state = defaultStore, action) {
@@ -8,7 +11,7 @@ function timerReducer(state = defaultStore, action) {
     case 'FETCHING_TIMER':
       return {...state, loading: true }
     case 'UPDATE_TIMER':
-      return {...state, timer: action.payload, loading: false }
+      return action.payload
     default:
       return state
   }

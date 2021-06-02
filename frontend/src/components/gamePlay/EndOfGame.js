@@ -19,6 +19,21 @@ class EndOfGame extends React.Component {
     this.props.editSelectedRoom({room_id: this.props.selectedRoom.id, status: preplay, selected_phrase_id: null, drawer_id: null })
   }
 
+  isDrawer = () => {
+    const { selectedRoom, user, timer } = this.props
+
+    return (
+      selectedRoom.drawer_id === user.id &&
+      (
+        <div className='phraseReminder'>
+          <h4>Hey there drawer do you want to record your winning?</h4>
+          <p>It looks like it only took you guesser's <strong>{ timer.time }</strong> seconds to guess the phrase <strong>{ selectedRoom.phrase.phrase }</strong></p>
+          <button>submit your time</button>
+        </div>
+      )
+    )
+  }
+
   render() {
     const { selectedRoom } = this.props
 
@@ -30,9 +45,9 @@ class EndOfGame extends React.Component {
         <p>
           { `Good Job room: ${selectedRoom.title}! This is the end of Game` }
         </p>
-        { /* // FIXME: IT WON'T SEND ACTIONCABLE SIGNAL TO CHANGE STATE TO ADDITINAL PLAYERS ODD B/C CHAT AREA WORKS JUST FINE??? */ }
-         <button onClick={ event => this.handleClick() }>start over
-         </button>
+        <button onClick={ () => this.handleClick() }>start over
+        </button>
+        { this.isDrawer() }
       </div>
     )
   }
@@ -47,7 +62,9 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    selectedRoom: state.rooms.selectedRoom
+    selectedRoom: state.rooms.selectedRoom,
+    user: state.users.user,
+    timer: state.timer
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(EndOfGame)
