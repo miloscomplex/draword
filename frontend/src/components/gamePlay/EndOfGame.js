@@ -27,7 +27,7 @@ class EndOfGame extends React.Component {
   handleSubmitScore = () => {
     this.setState({ submitted: true })
     const { selectedRoom, timer } = this.props
-    const scoreObj = { room_id: selectedRoom.id, time_in_seconds: timer.time, }
+    const scoreObj = { room_id: selectedRoom.id, time_in_seconds: timer.time, phrase: selectedRoom.phrase.phrase }
     fetch(`${API_ROOT}/scores`, {
       method: 'POST',
       headers: HEADERS,
