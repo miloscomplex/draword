@@ -56,11 +56,11 @@ ActiveRecord::Schema.define(version: 2021_05_24_061150) do
   create_table "scores", force: :cascade do |t|
     t.integer "points"
     t.integer "time_in_seconds"
-    t.integer "guesses"
+    t.string "canvas_img"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
-    t.index ["user_id"], name: "index_scores_on_user_id"
+    t.bigint "room_id", null: false
+    t.index ["room_id"], name: "index_scores_on_room_id"
   end
 
   create_table "timers", force: :cascade do |t|
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2021_05_24_061150) do
   add_foreign_key "canvas", "rooms"
   add_foreign_key "chats", "rooms"
   add_foreign_key "rooms", "users", column: "drawer_id"
-  add_foreign_key "scores", "users"
+  add_foreign_key "scores", "rooms"
   add_foreign_key "timers", "rooms"
   add_foreign_key "users", "rooms"
 end
