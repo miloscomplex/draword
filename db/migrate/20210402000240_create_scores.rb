@@ -3,7 +3,7 @@ class CreateScores < ActiveRecord::Migration[6.0]
     create_table :scores do |t|
       t.integer :points
       t.integer :time_in_seconds
-      t.integer :guesses
+      t.string :canvas_img
       # t.references :user, null: false, foreign_key: true
 
       t.timestamps

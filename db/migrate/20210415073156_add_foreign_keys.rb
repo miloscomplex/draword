@@ -8,7 +8,7 @@ class AddForeignKeys < ActiveRecord::Migration[6.0]
 
     # add_reference :rooms, :user, null: true, foreign_key: true
 
-    add_reference :scores, :user, null: false, foreign_key: true
+    add_reference :scores, :room, null: false, foreign_key: true
 
     add_reference :rooms, :drawer, null: true, foreign_key: { to_table: :users }
 
