@@ -168,3 +168,11 @@ export function removeUser(userObj) {
     .then(data => dispatch({ type: 'REMOVE_USER', payload: data }))
   }
 }
+
+export function loadScores() {
+  return (dispatch) => {
+    dispatch({ type: 'LOADING_SCORES' })
+    fetch(`${API_ROOT}/scores`).then(PARSE_JSON)
+    .then(data => dispatch({type: 'ADD_SCORES', payload: data}))
+  }
+}

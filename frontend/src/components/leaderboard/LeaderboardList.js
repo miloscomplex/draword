@@ -21,15 +21,14 @@ class LeaderboardList extends React.Component {
   }
 
   render() {
-    const leaders = this.props.leaders.map( (leader, index) =>
-    <li key={index}> {leader.name}, score: {leader.score}, time: {leader.time}
-      <a key={index} name={index} onClick={ () => this.addHeart(index, !this.state.hearts[index] ? 0 : this.state.hearts[index].count ) } className='heart'> heart(s): {!this.state.hearts[index]? 0 : this.state.hearts[index].count }</a>
+    const scores = this.props.scores.map( (score, index) =>
+    <li key={index}> Room: <strong>{score.room.title}</strong>, time it took: <strong>{score.time_in_seconds}</strong> sec, phrase: <strong>{score.phrase}</strong>
     </li> )
 
 
     return (
       <ul>
-        { leaders }
+        { scores }
       </ul>
     )
   }

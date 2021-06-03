@@ -5,6 +5,10 @@ import { API_ROOT, PARSE_JSON, HEADERS } from '../../constants'
 
 class EndOfGame extends React.Component {
 
+  state = {
+    submitted: false,
+  }
+
   matchId = this.props.match.params.id
 
   componentDidMount = () => {
@@ -20,7 +24,10 @@ class EndOfGame extends React.Component {
     this.props.editSelectedRoom({room_id: this.props.selectedRoom.id, status: preplay, selected_phrase_id: null, drawer_id: null })
   }
 
-  handleSubmit = (scoreObj) => {
+  handleSubmitScore = () => {
+    this.setState({ submitted: true })
+    const { selectedRoom, timer } = this.props
+    const scoreObj = { room_id: selectedRoom.id, time_in_seconds: timer.time, }
     fetch(`${API_ROOT}/scores`, {
       method: 'POST',
       headers: HEADERS,
@@ -34,6 +41,12 @@ class EndOfGame extends React.Component {
     return (
       selectedRoom.drawer_id === user.id &&
       (
+        this.state.submitted
+        ?
+        <div>
+          <h4>Thanks for your submission!</h4>
+        </div>
+        :
         <div className='alt-background'>
           <h4>
             Hey there drawer do you want to record your winning?
@@ -41,7 +54,7 @@ class EndOfGame extends React.Component {
           <p>
             It looks like it only took your guesser's <strong>{ timer.time }</strong> seconds to guess the phrase <strong>{ selectedRoom.phrase.phrase }</strong>
           </p>
-          <button>submit your time</button>
+          <button onClick={ () => this.handleSubmitScore() }>submit your time</button>
           <button onClick={ () => this.handleClick() } >maybe next time</button>
         </div>
       )

@@ -5,6 +5,7 @@ import roomsReducer from './roomsReducer'
 import busyReducer from './busyReducer'
 import usersReducer from './usersReducer'
 import timerReducer from './timerReducer'
+import scoresReducer from './scoresReducer'
 
 const rootReducer = combineReducers({
   canvas: canvasReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   rooms: roomsReducer,
   users: usersReducer,
   timer: timerReducer,
+  scores: scoresReducer,
 })
 
 export default rootReducer

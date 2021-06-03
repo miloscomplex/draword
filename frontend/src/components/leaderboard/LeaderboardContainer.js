@@ -1,12 +1,15 @@
 import React from 'react'
 import LeaderboardList from './LeaderboardList'
 import { connect } from 'react-redux'
+import { loadScores } from '../../redux/actions'
 
 class LeaderboardContainer extends React.Component {
 
-  state = {
-    leaders: [ { name: 'John Smith', score: 240, time: 23 }, { name: 'Reggy Uptown', score: 340, time: 45 }, { name: 'Sue Runner', score: 140, time: 50 } ]
+  componentDidMount = () => {
+    this.props.loadScores()
   }
+
+  loading = () => <span className='loading-message'> </span>
 
   render() {
     return (
@@ -14,7 +17,7 @@ class LeaderboardContainer extends React.Component {
         <div className='leaderboard'>
           <h2>Leaderboard</h2>
           <p className='description'>Here's the top team submissions</p>
-          <LeaderboardList leaders={this.state.leaders} />
+          <LeaderboardList scores={this.props.scores} />
         </div>
       </div>
     )
@@ -23,8 +26,15 @@ class LeaderboardContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    state: state
+    scores: state.scores.scoresList,
+    loadingScores: state.scores.loading
   }
 }
 
-export default connect(mapStateToProps)(LeaderboardContainer)
+const mapDispatchToProps = dispatch => {
+  return {
+    loadScores: () => { dispatch(loadScores()) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LeaderboardContainer)
