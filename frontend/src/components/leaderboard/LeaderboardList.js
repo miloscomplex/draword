@@ -22,7 +22,7 @@ class LeaderboardList extends React.Component {
 
   render() {
     const scores = this.props.scores.map( (score, index) =>
-    <li key={index}> Room: <strong>{score.room.title}</strong>, time it took: <strong>{score.time_in_seconds}</strong> sec, phrase: <strong>{score.phrase}</strong>
+    <li key={index}> Room: <strong>{score.room.title}</strong>, Time it took: <strong>{score.time_in_seconds}</strong> sec, Phrase: <strong>{score.phrase}</strong>
     </li> )
 
 

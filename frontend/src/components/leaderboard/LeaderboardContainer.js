@@ -17,7 +17,11 @@ class LeaderboardContainer extends React.Component {
         <div className='leaderboard'>
           <h2>Leaderboard</h2>
           <p className='description'>Here's the top team submissions</p>
-          <LeaderboardList scores={this.props.scores} />
+          { this.props.loadingScores ?
+            this.loading()
+            :
+            <LeaderboardList scores={this.props.scores} />
+          }
         </div>
       </div>
     )

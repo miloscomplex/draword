@@ -1,6 +1,6 @@
 
 const defaultStore = {
-  loading: false,
+  loading: true,
 }
 
 function scoresReducer(state = defaultStore, action) {
