@@ -1,5 +1,5 @@
 class Score < ApplicationRecord
-  belongs_to :user
+  belongs_to :room
 
   # validates :time_in_seconds, :platforms_used, :level, presence: true
   #

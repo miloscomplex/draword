@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  has_many :scores, dependent: :destroy
   belongs_to :room, optional: true
 
   validates :name, presence: true

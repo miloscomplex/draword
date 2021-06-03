@@ -11,9 +11,9 @@ class ScoresController < ApplicationController
   end
 
   def create
-    user = User.find_or_create_by(user_params)
-    score = user.scores.build(score_params)
-    if user.valid? && score.save
+    room = Room.find_by_id(params[:room_id])
+    score = room.scores.build(score_params)
+    if score.save
       render json: score
     else
       render json: { errors: user.errors }, status: 422
@@ -34,10 +34,10 @@ class ScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:score).permit(:points, :time_in_seconds, :guesses, :user_id)
+    params.require(:score).permit(:points, :time_in_seconds, :room_id, :phrase)
   end
 
-  def user_params
-    params.require(:user).permit(:name, :initials)
+  def room_params
+    params.require(:room).permit(:name, :room_id)
   end
 end

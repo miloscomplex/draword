@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2021_05_24_061150) do
     t.integer "points"
     t.integer "time_in_seconds"
     t.string "canvas_img"
+    t.string "phrase"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "room_id", null: false
