@@ -204,7 +204,7 @@ class Canvas extends React.Component {
             onMouseLeave={event => this.stopDrawing(event)}
             ref={this.canvasRef}
           />
-        <ToolBox handleClearClick={this.handleClearClick} handleColorChange={this.handleColorChange} />
+        <ToolBox handleClearClick={this.handleClearClick} handleColorChange={this.handleColorChange} color={this.state.color} />
         </React.Fragment>
         :
         <React.Fragment>

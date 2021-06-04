@@ -180,14 +180,14 @@ ul {
   color: white;
   background-color: #000;
   display: inline-block;
-  padding: .25em .5em .2em .5em;
+  padding: .2em .5em .2em .5em;
   text-transform: uppercase;
   cursor: pointer;
   font-weight: 700;
   border-radius: .3em;
   vertical-align: top;
-  height: 16px;
-  border: solid 1px #000;
+  height: 14px;
+  border: solid 2px #000;
 }
 
 #toolbox li:hover {
@@ -206,29 +206,32 @@ ul {
 
 #toolbox .yellow {
   background-color: yellow;
-  border: solid 1px yellow;
+  border: solid 2px yellow;
 }
 
 #toolbox .red {
   background-color: red;
-  border: solid 1px red;
+  border: solid 2px red;
 }
 
 #toolbox .blue {
   background-color: blue;
-  border: solid 1px blue;
+  border: solid 2px blue;
 }
 
 #toolbox .green {
   background-color: green;
-  border: solid 1px green;
+  border: solid 2px green;
 }
 
 #toolbox .white {
   background-color: white;
-  border: solid 1px white;
+  border: solid 2px white;
 }
 
+#toolbox .hi-light {
+  border: solid 2px black;
+}
 .strong {
   font-weight: 900;
 }
