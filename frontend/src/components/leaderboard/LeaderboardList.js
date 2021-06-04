@@ -1,37 +1,31 @@
 import React from 'react'
 
 class LeaderboardList extends React.Component {
-  state = {
-    counter: 0,
-    hearts: []
-  }
-
-  addHeart = (id, value) => {
-    console.log('i was clicked')
-    let hearts = [...this.state.hearts];
-    if (hearts[id]) {
-      hearts[id].count = hearts[id].count + 1
-    }
-    else {
-      hearts[id] = {count: 1}
-    }
-    this.setState({
-      hearts
-    })
-  }
 
   render() {
-    const scores = this.props.scores.map( (score, index) =>
-    <li key={index}> Room: <strong>{score.room.title}</strong>, Time it took: <strong>{score.time_in_seconds}</strong> sec, Phrase: <strong>{score.phrase}</strong>
-    </li> )
-
 
     return (
       <ul>
-        { scores }
+        { orderedLeaderboard(this.props.scores) }
       </ul>
     )
   }
 }
 
 export default LeaderboardList
+
+// helpers
+
+const orderedLeaderboard = scores => {
+  const sortedScores = scores.sort(
+    (a, b) => a.time_in_seconds - b.time_in_seconds
+  )
+  return sortedScores.map( (score, index) => {
+    return (
+      <li key={score.id}> {index + 1} - Time it took: <strong>{score.time_in_seconds}</strong> sec,
+      <strong> {score.room.title}</strong>,
+      Phrase: <strong>{score.phrase}</strong>
+      </li>
+    )
+  })
+}
