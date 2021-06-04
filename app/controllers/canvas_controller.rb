@@ -25,7 +25,7 @@ class CanvasController < ApplicationController
   private
 
   def canva_params
-    params.require(:canva).permit(:action, :offsetX, :offsetY, :room_id)
+    params.require(:canva).permit(:action, :offsetX, :offsetY, :room_id, :color)
   end
 
 end

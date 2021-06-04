@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2021_05_24_061150) do
     t.string "action"
     t.integer "offsetX"
     t.integer "offsetY"
+    t.string "color"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "room_id", null: false
