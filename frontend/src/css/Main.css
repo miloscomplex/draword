@@ -186,7 +186,8 @@ ul {
   font-weight: 700;
   border-radius: .3em;
   vertical-align: top;
-  height: 18px;
+  height: 16px;
+  border: solid 1px #000;
 }
 
 #toolbox li:hover {
@@ -205,22 +206,27 @@ ul {
 
 #toolbox .yellow {
   background-color: yellow;
+  border: solid 1px yellow;
 }
 
 #toolbox .red {
   background-color: red;
+  border: solid 1px red;
 }
 
 #toolbox .blue {
   background-color: blue;
+  border: solid 1px blue;
 }
 
 #toolbox .green {
   background-color: green;
+  border: solid 1px green;
 }
 
 #toolbox .white {
   background-color: white;
+  border: solid 1px white;
 }
 
 .strong {

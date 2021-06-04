@@ -90,6 +90,7 @@ class Canvas extends React.Component {
     {   action: 'beginPath',
         offsetX: offsetX,
         offsetY: offsetY,
+        color: this.state.color,
         room_id: this.state.roomId
     })
   }
@@ -117,6 +118,7 @@ class Canvas extends React.Component {
     {   action: 'lineTo',
         offsetX: offsetX,
         offsetY: offsetY,
+        color: this.state.color,
         room_id: this.state.roomId
     })
   }
@@ -141,7 +143,7 @@ class Canvas extends React.Component {
 
   drawOnCanvas = (drawingObj) => {
     //console.log('hello', drawingObj);
-    const {offsetX, offsetY} = drawingObj
+    const {offsetX, offsetY, color} = drawingObj
     const canvas = this.contextRef.current
     switch (drawingObj.action) {
       case 'beginPath':
@@ -150,6 +152,7 @@ class Canvas extends React.Component {
         canvas.moveTo(offsetX, offsetY)
         this.setState({ isDrawing: true });
         canvas.stroke();
+        canvas.strokeStyle = color
         break
 
       case 'lineTo':
@@ -171,6 +174,10 @@ class Canvas extends React.Component {
       default:
         return
     }
+  }
+
+  handleColorChange = (color) => {
+    this.setState({ color: color})
   }
 
   handleClearClick = (event) => {
@@ -197,7 +204,7 @@ class Canvas extends React.Component {
             onMouseLeave={event => this.stopDrawing(event)}
             ref={this.canvasRef}
           />
-          <ToolBox handleClearClick={this.handleClearClick} />
+        <ToolBox handleClearClick={this.handleClearClick} handleColorChange={this.handleColorChange} />
         </React.Fragment>
         :
         <React.Fragment>
