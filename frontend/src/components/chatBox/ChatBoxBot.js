@@ -19,8 +19,6 @@ class ChatBoxBot extends React.Component {
     name: this.props.currentUser.name
   }
 
-  // intervalID = () => window.setInterval(this.myCallback, 2000)
-
 
   myCallback = (chatObj) => {
      // Parameters are purely optional.
@@ -33,11 +31,6 @@ class ChatBoxBot extends React.Component {
 
   componentDidMount = () => {
     this.myCallback(this.joined)
-  }
-
-  componentWillUnmount = () => {
-    // causing 500 error
-    // this.myCallback(this.left)
   }
 
   render = () => {

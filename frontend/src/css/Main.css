@@ -185,10 +185,42 @@ ul {
   cursor: pointer;
   font-weight: 700;
   border-radius: .3em;
+  vertical-align: top;
+  height: 18px;
 }
 
 #toolbox li:hover {
   background-color: #333;
+}
+
+#toolbox .color-selector {
+  width: 15px;
+  background-color: #000;
+  margin: 0 0 0 .7em;
+}
+
+#toolbox .color-selector:hover {
+  background-color: white;
+}
+
+#toolbox .yellow {
+  background-color: yellow;
+}
+
+#toolbox .red {
+  background-color: red;
+}
+
+#toolbox .blue {
+  background-color: blue;
+}
+
+#toolbox .green {
+  background-color: green;
+}
+
+#toolbox .white {
+  background-color: white;
 }
 
 .strong {
