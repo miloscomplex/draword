@@ -18,7 +18,7 @@ class ToolBox extends React.Component {
   }
 
   render() {
-    const colors = ['yellow', 'red', 'blue', 'green', 'white']
+    const colors = ['white', 'yellow', 'red', 'blue', 'green']
 
     return (
       <div id='toolbox'>

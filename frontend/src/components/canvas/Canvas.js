@@ -12,7 +12,7 @@ class Canvas extends React.Component {
     this.contextRef = React.createRef()
     this.state = {
       isDrawing: false,
-      color: 'yellow',
+      color: 'white',
       lineWidth: 7,
       drawings: [],
       canvasWidth: 500,
