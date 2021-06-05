@@ -1,8 +1,8 @@
 import React from 'react'
-import { API_ROOT, HEADERS } from '../../constants'
+import { API_ROOT, HEADERS, MAXTIME } from '../../constants'
 import cable from '../../services/Cable'
 import { connect } from 'react-redux'
-import { updateTimer } from '../../redux/actions'
+import { updateTimer, editSelectedRoom } from '../../redux/actions'
 
 class Timer extends React.Component {
 
@@ -20,6 +20,13 @@ class Timer extends React.Component {
     this.timer = setInterval( this.interval,  1000)
   }
 
+  timeIsUp = () => {
+    this.stopTimer()
+    const timeIsUp = 'timeIsUp'
+    this.props.editSelectedRoom({room_id: this.props.selectedRoom.id, status: timeIsUp })
+    this.resetTimer()
+  }
+
   interval = () => {
     const { timer, updateTimer } = this.props
     let timeSpan = Math.round( (Date.now() - timer.start ) / 1000)
@@ -28,6 +35,7 @@ class Timer extends React.Component {
       time: timeSpan,
       isOn: true
     })
+    timeSpan === MAXTIME && this.timeIsUp()
   }
 
   stopTimer = () => {
@@ -46,7 +54,6 @@ class Timer extends React.Component {
     this.stopTime = Math.round(timeDiff / 1000)
     return this.stopTime
   }
-
   componentDidMount = () => {
     this.startTimer()
   }
@@ -66,13 +73,15 @@ class Timer extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateTimer: timerObj => { dispatch(updateTimer(timerObj)) }
+    updateTimer: timerObj => { dispatch(updateTimer(timerObj)) },
+    editSelectedRoom: roomObj => { dispatch(editSelectedRoom(roomObj)) }
   }
 }
 
 const mapStateToProps = state => {
   return {
-    timer: state.timer
+    timer: state.timer,
+    selectedRoom: state.rooms.selectedRoom,
   }
 }
 

@@ -4,6 +4,7 @@ import PhraseSelection from '../components/gamePlay/PhraseSelection'
 import MainGamePlay from '../components/gamePlay/MainGamePlay'
 import EndOfGame from '../components/gamePlay/EndOfGame'
 import DrawerLeft from '../components/gamePlay/DrawerLeft'
+import TimeIsUp from '../components/gamePlay/TimeIsUp'
 
 import cable from '../services/Cable'
 import PhraseContainer from '../components/phraseSelector/PhraseContainer'
@@ -105,6 +106,8 @@ class GamePlay extends React.Component {
           drawer_id={selectedRoom.drawer_id}
           handleDrawClick={this.handleDrawClick} handleGuessClick={this.handleGuessClick}
         />
+      case 'timeIsUp':
+        return <TimeIsUp match={match} setSelectedRoom={setSelectedRoom} />
       default:
         return <h2>Something isn't quite right...</h2>
     }
