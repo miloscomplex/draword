@@ -1,6 +1,5 @@
 import React from 'react'
-import { API_ROOT, HEADERS, MAXTIME } from '../../constants'
-import cable from '../../services/Cable'
+import { MAXTIME } from '../../constants'
 import { connect } from 'react-redux'
 import { updateTimer, editSelectedRoom } from '../../redux/actions'
 

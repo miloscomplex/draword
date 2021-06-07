@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 class Error extends React.Component {
 
   render() {
-    const { match } = this.props
 
     return (
       <div className='wrapper'>

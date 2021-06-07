@@ -1,11 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { broadcastRoomStatus } from '../../redux/actions'
 
 class GuesserWaitingRoom extends React.Component {
   // TODO: Make a set timeout and enter mainGamePlay
   loadMainGamePlay = () => {
-    const status = 'playing'
+    //const status = 'playing'
     //this.props.updateLocalStatus( status )
   }
 
@@ -14,7 +13,6 @@ class GuesserWaitingRoom extends React.Component {
   }
 
   render() {
-    const { match } = this.props
 
     return (
       <div>

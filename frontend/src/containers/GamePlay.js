@@ -7,10 +7,8 @@ import DrawerLeft from '../components/gamePlay/DrawerLeft'
 import TimeIsUp from '../components/gamePlay/TimeIsUp'
 
 import cable from '../services/Cable'
-import PhraseContainer from '../components/phraseSelector/PhraseContainer'
 import { connect } from 'react-redux'
-import { getPhrase, editSelectedRoom, editUser, loadRooms, createOrFindUser, setSelectedRoom, broadcastRoomStatus } from '../redux/actions'
-import rootReducer from '../redux/reducers/rootReducer'
+import { getPhrase, editSelectedRoom, editUser, loadRooms, setSelectedRoom, broadcastRoomStatus } from '../redux/actions'
 
 
 class GamePlay extends React.Component {
@@ -83,7 +81,7 @@ class GamePlay extends React.Component {
 
 
   renderContent = () => {
-    const { selectedRoom, currentUser, match, busySignal, setSelectedRoom, editSelectedRoom } = this.props
+    const { selectedRoom, currentUser, match, setSelectedRoom } = this.props
 
     switch (this.props.gameStatus) {
       case 'preplay':

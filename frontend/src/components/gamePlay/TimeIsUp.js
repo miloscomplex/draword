@@ -17,7 +17,7 @@ class TimeIsUp extends React.Component {
     const { selectedRoom, editSelectedRoom } = this.props
     const preplay = 'preplay'
 
-    this.props.editSelectedRoom({room_id: this.props.selectedRoom.id, status: preplay, selected_phrase_id: null, drawer_id: null })
+    editSelectedRoom({room_id: selectedRoom.id, status: preplay, selected_phrase_id: null, drawer_id: null })
   }
 
   render() {

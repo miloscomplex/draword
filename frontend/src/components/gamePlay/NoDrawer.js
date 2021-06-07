@@ -3,7 +3,7 @@ import React from 'react'
 class NoDrawer extends React.Component {
 
   render() {
-    const { match, handleDrawClick } = this.props
+    const { handleDrawClick } = this.props
 
     return (
       <div className='wrapper'>

@@ -1,9 +1,7 @@
 import React from 'react'
-import PrePlay from '../components/gamePlay/PrePlay'
 import GamePlay from './GamePlay'
 import { connect } from 'react-redux'
 import { setSelectedRoom, editSelectedRoom, createOrFindUser } from '../redux/actions'
-import cable from '../services/Cable'
 
 class GameContainer extends React.Component {
 

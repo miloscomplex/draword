@@ -9,8 +9,8 @@ class ToolBox extends React.Component {
   }
 
   renderButtons = colors => {
-    return colors.map( color => {
-      return ( <li
+    return colors.map( (color, index) => {
+      return ( <li key={index}
         className={ 'color-selector ' + color + ' ' + this.isActive(color) }
         onClick={event => this.props.handleColorChange(color)}>
       </li> )

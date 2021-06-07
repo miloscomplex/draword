@@ -1,7 +1,6 @@
 import React from 'react'
 import Timer from '../ui/Timer'
 import TimerDisplay from '../ui/TimerDisplay'
-import Score from '../ui/Score'
 import Canvas from '../canvas/Canvas'
 import ChatArea from '../chatBox/ChatArea'
 import Callout from '../ui/Callout'

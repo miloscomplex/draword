@@ -69,7 +69,6 @@ class ChatsArea extends React.Component {
 
   checkForPhrase = (chatObj, phraseObj) => {
     console.log('checkForPhrase= ', phraseObj)
-    let winner = false
     const end = 'end'
     phraseObj && chatObj.text.toLowerCase().includes(phraseObj.phrase.toLowerCase()) && this.handleWin(phraseObj, end)
   }

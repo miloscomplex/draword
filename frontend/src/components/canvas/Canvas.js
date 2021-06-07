@@ -162,7 +162,7 @@ class Canvas extends React.Component {
 
       case 'closePath':
         canvas.closePath()
-        let saveVal = canvas.save();
+        //let saveVal = canvas.save();
         this.setState({ isDrawing: false })
         break
 

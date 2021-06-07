@@ -24,7 +24,7 @@ class RoomsList extends React.Component {
     //console.log('RoomsList unmounted');
     // --- ACTION CABLE --- //
     cable.disconnect()
-    // brute disconnect is okay here 
+    // brute disconnect is okay here
     cable.subscriptions.subscriptions.forEach( subscription => {
       subscription.unsubscribe()
     })
@@ -69,7 +69,7 @@ class RoomsList extends React.Component {
         <h1>Rooms</h1>
         <p>Select a room or create a new one</p>
         <ul>
-          { loadingRooms ? this.loading() : this.mapRooms(this.props.rooms) }
+          { loadingRooms ? this.loading() : this.mapRooms(rooms) }
         </ul>
 
         <NewRoomForm />

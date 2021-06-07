@@ -1,9 +1,7 @@
 import React from 'react'
 import PhraseContainer from '../phraseSelector/PhraseContainer'
 import GuesserWaitingRoom from '../ui/GuesserWaitingRoom'
-import Error from './Error.js'
 import NoDrawer from './NoDrawer.js'
-import { Link } from 'react-router-dom'
 
 class PhraseSelection extends React.Component {
 
@@ -17,7 +15,7 @@ class PhraseSelection extends React.Component {
         return <NoDrawer match={this.props.match} handleDrawClick={this.props.handleDrawClick}/>
       default:
         return <GuesserWaitingRoom match={this.props.match} />
-      // default same as !currentUser.id 
+      // default same as !currentUser.id
     }
   }
 

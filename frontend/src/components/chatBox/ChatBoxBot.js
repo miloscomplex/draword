@@ -1,7 +1,5 @@
 import React from 'react'
 import { API_ROOT, HEADERS } from '../../constants'
-import { connect } from 'react-redux'
-
 
 class ChatBoxBot extends React.Component {
 

@@ -11,7 +11,6 @@ class PhraseList extends React.Component {
   }
 
   render() {
-    console.log('this.props.match= ', this.props.match);
 
     return (
       <div>
@@ -25,5 +24,3 @@ class PhraseList extends React.Component {
 }
 
 export default PhraseList
-
-// helpers

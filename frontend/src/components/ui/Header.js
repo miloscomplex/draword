@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Navigation from './Navigation'
-import { connect } from 'react-redux'
 
 class Header extends React.Component {
 

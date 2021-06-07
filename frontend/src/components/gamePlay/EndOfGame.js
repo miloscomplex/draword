@@ -1,7 +1,7 @@
 import React from 'react'
 import { editSelectedRoom } from '../../redux/actions'
 import { connect } from 'react-redux'
-import { API_ROOT, PARSE_JSON, HEADERS } from '../../constants'
+import { API_ROOT, HEADERS } from '../../constants'
 
 class EndOfGame extends React.Component {
 
@@ -21,7 +21,7 @@ class EndOfGame extends React.Component {
     const { selectedRoom, editSelectedRoom } = this.props
     const preplay = 'preplay'
 
-    this.props.editSelectedRoom({room_id: this.props.selectedRoom.id, status: preplay, selected_phrase_id: null, drawer_id: null })
+    editSelectedRoom({room_id: selectedRoom.id, status: preplay, selected_phrase_id: null, drawer_id: null })
   }
 
   handleSubmitScore = () => {
