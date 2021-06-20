@@ -42,7 +42,6 @@ class GamePlay extends React.Component {
   componentDidMount = () => {
     // init cable
     this.gamePlayChannel()
-    // // FIXME: DO I MOVE MY SERVERSIDE LOGIC HERE? THERE SEEMS TO BE ISSUES WITH THE unsubscribe ALL UTITLIZED IN VARIOUS AREAS OF THE GAME
   }
 
   componentWillUnmount = () => {

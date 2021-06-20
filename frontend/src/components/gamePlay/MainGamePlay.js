@@ -19,7 +19,7 @@ class MainGamePlay extends React.Component {
   whichTimer = () => {
     const { currentUser, selectedRoom, match } = this.props
 
-    return currentUser.id === selectedRoom.drawer_id  ? <Timer match={match} /> : <TimerDisplay match={match} />
+    return currentUser.id === selectedRoom.drawer_id  && <Timer match={match} />
   }
 
   render() {
