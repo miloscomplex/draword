@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/draword/frontend/static/css/main.937378f0.chunk.css",
-    "main.js": "/draword/frontend/static/js/main.e19175da.chunk.js",
-    "main.js.map": "/draword/frontend/static/js/main.e19175da.chunk.js.map",
-    "runtime-main.js": "/draword/frontend/static/js/runtime-main.4d5dcfc3.js",
-    "runtime-main.js.map": "/draword/frontend/static/js/runtime-main.4d5dcfc3.js.map",
-    "static/js/2.9d35c5b3.chunk.js": "/draword/frontend/static/js/2.9d35c5b3.chunk.js",
-    "static/js/2.9d35c5b3.chunk.js.map": "/draword/frontend/static/js/2.9d35c5b3.chunk.js.map",
-    "index.html": "/draword/frontend/index.html",
-    "static/css/main.937378f0.chunk.css.map": "/draword/frontend/static/css/main.937378f0.chunk.css.map",
-    "static/js/2.9d35c5b3.chunk.js.LICENSE.txt": "/draword/frontend/static/js/2.9d35c5b3.chunk.js.LICENSE.txt"
+    "main.css": "/draword/static/css/main.937378f0.chunk.css",
+    "main.js": "/draword/static/js/main.e19175da.chunk.js",
+    "main.js.map": "/draword/static/js/main.e19175da.chunk.js.map",
+    "runtime-main.js": "/draword/static/js/runtime-main.4ea5406f.js",
+    "runtime-main.js.map": "/draword/static/js/runtime-main.4ea5406f.js.map",
+    "static/js/2.9d35c5b3.chunk.js": "/draword/static/js/2.9d35c5b3.chunk.js",
+    "static/js/2.9d35c5b3.chunk.js.map": "/draword/static/js/2.9d35c5b3.chunk.js.map",
+    "index.html": "/draword/index.html",
+    "static/css/main.937378f0.chunk.css.map": "/draword/static/css/main.937378f0.chunk.css.map",
+    "static/js/2.9d35c5b3.chunk.js.LICENSE.txt": "/draword/static/js/2.9d35c5b3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.4d5dcfc3.js",
+    "static/js/runtime-main.4ea5406f.js",
     "static/js/2.9d35c5b3.chunk.js",
     "static/css/main.937378f0.chunk.css",
     "static/js/main.e19175da.chunk.js"
