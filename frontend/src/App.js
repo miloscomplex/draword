@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div className='App'>
-      <Router basename='/'>
+      <Router basename='/draword'>
         <Header />
         <Switch>
           <Route exact path='/' component={LandingPage} />
