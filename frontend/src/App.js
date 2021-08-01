@@ -17,12 +17,12 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          <Route exact path='/' component={LandingPage} />
-          <Route exact path='/new' component={RoomsList} />
-          <Route exact path='/leaderboard' component={LeaderboardContainer} />
-          <Route exact path='/how-to-play' component={HowToPlay} />
-          <Route exact path='/rooms' component={RoomsList} />
-          <Route exact path='/rooms/:id' render={routerProps => <GameContainer {...routerProps} />} />
+          <Route exact path='/draword' component={LandingPage} />
+          <Route exact path='/draword/new' component={RoomsList} />
+          <Route exact path='/draword/leaderboard' component={LeaderboardContainer} />
+          <Route exact path='/draword/how-to-play' component={HowToPlay} />
+          <Route exact path='/draword/rooms' component={RoomsList} />
+          <Route exact path='/draword/rooms/:id' render={routerProps => <GameContainer {...routerProps} />} />
           <Route path='*' render={routerProps => <FourOFour {...routerProps}  />} />
         </Switch>
         <Footer />
