@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/draword/static/css/main.937378f0.chunk.css",
-    "main.js": "/draword/static/js/main.be4e0ba3.chunk.js",
-    "main.js.map": "/draword/static/js/main.be4e0ba3.chunk.js.map",
+    "main.js": "/draword/static/js/main.cb510bd5.chunk.js",
+    "main.js.map": "/draword/static/js/main.cb510bd5.chunk.js.map",
     "runtime-main.js": "/draword/static/js/runtime-main.4ea5406f.js",
     "runtime-main.js.map": "/draword/static/js/runtime-main.4ea5406f.js.map",
     "static/js/2.9d35c5b3.chunk.js": "/draword/static/js/2.9d35c5b3.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.4ea5406f.js",
     "static/js/2.9d35c5b3.chunk.js",
     "static/css/main.937378f0.chunk.css",
-    "static/js/main.be4e0ba3.chunk.js"
+    "static/js/main.cb510bd5.chunk.js"
   ]
 }
