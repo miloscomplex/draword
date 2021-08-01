@@ -5,9 +5,9 @@ class Navigation extends React.Component {
   render() {
     return (
       <div id='nav'>
-        <Link to='/new'>New Game</Link>
-        <Link to='/how-to-play'>How To Play</Link>
-        <Link to='/leaderboard'>Leaderboard</Link>
+        <Link to='/draword/new'>New Game</Link>
+        <Link to='/draword/how-to-play'>How To Play</Link>
+        <Link to='/draword/leaderboard'>Leaderboard</Link>
       </div>
     )
   }
