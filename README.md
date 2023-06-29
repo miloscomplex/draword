@@ -10,6 +10,7 @@ An application loosely based on Pictionary, user 1 (drawer) draws to communicate
 Clone and download the entire repository's files to a local folder. In the terminal type:
 ```bash
 git clone https://github.com/miloscomplex/draword
+cd draword
 cd backend
 bundle install
 ```
