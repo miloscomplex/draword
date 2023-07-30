@@ -1,4 +1,4 @@
-#draword
+# draword
 
 An application loosely based on Pictionary, user 1 (drawer) draws to communicate the phrase selected from 3 randomly displayed phrases which are not revealed to user 2 (guesser). The guessers can be at minimum one, but an unlimited amount can be participate. User 2 (guesser) can see what user 1 (drawer) is drawing live on a JavaScript canvas and submits guesses via a text form. If user two can guess it in the allotted time, they win. If not, they lose. The frontend technology is React.js and utilizing Thunk and ActionCable (WebSocket) to allow for live updates to and from individual users logged into the same room. The backend is a Ruby on Rails API that also incorporates ActionCable (WebSocket).
 
